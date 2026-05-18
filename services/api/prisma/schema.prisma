@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Mode {
+  INDIVIDUAL
+  PAIR
+  GROUP
+}
+
+model AdminUser {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model KioskState {
+  id        Int      @id @default(autoincrement())
+  isActive  Boolean  @default(true)
+  mode      Mode     @default(INDIVIDUAL)
+  refId     Int?
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id               Int      @id @default(autoincrement())
+  name             String
+  photoUrl         String?
+  isActive         Boolean  @default(true)
+  individualPoints Int      @default(0)
+
+  pairAsUser1 Pair[] @relation("PairUser1")
+  pairAsUser2 Pair[] @relation("PairUser2")
+  groupMembers GroupMember[]
+}
+
+model Pair {
+  id         Int     @id @default(autoincrement())
+  user1Id    Int
+  user2Id    Int
+  pairPoints Int     @default(0)
+  photoUrl   String?
+
+  user1 User @relation("PairUser1", fields: [user1Id], references: [id])
+  user2 User @relation("PairUser2", fields: [user2Id], references: [id])
+
+  @@unique([user1Id, user2Id])
+}
+
+model Group {
+  id          Int      @id @default(autoincrement())
+  name        String
+  groupPoints Int      @default(0)
+  photoUrl    String?
+  members     GroupMember[]
+}
+
+model GroupMember {
+  id      Int   @id @default(autoincrement())
+  groupId Int
+  userId  Int
+
+  group Group @relation(fields: [groupId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  @@unique([groupId, userId])
+}
+
+model Category {
+  id     Int    @id @default(autoincrement())
+  name   String
+  active Boolean @default(true)
+  items  Item[]
+}
+
+model Item {
+  id          Int      @id @default(autoincrement())
+  categoryId  Int
+  name        String
+  description String?
+  imageUrl    String?
+  pricePoints Int
+  available   Boolean  @default(true)
+
+  category Category @relation(fields: [categoryId], references: [id])
+  orderItems OrderItem[]
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  mode        Mode
+  refId       Int?
+  totalPoints Int
+  createdAt   DateTime @default(now())
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id          Int @id @default(autoincrement())
+  orderId     Int
+  itemId      Int
+  quantity    Int
+  pricePoints Int
+
+  order Order @relation(fields: [orderId], references: [id])
+  item  Item  @relation(fields: [itemId], references: [id])
+}

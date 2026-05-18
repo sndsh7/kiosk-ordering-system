@@ -1,0 +1,18 @@
+{
+  "name": "kiosk-ordering-system",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:kiosk\" \"npm run dev:admin\"",
+    "dev:api": "npm --workspace services/api run dev",
+    "dev:kiosk": "npm --workspace apps/kiosk-ui run dev -- --port 5173",
+    "dev:admin": "npm --workspace apps/admin-ui run dev -- --port 5174",
+    "format": "echo 'Add prettier later'"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: kiosk_db
+    environment:
+      POSTGRES_USER: kiosk
+      POSTGRES_PASSWORD: kiosk
+      POSTGRES_DB: kioskdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - kioskdb_data:/var/lib/postgresql/data
+
+volumes:
+  kioskdb_data:
