@@ -12,6 +12,7 @@ import Categories from "./pages/Categories.jsx";
 import Items from "./pages/Items.jsx";
 import { getToken, clearToken } from "./lib/adminApi.js";
 import { colors } from "./lib/adminStyles.js";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const navLinks = [
   { group: "Overview", items: [
@@ -131,19 +132,22 @@ function Protected({ element }) {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/dashboard"    element={<Protected element={<Layout><Dashboard /></Layout>} />} />
-      <Route path="/kiosk"        element={<Protected element={<Layout><KioskControl /></Layout>} />} />
-      <Route path="/orders"       element={<Protected element={<Layout><Orders /></Layout>} />} />
-      <Route path="/orders/:id"   element={<Protected element={<Layout><OrderDetail /></Layout>} />} />
-      <Route path="/users"        element={<Protected element={<Layout><Users /></Layout>} />} />
-      <Route path="/pairs"        element={<Protected element={<Layout><Pairs /></Layout>} />} />
-      <Route path="/groups"       element={<Protected element={<Layout><Groups /></Layout>} />} />
-      <Route path="/categories"   element={<Protected element={<Layout><Categories /></Layout>} />} />
-      <Route path="/items"        element={<Protected element={<Layout><Items /></Layout>} />} />
-      <Route path="/"             element={<Navigate to={getToken() ? "/dashboard" : "/login"} replace />} />
-      <Route path="*"             element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <SpeedInsights />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard"    element={<Protected element={<Layout><Dashboard /></Layout>} />} />
+        <Route path="/kiosk"        element={<Protected element={<Layout><KioskControl /></Layout>} />} />
+        <Route path="/orders"       element={<Protected element={<Layout><Orders /></Layout>} />} />
+        <Route path="/orders/:id"   element={<Protected element={<Layout><OrderDetail /></Layout>} />} />
+        <Route path="/users"        element={<Protected element={<Layout><Users /></Layout>} />} />
+        <Route path="/pairs"        element={<Protected element={<Layout><Pairs /></Layout>} />} />
+        <Route path="/groups"       element={<Protected element={<Layout><Groups /></Layout>} />} />
+        <Route path="/categories"   element={<Protected element={<Layout><Categories /></Layout>} />} />
+        <Route path="/items"        element={<Protected element={<Layout><Items /></Layout>} />} />
+        <Route path="/"             element={<Navigate to={getToken() ? "/dashboard" : "/login"} replace />} />
+        <Route path="*"             element={<Navigate to="/" replace />} />
+      </Routes>
+    </>
   );
 }

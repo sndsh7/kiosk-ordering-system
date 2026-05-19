@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { connectSocket } from "./lib/kioskApi";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 import Welcome from "./pages/Welcome.jsx";
 import ModeInfo from "./pages/ModeInfo.jsx";
@@ -27,6 +28,9 @@ export default function App() {
 
   return (
     <>
+      {/* ── GLOBAL SPEED INSIGHTS ────────────────────────────────────────── */}
+      <SpeedInsights />
+
       {/* ── GLOBAL FLASH OVERLAY ─────────────────────────────────────────── */}
       {flash && (
         <div
