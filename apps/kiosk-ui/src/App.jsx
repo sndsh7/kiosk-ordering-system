@@ -30,170 +30,59 @@ export default function App() {
       {/* ── GLOBAL FLASH OVERLAY ─────────────────────────────────────────── */}
       {flash && (
         <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 99999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            background:
-              flash.type === "BONUS"
-                ? "radial-gradient(circle at center, #003300 0%, #000 100%)"
-                : "radial-gradient(circle at center, #2b0000 0%, #000 100%)",
-            animation: "kFlashIn 0.35s ease",
-          }}
+          className={`flash-overlay ${
+            flash.type === "BONUS" ? "flash-overlay-bonus" : "flash-overlay-penalty"
+          }`}
         >
           <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              background:
-                flash.type === "BONUS"
-                  ? "linear-gradient(180deg,#004d00,#001a00)"
-                  : "linear-gradient(180deg,#3d0000,#0a0000)",
-              border:
-                flash.type === "BONUS"
-                  ? "2px solid rgba(0,200,0,0.6)"
-                  : "2px solid rgba(255,0,0,0.7)",
-              borderRadius: 32,
-              padding: "52px 44px 40px",
-              maxWidth: 400,
-              width: "88%",
-              boxShadow:
-                flash.type === "BONUS"
-                  ? "0 0 100px rgba(0,200,0,0.35)"
-                  : "0 0 100px rgba(255,0,0,0.35)",
-            }}
+            className={`flash-card ${
+              flash.type === "BONUS" ? "flash-card-bonus" : "flash-card-penalty"
+            }`}
           >
             {flash.type === "BONUS" ? (
               <>
-                <div
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 900,
-                    color: "#ffdd00",
-                    letterSpacing: 3,
-                    marginBottom: 6,
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
+                <div className="flash-title flash-title-bonus">
                   CONGRATULATIONS!
                 </div>
-                <div style={{ fontSize: 96, lineHeight: 1.1 }}>🏆</div>
+                <div style={{ fontSize: "5rem", lineHeight: 1.1 }}>🏆</div>
                 <div
-                  style={{
-                    fontSize: 30,
-                    fontWeight: 900,
-                    color: "#ffdd00",
-                    marginTop: 10,
-                    letterSpacing: 2,
-                    fontFamily: "system-ui, sans-serif",
-                  }}
+                  className="flash-title flash-title-bonus"
+                  style={{ fontSize: "1.8rem", marginTop: "0.6rem" }}
                 >
                   TASK WON!
                 </div>
-                <div
-                  style={{
-                    fontSize: 17,
-                    color: "#ccc",
-                    marginTop: 12,
-                    lineHeight: 1.6,
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
+                <div className="flash-subtitle">
                   Bonus Added To
                   <br />
                   <strong style={{ color: "#fff" }}>{flash.entityName || "Wallet"}</strong>
                 </div>
-                <div
-                  style={{
-                    fontSize: 56,
-                    fontWeight: 900,
-                    color: "#00e676",
-                    marginTop: 16,
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
+                <div className="flash-points flash-points-bonus">
                   + ₹ {flash.points}
                 </div>
               </>
             ) : (
               <>
-                <div
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 900,
-                    color: "#ff4444",
-                    letterSpacing: 3,
-                    marginBottom: 6,
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
+                <div className="flash-title flash-title-penalty">
                   RULE VIOLATION!
                 </div>
-                <div style={{ fontSize: 96, lineHeight: 1.1 }}>⚠️</div>
-                <div
-                  style={{
-                    fontSize: 17,
-                    color: "#ccc",
-                    marginTop: 14,
-                    lineHeight: 1.6,
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
+                <div style={{ fontSize: "5rem", lineHeight: 1.1 }}>⚠️</div>
+                <div className="flash-subtitle">
                   Penalty Deducted From
                   <br />
                   <strong style={{ color: "#fff" }}>{flash.entityName || "Wallet"}</strong>
                 </div>
-                <div
-                  style={{
-                    fontSize: 56,
-                    fontWeight: 900,
-                    color: "#ff4444",
-                    marginTop: 16,
-                    fontFamily: "system-ui, sans-serif",
-                  }}
-                >
+                <div className="flash-points flash-points-penalty">
                   − ₹ {flash.points}
                 </div>
               </>
             )}
 
             {/* New balance box */}
-            <div
-              style={{
-                marginTop: 24,
-                background: "rgba(0,0,0,0.45)",
-                border: "1px solid rgba(255,255,255,0.15)",
-                borderRadius: 16,
-                padding: "16px 28px",
-                width: "100%",
-                boxSizing: "border-box",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 12,
-                  fontWeight: 700,
-                  letterSpacing: 3,
-                  color: "rgba(255,255,255,0.45)",
-                  fontFamily: "system-ui, sans-serif",
-                }}
-              >
+            <div className="flash-balance-box">
+              <div className="flash-balance-title">
                 NEW BALANCE
               </div>
-              <div
-                style={{
-                  fontSize: 48,
-                  fontWeight: 900,
-                  color: "#ffcc00",
-                  marginTop: 4,
-                  fontFamily: "system-ui, sans-serif",
-                }}
-              >
+              <div className="flash-balance-amount">
                 ₹ {flash.newBalance}
               </div>
             </div>
@@ -201,23 +90,9 @@ export default function App() {
             {/* Dismiss button */}
             <button
               onClick={() => setFlash(null)}
-              style={{
-                marginTop: 22,
-                width: "100%",
-                padding: "18px",
-                borderRadius: 16,
-                border: "none",
-                background:
-                  flash.type === "BONUS"
-                    ? "linear-gradient(180deg,#00aa44,#005522)"
-                    : "linear-gradient(180deg,#cc2200,#660000)",
-                color: "#fff",
-                fontSize: 18,
-                fontWeight: 900,
-                cursor: "pointer",
-                letterSpacing: 1.5,
-                fontFamily: "system-ui, sans-serif",
-              }}
+              className={`flash-btn ${
+                flash.type === "BONUS" ? "flash-btn-bonus" : "flash-btn-penalty"
+              }`}
             >
               {flash.type === "BONUS" ? "CONTINUE SHOPPING" : "OK, GOT IT"}
             </button>

@@ -36,11 +36,11 @@ export default function Confirm() {
 
   if (list.length === 0) {
     return (
-      <div style={styles.page}>
-        <div style={styles.emptyCard}>
-          <div style={styles.emptyIcon}>🛒</div>
-          <div style={styles.emptyText}>No items in cart.</div>
-          <button style={styles.emptyBtn} onClick={() => nav("/menu")}>
+      <div className="kiosk-page">
+        <div className="kiosk-card">
+          <div className="welcome-error-icon">🛒</div>
+          <div className="welcome-title" style={{ fontSize: "2rem", marginBottom: "1.5rem" }}>No items in cart.</div>
+          <button className="kiosk-btn" onClick={() => nav("/menu")}>
             Back to Menu
           </button>
         </div>
@@ -49,246 +49,68 @@ export default function Confirm() {
   }
 
   return (
-    <div style={styles.page}>
-      {/* HEADER */}
-      <div style={styles.header}>
-        <button style={styles.backBtn} onClick={() => nav("/cart")}>←</button>
-        <div style={styles.headerTitle}>CONFIRM ORDER</div>
-        <div style={styles.headerIcon}>✅</div>
-      </div>
+    <div className="kiosk-page">
+      <div className="kiosk-container">
+        {/* HEADER */}
+        <div className="kiosk-header">
+          <button className="kiosk-back-btn" onClick={() => nav("/cart")}>←</button>
+          <div className="kiosk-header-title">CONFIRM ORDER</div>
+          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>✅</div>
+        </div>
 
-      {/* ORDER SUMMARY */}
-      <div style={styles.summaryCard}>
-        <div style={styles.summaryTitle}>ORDER SUMMARY</div>
-        <div style={styles.itemList}>
-          {list.map(({ item, qty }) => (
-            <div key={item.id} style={styles.itemRow}>
-              <div style={styles.itemName}>{item.name}</div>
-              <div style={styles.itemQty}>× {qty}</div>
-              <div style={styles.itemPrice}>₹ {item.pricePoints * qty}</div>
-            </div>
-          ))}
+        {/* ORDER SUMMARY */}
+        <div className="kiosk-balance-card" style={{ textAlign: "left", marginBottom: "1.5rem" }}>
+          <div className="mode-label" style={{ marginBottom: "1rem" }}>ORDER SUMMARY</div>
+          <div className="kiosk-list" style={{ gap: "0.8rem" }}>
+            {list.map(({ item, qty }) => (
+              <div key={item.id} className="confirm-item-row">
+                <div className="confirm-item-name">{item.name}</div>
+                <div className="confirm-item-qty">× {qty}</div>
+                <div className="confirm-item-price">₹ {item.pricePoints * qty}</div>
+              </div>
+            ))}
+          </div>
+          <div className="cart-divider" style={{ margin: "1.2rem 0" }} />
+          <div className="confirm-item-row" style={{ justifyContent: "space-between" }}>
+            <span className="confirm-total-label">TOTAL</span>
+            <span className="confirm-total-amount">₹ {total}</span>
+          </div>
         </div>
-        <div style={styles.divider} />
-        <div style={styles.totalRow}>
-          <span style={styles.totalLabel}>TOTAL</span>
-          <span style={styles.totalAmount}>₹ {total}</span>
-        </div>
-      </div>
 
-      {/* BALANCE CARD */}
-      <div style={styles.balanceCard}>
-        <div style={styles.balRow}>
-          <span style={styles.balLabel}>Wallet Balance</span>
-          <span style={styles.balValue}>₹ {balance}</span>
+        {/* BALANCE CARD */}
+        <div className="kiosk-balance-card" style={{ marginBottom: "2rem" }}>
+          <div className="cart-balance-row">
+            <span className="cart-balance-label">Wallet Balance</span>
+            <span className="cart-balance-value">₹ {balance}</span>
+          </div>
+          <div className="cart-balance-row">
+            <span className="cart-balance-label">Order Total</span>
+            <span className="cart-balance-value" style={{ color: "#ff4444" }}>− ₹ {total}</span>
+          </div>
+          <div className="cart-divider" style={{ opacity: 0.3 }} />
+          <div className="cart-balance-row">
+            <span className="cart-balance-label">Remaining</span>
+            <span className="cart-balance-value" style={{ color: remaining < 0 ? "#ff4444" : "#ffcc00" }}>
+              ₹ {Math.max(0, remaining)}
+            </span>
+          </div>
         </div>
-        <div style={styles.balRow}>
-          <span style={styles.balLabel}>Order Total</span>
-          <span style={{ ...styles.balValue, color: "#ff4444" }}>− ₹ {total}</span>
-        </div>
-        <div style={styles.thinDivider} />
-        <div style={styles.balRow}>
-          <span style={styles.balLabel}>Remaining</span>
-          <span style={{ ...styles.balValue, color: remaining < 0 ? "#ff4444" : "#ffcc00" }}>
-            ₹ {Math.max(0, remaining)}
-          </span>
-        </div>
-      </div>
 
-      {/* ACTIONS */}
-      <div style={styles.actions}>
-        <button style={styles.cancelBtn} disabled={busy} onClick={() => nav("/cart")}>
-          ✕ CANCEL
-        </button>
-        <button
-          style={{
-            ...styles.placeBtn,
-            ...(busy || total > balance ? styles.placeBtnDisabled : {}),
-          }}
-          disabled={busy || total > balance}
-          onClick={submit}
-        >
-          {busy ? "⏳ PROCESSING…" : "✓ PLACE ORDER"}
-        </button>
+        {/* ACTIONS */}
+        <div className="kiosk-actions-fixed">
+          <button className="kiosk-clear-btn" disabled={busy} onClick={() => nav("/cart")}>
+            ✕ CANCEL
+          </button>
+          <button
+            className="kiosk-proceed-btn"
+            disabled={busy || total > balance}
+            style={{ opacity: busy || total > balance ? 0.4 : 1, cursor: busy || total > balance ? "not-allowed" : "pointer" }}
+            onClick={submit}
+          >
+            {busy ? "⏳ PROCESSING…" : "✓ PLACE ORDER"}
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-
-const styles = {
-  page: {
-    minHeight: "100vh",
-    background: "radial-gradient(circle at top, #2b0000, #000)",
-    padding: 18,
-    paddingBottom: 140,
-    color: "#fff",
-    fontFamily: "Arial, sans-serif",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 20,
-  },
-  backBtn: {
-    background: "transparent",
-    border: "none",
-    color: "#fff",
-    fontSize: 48,
-    cursor: "pointer",
-  },
-  headerTitle: {
-    fontSize: 28,
-    fontWeight: 800,
-    letterSpacing: 1,
-  },
-  headerIcon: {
-    fontSize: 34,
-  },
-  summaryCard: {
-    border: "2px solid rgba(255,0,0,0.5)",
-    background: "linear-gradient(180deg, #3d0000, #170000)",
-    borderRadius: 24,
-    padding: 24,
-    marginBottom: 16,
-    boxShadow: "0 0 30px rgba(255,0,0,0.2)",
-  },
-  summaryTitle: {
-    fontSize: 16,
-    fontWeight: 700,
-    letterSpacing: 2,
-    opacity: 0.7,
-    marginBottom: 16,
-  },
-  itemList: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 12,
-  },
-  itemRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: 12,
-  },
-  itemName: {
-    flex: 1,
-    fontSize: 20,
-    fontWeight: 700,
-  },
-  itemQty: {
-    fontSize: 18,
-    opacity: 0.7,
-    minWidth: 40,
-    textAlign: "center",
-  },
-  itemPrice: {
-    fontSize: 20,
-    fontWeight: 900,
-    color: "#ffcc00",
-    minWidth: 80,
-    textAlign: "right",
-  },
-  divider: {
-    height: 1,
-    background: "rgba(255,0,0,0.3)",
-    margin: "16px 0",
-  },
-  totalRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  totalLabel: {
-    fontSize: 22,
-    fontWeight: 800,
-    letterSpacing: 2,
-  },
-  totalAmount: {
-    fontSize: 34,
-    fontWeight: 900,
-    color: "#ffcc00",
-  },
-  balanceCard: {
-    border: "1px solid rgba(255,0,0,0.35)",
-    background: "linear-gradient(90deg, #2b0000, #160000)",
-    borderRadius: 18,
-    padding: "16px 24px",
-    marginBottom: 16,
-  },
-  balRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingTop: 8,
-    paddingBottom: 8,
-  },
-  balLabel: {
-    fontSize: 18,
-    opacity: 0.8,
-  },
-  balValue: {
-    fontSize: 22,
-    fontWeight: 900,
-    color: "#ffcc00",
-  },
-  thinDivider: {
-    height: 1,
-    background: "rgba(255,255,255,0.1)",
-  },
-  actions: {
-    position: "fixed",
-    bottom: 16,
-    left: 18,
-    right: 18,
-    display: "flex",
-    gap: 14,
-  },
-  cancelBtn: {
-    flex: 1,
-    height: 90,
-    borderRadius: 22,
-    border: "1px solid rgba(255,255,255,0.2)",
-    background: "rgba(255,255,255,0.05)",
-    color: "#fff",
-    fontSize: 24,
-    fontWeight: 800,
-    cursor: "pointer",
-    letterSpacing: 1,
-  },
-  placeBtn: {
-    flex: 2,
-    height: 90,
-    borderRadius: 22,
-    border: "1px solid rgba(255,0,0,0.7)",
-    background: "linear-gradient(90deg, #420000, #ff1f1f)",
-    color: "#fff",
-    fontSize: 28,
-    fontWeight: 900,
-    cursor: "pointer",
-    letterSpacing: 1,
-    boxShadow: "0 0 20px rgba(255,0,0,0.3)",
-  },
-  placeBtnDisabled: {
-    opacity: 0.4,
-    cursor: "not-allowed",
-  },
-  emptyCard: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100vh",
-  },
-  emptyIcon: { fontSize: 80, marginBottom: 20 },
-  emptyText: { fontSize: 28, fontWeight: 700, opacity: 0.7, marginBottom: 24 },
-  emptyBtn: {
-    padding: "16px 40px",
-    borderRadius: 16,
-    border: "none",
-    background: "linear-gradient(180deg, #ff1f1f, #920000)",
-    color: "#fff",
-    fontSize: 22,
-    fontWeight: 800,
-    cursor: "pointer",
-  },
-};
