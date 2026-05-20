@@ -80,9 +80,9 @@ export default function Menu() {
             {status.mode?.toUpperCase()} MODE
           </div>
 
-          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>
+          {/* <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>
             👥
-          </div>
+          </div> */}
         </div>
 
         {/* BALANCE */}

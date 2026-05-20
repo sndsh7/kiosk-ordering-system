@@ -25,7 +25,7 @@ export default function Cart() {
         <div className="kiosk-header">
           <button className="kiosk-back-btn" onClick={() => nav("/menu")}>←</button>
           <div className="kiosk-header-title">YOUR CART</div>
-          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>🛒</div>
+          {/* <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>🛒</div> */}
         </div>
 
         {/* BALANCE SUMMARY */}
