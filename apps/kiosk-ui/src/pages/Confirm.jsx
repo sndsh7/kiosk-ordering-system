@@ -2,19 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getKioskStatus, placeOrder } from "../lib/kioskApi";
 import { useCart } from "../state/cart.jsx";
+import ProfileAvatars from "../components/ProfileAvatars";
 
 export default function Confirm() {
   const nav = useNavigate();
   const { list, total, dispatch } = useCart();
-  const [balance, setBalance] = useState(0);
+  const [status, setStatus] = useState(null);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     (async () => {
       const s = await getKioskStatus();
-      setBalance(s.balance);
+      setStatus(s);
     })();
   }, []);
+
+  const balance = status?.balance || 0;
 
   const remaining = balance - total;
 
@@ -24,11 +27,11 @@ export default function Confirm() {
       const payload = list.map((x) => ({ itemId: x.item.id, quantity: x.qty }));
       const result = await placeOrder(payload);
       dispatch({ type: "CLEAR" });
-      nav("/success", { state: { remaining, orderId: result.orderId } });
+      nav("/success", { state: { remaining, orderId: result.orderId, entityName: status?.entityName, photos: status?.photos } });
     } catch (e) {
       const err = e?.response?.data?.error || "SERVER_ERROR";
       const balanceServer = e?.response?.data?.balance;
-      nav("/error", { state: { error: err, balance: balanceServer } });
+      nav("/error", { state: { error: err, balance: balanceServer, entityName: status?.entityName, photos: status?.photos } });
     } finally {
       setBusy(false);
     }
@@ -57,6 +60,13 @@ export default function Confirm() {
           <div className="kiosk-header-title">CONFIRM ORDER</div>
           <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
         </div>
+
+        {/* PROFILE CARD */}
+        {status?.entityName && (
+          <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.5rem 2rem" }}>
+            <ProfileAvatars entityName={status.entityName} photos={status.photos} />
+          </div>
+        )}
 
         {/* ORDER SUMMARY */}
         <div className="kiosk-balance-card" style={{ textAlign: "left", marginBottom: "1.5rem" }}>

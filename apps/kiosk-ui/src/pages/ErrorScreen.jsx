@@ -1,10 +1,13 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import ProfileAvatars from "../components/ProfileAvatars";
 
 export default function ErrorScreen() {
   const nav = useNavigate();
   const { state } = useLocation();
   const error = state?.error || "SERVER_ERROR";
+  const entityName = state?.entityName ?? null;
+  const photos = state?.photos ?? [];
 
   let icon = "⚠️";
   let title = "Something Went Wrong";
@@ -28,6 +31,12 @@ export default function ErrorScreen() {
   return (
     <div className="kiosk-page" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div className="kiosk-card">
+        {/* PROFILE */}
+        {entityName && (
+          <div style={{ width: "100%", marginBottom: "0.5rem" }}>
+            <ProfileAvatars entityName={entityName} photos={photos} />
+          </div>
+        )}
         <div className="welcome-logo">{icon}</div>
         <div className="welcome-title">{title}</div>
         <div className="welcome-subtitle" style={{ maxWidth: "420px", marginBottom: "1.5rem" }}>{message}</div>
