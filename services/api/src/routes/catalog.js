@@ -39,9 +39,19 @@ catalogRouter.put("/categories/:id", requireAdmin, async (req, res) => {
 });
 
 catalogRouter.delete("/categories/:id", requireAdmin, async (req, res) => {
-  const id = Number(req.params.id);
-  await req.prisma.category.delete({ where: { id } });
-  res.json({ ok: true });
+  try {
+    const id = Number(req.params.id);
+    const hasItems = await req.prisma.item.findFirst({ where: { categoryId: id } });
+    if (hasItems) {
+      return res.status(400).json({
+        error: "Cannot delete category because it contains active food items. Please delete or reassign those items first."
+      });
+    }
+    await req.prisma.category.delete({ where: { id } });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message || "Failed to delete category." });
+  }
 });
 
 catalogRouter.post("/items", requireAdmin, async (req, res) => {
@@ -56,7 +66,11 @@ catalogRouter.put("/items/:id", requireAdmin, async (req, res) => {
 });
 
 catalogRouter.delete("/items/:id", requireAdmin, async (req, res) => {
-  const id = Number(req.params.id);
-  await req.prisma.item.delete({ where: { id } });
-  res.json({ ok: true });
+  try {
+    const id = Number(req.params.id);
+    await req.prisma.item.delete({ where: { id } });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message || "Failed to delete item." });
+  }
 });

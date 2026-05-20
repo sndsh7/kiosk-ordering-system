@@ -19,9 +19,26 @@ entitiesRouter.put("/users/:id", async (req, res) => {
 });
 
 entitiesRouter.delete("/users/:id", async (req, res) => {
-  const id = Number(req.params.id);
-  await req.prisma.user.delete({ where: { id } });
-  res.json({ ok: true });
+  try {
+    const id = Number(req.params.id);
+    
+    // Check if the user is part of any active pairs or groups first
+    const isMember = await req.prisma.groupMember.findFirst({ where: { userId: id } });
+    const isPair = await req.prisma.pair.findFirst({
+      where: { OR: [{ user1Id: id }, { user2Id: id }] }
+    });
+    
+    if (isMember || isPair) {
+      return res.status(400).json({
+        error: "Cannot delete user because they are a member of an active Group or Pair. Please remove them from the group/pair first."
+      });
+    }
+
+    await req.prisma.user.delete({ where: { id } });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message || "Failed to delete user." });
+  }
 });
 
 entitiesRouter.put("/users/:id/points", async (req, res) => {
@@ -66,9 +83,13 @@ entitiesRouter.put("/pairs/:id", async (req, res) => {
 });
 
 entitiesRouter.delete("/pairs/:id", async (req, res) => {
-  const id = Number(req.params.id);
-  await req.prisma.pair.delete({ where: { id } });
-  res.json({ ok: true });
+  try {
+    const id = Number(req.params.id);
+    await req.prisma.pair.delete({ where: { id } });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message || "Failed to delete pair." });
+  }
 });
 
 // ─── GROUPS ───────────────────────────────────────────────────────────────────
@@ -119,9 +140,13 @@ entitiesRouter.put("/groups/:id", async (req, res) => {
 });
 
 entitiesRouter.delete("/groups/:id", async (req, res) => {
-  const id = Number(req.params.id);
-  // Must delete members first (FK constraint)
-  await req.prisma.groupMember.deleteMany({ where: { groupId: id } });
-  await req.prisma.group.delete({ where: { id } });
-  res.json({ ok: true });
+  try {
+    const id = Number(req.params.id);
+    // Must delete members first (FK constraint)
+    await req.prisma.groupMember.deleteMany({ where: { groupId: id } });
+    await req.prisma.group.delete({ where: { id } });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(400).json({ error: err.message || "Failed to delete group." });
+  }
 });

@@ -117,31 +117,54 @@ export default function Users() {
   const [photo, setPhoto] = useState(null); // base64 or URL
   const [editingId, setEditingId] = useState(null);
   const [uploading, setUploading] = useState(null); // userId being uploaded inline
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   async function refresh() {
-    const { data } = await api.get("/api/users");
-    setUsers(data);
+    try {
+      const { data } = await api.get("/api/users");
+      setUsers(data);
+    } catch (err) {
+      setError("Failed to load users.");
+    }
   }
 
   useEffect(() => { refresh(); }, []);
 
   async function addOrUpdate() {
-    if (!name) return;
-    const payload = { name, individualPoints: Number(points) };
-    if (photo !== null) payload.photoUrl = photo; // can be base64 or cleared null
-    if (editingId) {
-      await api.put(`/api/users/${editingId}`, payload);
-    } else {
-      await api.post("/api/users", payload);
+    if (!name.trim()) return;
+    try {
+      setError("");
+      setSuccess("");
+      const payload = { name: name.trim(), individualPoints: Number(points) };
+      if (photo !== null) payload.photoUrl = photo; // can be base64 or cleared null
+      if (editingId) {
+        await api.put(`/api/users/${editingId}`, payload);
+        setSuccess("User updated successfully!");
+      } else {
+        await api.post("/api/users", payload);
+        setSuccess("User added successfully!");
+      }
+      resetForm();
+      refresh();
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to save user.");
     }
-    resetForm();
-    refresh();
   }
 
   async function deleteUser(id) {
-    if (!window.confirm("Delete this user?")) return;
-    await api.delete(`/api/users/${id}`);
-    refresh();
+    if (!window.confirm("Are you sure you want to delete this user? This action cannot be undone.")) return;
+    try {
+      setError("");
+      setSuccess("");
+      await api.delete(`/api/users/${id}`);
+      setSuccess("User deleted successfully!");
+      refresh();
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to delete user.");
+    }
   }
 
   function editUser(user) {
@@ -160,15 +183,28 @@ export default function Users() {
 
   // Inline photo update for existing user row
   async function handleInlinePhoto(userId, dataUrl) {
-    setUploading(userId);
-    await api.put(`/api/users/${userId}`, { photoUrl: dataUrl });
-    await refresh();
-    setUploading(null);
+    try {
+      setError("");
+      setSuccess("");
+      setUploading(userId);
+      await api.put(`/api/users/${userId}`, { photoUrl: dataUrl });
+      setSuccess("Photo updated successfully!");
+      await refresh();
+      setUploading(null);
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err) {
+      setError(err.response?.data?.error || "Failed to update photo.");
+      setUploading(null);
+    }
   }
 
   return (
     <div style={s.page}>
       <div style={s.pageTitle}>Users</div>
+
+      {/* SUCCESS / ERROR ALERTS */}
+      {error && <div style={{ ...s.errMsg, marginBottom: 18, display: "block" }}>{error}</div>}
+      {success && <div style={{ ...s.msg, marginBottom: 18, display: "block" }}>{success}</div>}
 
       {/* ── ADD / EDIT FORM ── */}
       <div style={s.card}>
@@ -216,29 +252,33 @@ export default function Users() {
         <div style={s.sectionTitle}>All Users ({users.length})</div>
         {users.length === 0 ? (
           <div style={{ color: colors.muted, padding: "12px 0" }}>No users yet.</div>
-        ) : users.map((u) => (
-          <div key={u.id} style={{ ...s.row, gap: 16 }}>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            {users.map((u) => (
+              <div key={u.id} style={{ ...s.row, gap: 16 }}>
 
-            {/* Avatar + inline upload */}
-            <InlinePhotoUpload
-              user={u}
-              loading={uploading === u.id}
-              onUpload={(dataUrl) => handleInlinePhoto(u.id, dataUrl)}
-            />
+                {/* Avatar + inline upload */}
+                <InlinePhotoUpload
+                  user={u}
+                  loading={uploading === u.id}
+                  onUpload={(dataUrl) => handleInlinePhoto(u.id, dataUrl)}
+                />
 
-            {/* Info */}
-            <div style={{ flex: 1 }}>
-              <div style={{ fontWeight: 700, fontSize: 15 }}>{u.name}</div>
-              <div style={{ fontSize: 13, color: colors.gold, marginTop: 2 }}>₹ {u.individualPoints}</div>
-            </div>
+                {/* Info */}
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontWeight: 700, fontSize: 15 }}>{u.name}</div>
+                  <div style={{ fontSize: 13, color: colors.gold, marginTop: 2 }}>₹ {u.individualPoints}</div>
+                </div>
 
-            {/* Actions */}
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button onClick={() => editUser(u)} style={s.btnGhost}>Edit</button>
-              <button onClick={() => deleteUser(u.id)} style={s.btnDanger}>Delete</button>
-            </div>
+                {/* Actions */}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <button onClick={() => editUser(u)} style={{ ...s.btnGhost, margin: 0, padding: "6px 14px", fontSize: 13 }}>Edit</button>
+                  <button onClick={() => deleteUser(u.id)} style={s.btnDanger}>Delete</button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
