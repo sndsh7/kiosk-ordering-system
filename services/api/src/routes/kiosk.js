@@ -91,7 +91,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
         include: { members: { include: { user: true } } }
       });
       newBalance = g.groupPoints;
-      entityName = g.name;
+      entityName = g.members.map(m => m.user.name).join(" + ");
       photos = g.photoUrl ? [g.photoUrl] : g.members.map(m => m.user.photoUrl).filter(Boolean);
     }
   }
@@ -145,7 +145,7 @@ async function resolveEntity(prisma, mode, refId) {
     });
     if (!g) return null;
     const photos = g.photoUrl ? [g.photoUrl] : g.members.map(m => m.user.photoUrl).filter(Boolean);
-    return { name: g.name, balance: g.groupPoints, photos };
+    return { name: g.members.map(m => m.user.name).join(" + "), balance: g.groupPoints, photos };
   }
   return null;
 }

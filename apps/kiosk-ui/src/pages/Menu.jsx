@@ -86,7 +86,7 @@ export default function Menu() {
             {status.photos && status.photos.length > 0 ? (
               status.photos.map((url, i) => (
                 <div key={i} style={{ 
-                  width: "60px", height: "60px", borderRadius: "50%", 
+                  width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
                   border: "2px solid #fff", overflow: "hidden"
                 }}>
                   <img src={url} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -94,19 +94,19 @@ export default function Menu() {
               ))
             ) : status.entityName ? status.entityName.split('+').map((name, i) => (
               <div key={i} style={{ 
-                width: "60px", height: "60px", borderRadius: "50%", 
+                width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
                 background: "var(--accent-gold)", color: "#000", 
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "1.5rem", fontWeight: "bold", border: "2px solid #fff"
+                fontSize: "calc(var(--profile-photo-size) * 0.4)", fontWeight: "bold", border: "2px solid #fff"
               }}>
                 {name.trim().charAt(0).toUpperCase()}
               </div>
             )) : (
               <div style={{ 
-                width: "60px", height: "60px", borderRadius: "50%", 
+                width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
                 background: "var(--accent-gold)", color: "#000", 
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "2rem", border: "2px solid #fff"
+                fontSize: "calc(var(--profile-photo-size) * 0.6)", border: "2px solid #fff"
               }}>
                 👤
               </div>

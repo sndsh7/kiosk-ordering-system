@@ -40,6 +40,7 @@
   --btn-height: 62px;
   --cart-btn-height: 90px;
   --container-max-width: 1200px;
+  --profile-photo-size: 60px;
 }
 
 /* Base Scaling */
@@ -93,6 +94,7 @@ body {
     --grid-cols: repeat(2, 1fr); /* 2 columns on mobile tab view */
     --btn-height: 48px;
     --cart-btn-height: 70px;
+    --profile-photo-size: 45px;
   }
   
   .kiosk-food-card {
@@ -160,6 +162,7 @@ body {
     --grid-cols: repeat(4, 1fr);
     --btn-height: 56px;
     --cart-btn-height: 80px;
+    --profile-photo-size: 55px;
   }
 }
 
@@ -185,6 +188,7 @@ body {
     --btn-height: 110px;
     --cart-btn-height: 165px;
     --container-max-width: 1800px;
+    --profile-photo-size: 110px;
   }
   
   /* Additional padding for easy hand reach */
