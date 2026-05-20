@@ -39,36 +39,30 @@ export default function ModeInfo() {
     );
   }
 
+  const modeIcon = status.mode?.toLowerCase() === 'individual' ? '👤' : 
+                   status.mode?.toLowerCase() === 'pair' ? '👥' : 
+                   status.mode?.toLowerCase() === 'group' ? '🧑‍🤝‍🧑' : '⚙️';
+                   
+  const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
+
   return (
     <div className="kiosk-page">
       <div className="kiosk-container">
         {/* HEADER */}
         <div className="kiosk-header">
           <button className="kiosk-back-btn" onClick={() => nav("/")}>←</button>
-          <div className="kiosk-header-title">ORDER MODE</div>
+          <div className="kiosk-header-title" style={{ fontSize: "3rem" }}>{modeIcon}</div>
           <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
         </div>
 
-        {/* MODE CARD */}
-        <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem" }}>
-          <div className="mode-label">CURRENT MODE</div>
-          <div className="mode-name">{status.mode?.toUpperCase()}</div>
-        </div>
-
-        {/* BALANCE CARD */}
-        <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem" }}>
-          <div className="kiosk-wallet-text">GROUP WALLET BALANCE</div>
-          <div className="kiosk-balance-amount">₹ {status.balance}</div>
-          <div className="kiosk-wallet-text" style={{ opacity: 0.7, fontSize: "1.1rem" }}>Available Balance</div>
-        </div>
-
-        {/* ENTITY */}
-        {status.entityName && (
-          <div className="mode-entity-card">
-            <div className="mode-entity-label">ASSIGNED TO</div>
-            <div className="mode-entity-name">{status.entityName}</div>
+        {/* COMBINED MODE & BALANCE CARD */}
+        <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
+          <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
+            {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
           </div>
-        )}
+          <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>Lockup Money</div>
+          <div className="kiosk-balance-amount" style={{ marginTop: "1rem" }}>₹ {status.balance}</div>
+        </div>
 
         {/* ACTIONS */}
         <div className="mode-actions">
