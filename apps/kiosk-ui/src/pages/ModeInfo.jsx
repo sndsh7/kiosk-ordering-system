@@ -46,7 +46,7 @@ export default function ModeInfo() {
         <div className="kiosk-header">
           <button className="kiosk-back-btn" onClick={() => nav("/")}>←</button>
           <div className="kiosk-header-title">ORDER MODE</div>
-          {/* <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>⚙️</div> */}
+          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
         </div>
 
         {/* MODE CARD */}

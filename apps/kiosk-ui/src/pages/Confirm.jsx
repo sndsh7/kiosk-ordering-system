@@ -55,7 +55,7 @@ export default function Confirm() {
         <div className="kiosk-header">
           <button className="kiosk-back-btn" onClick={() => nav("/cart")}>←</button>
           <div className="kiosk-header-title">CONFIRM ORDER</div>
-          {/* <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>✅</div> */}
+          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
         </div>
 
         {/* ORDER SUMMARY */}
