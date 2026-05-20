@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getKioskStatus } from "../lib/kioskApi";
 import { useCart } from "../state/cart.jsx";
+import ProfileAvatars from "../components/ProfileAvatars";
 
 export default function Cart() {
   const nav = useNavigate();
@@ -34,39 +35,8 @@ export default function Cart() {
         {/* PROFILE INFO CARD */}
         {status && (
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "2rem" }}>
-            {/* PROFILE PHOTOS */}
-            <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1rem" }}>
-              {status.photos && status.photos.length > 0 ? (
-                status.photos.map((url, i) => (
-                  <div key={i} style={{ 
-                    width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
-                    border: "2px solid #fff", overflow: "hidden"
-                  }}>
-                    <img src={url} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </div>
-                ))
-              ) : status.entityName ? status.entityName.split('+').map((name, i) => (
-                <div key={i} style={{ 
-                  width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
-                  background: "var(--accent-gold)", color: "#000", 
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "calc(var(--profile-photo-size) * 0.4)", fontWeight: "bold", border: "2px solid #fff"
-                }}>
-                  {name.trim().charAt(0).toUpperCase()}
-                </div>
-              )) : (
-                <div style={{ 
-                  width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
-                  background: "var(--accent-gold)", color: "#000", 
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "calc(var(--profile-photo-size) * 0.6)", border: "2px solid #fff"
-                }}>
-                  👤
-                </div>
-              )}
-            </div>
-
-            <div className="mode-name" style={{ color: "#fff", fontSize: "1.5rem", letterSpacing: "1px" }}>
+            <ProfileAvatars entityName={status.entityName} photos={status.photos} />
+            <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
               {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
             </div>
           </div>

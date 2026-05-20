@@ -207,6 +207,75 @@ body {
 
 /* --- REUSABLE CLASS STYLES --- */
 
+/* ─── Profile Avatars ─── */
+.profile-avatars-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.profile-avatar-circle {
+  width: var(--profile-photo-size);
+  height: var(--profile-photo-size);
+  border-radius: 50%;
+  overflow: hidden;
+  /* Thick light-grey ring like the reference image */
+  border: 4px solid #d8d8d8;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.15),
+    0 6px 20px rgba(0, 0, 0, 0.6);
+  background: #1a0000;
+  flex-shrink: 0;
+}
+
+.profile-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-gold);
+  color: #000;
+  font-size: calc(var(--profile-photo-size) * 0.55);
+}
+
+.profile-avatar-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: calc(var(--profile-photo-size) * 0.4);
+  font-weight: 800;
+  color: #000;
+  background: var(--accent-gold);
+}
+
+/* Name tag — UI-styled red border matching the card system */
+.profile-avatar-name-tag {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #fff;
+  padding: 5px 16px;
+  border-radius: 10px;
+  border: var(--card-border);          /* 2px solid rgba(255,0,0,0.45) */
+  background: linear-gradient(135deg, rgba(80, 0, 0, 0.6), rgba(0, 0, 0, 0.5));
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.15);
+  text-align: center;
+  min-width: 54px;
+  white-space: nowrap;
+}
+
 .kiosk-page {
   min-height: 100vh;
   background: var(--bg-radial);

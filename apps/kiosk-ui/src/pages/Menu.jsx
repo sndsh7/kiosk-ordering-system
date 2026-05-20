@@ -8,6 +8,7 @@ import {
 } from "../lib/kioskApi";
 
 import { useCart } from "../state/cart.jsx";
+import ProfileAvatars from "../components/ProfileAvatars";
 
 export default function Menu() {
   const nav = useNavigate();
@@ -82,39 +83,10 @@ export default function Menu() {
         {/* BALANCE */}
         <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
           {/* PROFILE PHOTOS */}
-          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1.5rem" }}>
-            {status.photos && status.photos.length > 0 ? (
-              status.photos.map((url, i) => (
-                <div key={i} style={{ 
-                  width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
-                  border: "2px solid #fff", overflow: "hidden"
-                }}>
-                  <img src={url} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                </div>
-              ))
-            ) : status.entityName ? status.entityName.split('+').map((name, i) => (
-              <div key={i} style={{ 
-                width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
-                background: "var(--accent-gold)", color: "#000", 
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "calc(var(--profile-photo-size) * 0.4)", fontWeight: "bold", border: "2px solid #fff"
-              }}>
-                {name.trim().charAt(0).toUpperCase()}
-              </div>
-            )) : (
-              <div style={{ 
-                width: "var(--profile-photo-size)", height: "var(--profile-photo-size)", borderRadius: "50%", 
-                background: "var(--accent-gold)", color: "#000", 
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "calc(var(--profile-photo-size) * 0.6)", border: "2px solid #fff"
-              }}>
-                👤
-              </div>
-            )}
-          </div>
+          <ProfileAvatars entityName={status.entityName} photos={status.photos} />
 
-          <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
-            {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
+          <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px", textTransform: "uppercase" }}>
+            {displayMode} MODE
           </div>
 
           <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>
