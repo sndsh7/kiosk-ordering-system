@@ -123,10 +123,9 @@ export default function Items() {
   const [filterCat, setFilterCat]     = useState("");
 
   async function loadItems(cat) {
-    if (!cat) { setItems([]); return; }
-    const { data } = await api.get("/api/items", {
-      params: { categoryId: Number(cat), showUnavailable: true },
-    });
+    const params = { showUnavailable: true };
+    if (cat) params.categoryId = Number(cat);
+    const { data } = await api.get("/api/items", { params });
     setItems(data);
   }
 
@@ -135,15 +134,12 @@ export default function Items() {
       params: { showInactive: true },
     });
     setCategories(cats);
-    if (cats[0]?.id && !filterCat) {
-      const first = String(cats[0].id);
-      setFilterCat(first);
-      await loadItems(first);
-    }
+    // Start with All selected — load all items immediately
+    await loadItems("");
   }
 
   useEffect(() => { refreshCats(); }, []);
-  useEffect(() => { if (filterCat) loadItems(filterCat); }, [filterCat]);
+  useEffect(() => { loadItems(filterCat); }, [filterCat]);
 
   // ── Save (add or update) ──────────────────────────────────────────────────
   async function save() {
@@ -304,6 +300,7 @@ export default function Items() {
             onChange={(e) => setFilterCat(e.target.value)}
             style={{ ...s.select, marginBottom: 0 }}
           >
+            <option value="">All Categories</option>
             {categories.map(c => (
               <option key={c.id} value={c.id}>{c.name}</option>
             ))}
@@ -312,7 +309,7 @@ export default function Items() {
 
         {items.length === 0 ? (
           <div style={{ color: colors.muted, padding: "12px 0" }}>
-            No items in this category.
+            {filterCat ? "No items in this category." : "No items found."}
           </div>
         ) : (
           items.map(it => (
