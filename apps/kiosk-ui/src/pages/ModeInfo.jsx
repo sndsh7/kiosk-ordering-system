@@ -39,10 +39,10 @@ export default function ModeInfo() {
     );
   }
 
-  const modeIcon = status.mode?.toLowerCase() === 'individual' ? '👤' : 
-                   status.mode?.toLowerCase() === 'pair' ? '👥' : 
-                   status.mode?.toLowerCase() === 'group' ? '🧑‍🤝‍🧑' : '⚙️';
-                   
+  const modeIcon = status.mode?.toLowerCase() === 'individual' ? '👤' :
+    status.mode?.toLowerCase() === 'pair' ? '👥' :
+      status.mode?.toLowerCase() === 'group' ? '👨‍👩‍👦‍👦' : '⚙️';
+
   const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (

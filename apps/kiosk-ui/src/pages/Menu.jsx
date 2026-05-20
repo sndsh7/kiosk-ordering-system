@@ -67,6 +67,8 @@ export default function Menu() {
     );
   }
 
+  const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
+
   return (
     <div className="kiosk-page">
       <div className="kiosk-container">
@@ -75,28 +77,42 @@ export default function Menu() {
           <button className="kiosk-back-btn" onClick={() => nav("/mode")}>
             ←
           </button>
-
-          <div className="kiosk-header-title">
-            {status.mode?.toUpperCase()} MODE
-          </div>
-
-          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}>
-
-          </div>
         </div>
 
         {/* BALANCE */}
-        <div className="kiosk-balance-card">
-          <div className="kiosk-wallet-text">
-            GROUP WALLET BALANCE
+        <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
+          {/* PROFILE PHOTOS PLACEHOLDER */}
+          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1.5rem" }}>
+            {status.entityName ? status.entityName.split('+').map((name, i) => (
+              <div key={i} style={{ 
+                width: "60px", height: "60px", borderRadius: "50%", 
+                background: "var(--accent-gold)", color: "#000", 
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "1.5rem", fontWeight: "bold", border: "2px solid #fff"
+              }}>
+                {name.trim().charAt(0).toUpperCase()}
+              </div>
+            )) : (
+              <div style={{ 
+                width: "60px", height: "60px", borderRadius: "50%", 
+                background: "var(--accent-gold)", color: "#000", 
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "2rem", border: "2px solid #fff"
+              }}>
+                👤
+              </div>
+            )}
           </div>
 
-          <div className="kiosk-balance-amount">
+          <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
+            {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
+          </div>
+
+          <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>
+            LOCKUP MONEY
+          </div>
+          <div className="kiosk-balance-amount" style={{ marginTop: "1rem" }}>
             ₹ {Math.max(0, remaining)}
-          </div>
-
-          <div className="kiosk-wallet-text" style={{ opacity: 0.7, fontSize: "1.1rem" }}>
-            Available Balance
           </div>
         </div>
 
@@ -114,7 +130,7 @@ export default function Menu() {
         </div>
 
         {/* FOOD LIST */}
-        <div className="kiosk-list">
+        <div className="kiosk-list" style={{ paddingBottom: "130px" }}>
           {items.map((it) => (
             <div key={it.id} className="kiosk-food-card">
               {/* IMAGE */}
