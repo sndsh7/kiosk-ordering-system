@@ -582,6 +582,47 @@ body {
   opacity: 0.8;
 }
 
+.welcome-start-button {
+  min-width: 240px;
+  height: calc(var(--btn-height) * 1.2);
+  border-radius: 16px;
+  border: 2px solid rgba(255, 0, 0, 0.7);
+  background: var(--btn-gradient);
+  color: #fff;
+  font-size: var(--font-title-md);
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.45);
+  transition: all 0.25s ease;
+  margin-top: 2.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-start-button::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+  border-radius: 14px;
+}
+
+.welcome-start-button:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 40px rgba(255, 0, 0, 0.6);
+  border-color: rgba(255, 0, 0, 1);
+}
+
+.welcome-start-button:active {
+  transform: scale(0.96);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
 /* Mode Info Page dynamic elements */
 .mode-label {
   font-size: var(--font-body-sm);
