@@ -45,10 +45,11 @@ export default function Welcome() {
     <div className="kiosk-page" style={{ cursor: "pointer" }} onClick={() => nav("/mode")}>
       <div className="kiosk-card">
         <div className="welcome-logo">🏷️</div>
-        <div className="welcome-brand">IDEAZZZZ 360</div>
-        <div className="welcome-tagline">Reality Show Kiosk</div>
+        <div className="welcome-brand">IDEAZZZZ</div>
+        {/* <div className="welcome-tagline">Reality Show Kiosk</div> */}
         <div className="welcome-divider" />
-        <div className="welcome-touch-hint">👆 TOUCH TO START</div>
+        <button className="welcome-start-button">START</button>
+        {/* <div className="welcome-touch-hint">👆 TOUCH TO START</div> */}
       </div>
     </div>
   );
