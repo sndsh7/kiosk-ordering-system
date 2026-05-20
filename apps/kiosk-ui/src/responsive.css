@@ -40,7 +40,7 @@
   --btn-height: 62px;
   --cart-btn-height: 90px;
   --container-max-width: 1200px;
-  --profile-photo-size: 60px;
+  --profile-photo-size: 100px;
 }
 
 /* Base Scaling */
@@ -94,7 +94,7 @@ body {
     --grid-cols: repeat(2, 1fr); /* 2 columns on mobile tab view */
     --btn-height: 48px;
     --cart-btn-height: 70px;
-    --profile-photo-size: 45px;
+    --profile-photo-size: 70px;
   }
   
   .kiosk-food-card {
@@ -162,7 +162,7 @@ body {
     --grid-cols: repeat(4, 1fr);
     --btn-height: 56px;
     --cart-btn-height: 80px;
-    --profile-photo-size: 55px;
+    --profile-photo-size: 90px;
   }
 }
 
@@ -188,7 +188,7 @@ body {
     --btn-height: 110px;
     --cart-btn-height: 165px;
     --container-max-width: 1800px;
-    --profile-photo-size: 110px;
+    --profile-photo-size: 160px;
   }
   
   /* Additional padding for easy hand reach */
@@ -261,18 +261,18 @@ body {
 
 /* Name tag — UI-styled red border matching the card system */
 .profile-avatar-name-tag {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
   letter-spacing: 1.5px;
   color: #fff;
-  padding: 5px 16px;
+  padding: 7px 20px;
   border-radius: 10px;
   border: var(--card-border);          /* 2px solid rgba(255,0,0,0.45) */
   background: linear-gradient(135deg, rgba(80, 0, 0, 0.6), rgba(0, 0, 0, 0.5));
   backdrop-filter: blur(4px);
   box-shadow: 0 2px 8px rgba(255, 0, 0, 0.15);
   text-align: center;
-  min-width: 54px;
+  min-width: 70px;
   white-space: nowrap;
 }
 
