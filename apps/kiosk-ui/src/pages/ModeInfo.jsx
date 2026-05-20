@@ -57,6 +57,38 @@ export default function ModeInfo() {
 
         {/* COMBINED MODE & BALANCE CARD */}
         <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
+          {/* PROFILE PHOTOS */}
+          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginBottom: "1.5rem" }}>
+            {status.photos && status.photos.length > 0 ? (
+              status.photos.map((url, i) => (
+                <div key={i} style={{ 
+                  width: "60px", height: "60px", borderRadius: "50%", 
+                  border: "2px solid #fff", overflow: "hidden"
+                }}>
+                  <img src={url} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                </div>
+              ))
+            ) : status.entityName ? status.entityName.split('+').map((name, i) => (
+              <div key={i} style={{ 
+                width: "60px", height: "60px", borderRadius: "50%", 
+                background: "var(--accent-gold)", color: "#000", 
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "1.5rem", fontWeight: "bold", border: "2px solid #fff"
+              }}>
+                {name.trim().charAt(0).toUpperCase()}
+              </div>
+            )) : (
+              <div style={{ 
+                width: "60px", height: "60px", borderRadius: "50%", 
+                background: "var(--accent-gold)", color: "#000", 
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "2rem", border: "2px solid #fff"
+              }}>
+                👤
+              </div>
+            )}
+          </div>
+
           <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
             {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
           </div>

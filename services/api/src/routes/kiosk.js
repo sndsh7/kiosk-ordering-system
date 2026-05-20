@@ -17,6 +17,7 @@ kioskRouter.get("/status", async (req, res) => {
     refId: state.refId,
     entityName: resolved?.name ?? null,
     balance: resolved?.balance ?? 0,
+    photos: resolved?.photos ?? [],
     updatedAt: state.updatedAt
   });
 });
@@ -44,7 +45,8 @@ kioskRouter.post("/setMode", requireAdmin, async (req, res) => {
     mode: updated.mode,
     refId: updated.refId,
     entityName: resolved?.name ?? null,
-    balance: resolved?.balance ?? 0
+    balance: resolved?.balance ?? 0,
+    photos: resolved?.photos ?? []
   });
 
   res.json({ ok: true });
@@ -62,6 +64,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
 
   let newBalance = 0;
   let entityName = "";
+  let photos = [];
 
   if (state.refId) {
     if (state.mode === "INDIVIDUAL") {
@@ -71,6 +74,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
       });
       newBalance = u.individualPoints;
       entityName = u.name;
+      photos = u.photoUrl ? [u.photoUrl] : [];
     } else if (state.mode === "PAIR") {
       const p = await prisma.pair.update({
         where: { id: state.refId },
@@ -79,13 +83,16 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
       });
       newBalance = p.pairPoints;
       entityName = `${p.user1.name} + ${p.user2.name}`;
+      photos = [p.user1.photoUrl, p.user2.photoUrl].filter(Boolean);
     } else if (state.mode === "GROUP") {
       const g = await prisma.group.update({
         where: { id: state.refId },
-        data: { groupPoints: { increment: delta } }
+        data: { groupPoints: { increment: delta } },
+        include: { members: { include: { user: true } } }
       });
       newBalance = g.groupPoints;
       entityName = g.name;
+      photos = g.photoUrl ? [g.photoUrl] : g.members.map(m => m.user.photoUrl).filter(Boolean);
     }
   }
 
@@ -105,6 +112,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
     refId: state.refId,
     entityName,
     balance: newBalance,
+    photos,
   });
 
   res.json({ ok: true, newBalance, entityName });
@@ -116,7 +124,7 @@ async function resolveEntity(prisma, mode, refId) {
   if (mode === "INDIVIDUAL") {
     const u = await prisma.user.findUnique({ where: { id: refId } });
     if (!u) return null;
-    return { name: u.name, balance: u.individualPoints };
+    return { name: u.name, balance: u.individualPoints, photos: u.photoUrl ? [u.photoUrl] : [] };
   }
   if (mode === "PAIR") {
     const p = await prisma.pair.findUnique({
@@ -124,12 +132,20 @@ async function resolveEntity(prisma, mode, refId) {
       include: { user1: true, user2: true }
     });
     if (!p) return null;
-    return { name: `${p.user1.name} + ${p.user2.name}`, balance: p.pairPoints };
+    return { 
+      name: `${p.user1.name} + ${p.user2.name}`, 
+      balance: p.pairPoints,
+      photos: [p.user1.photoUrl, p.user2.photoUrl].filter(Boolean)
+    };
   }
   if (mode === "GROUP") {
-    const g = await prisma.group.findUnique({ where: { id: refId } });
+    const g = await prisma.group.findUnique({ 
+      where: { id: refId },
+      include: { members: { include: { user: true } } }
+    });
     if (!g) return null;
-    return { name: g.name, balance: g.groupPoints };
+    const photos = g.photoUrl ? [g.photoUrl] : g.members.map(m => m.user.photoUrl).filter(Boolean);
+    return { name: g.name, balance: g.groupPoints, photos };
   }
   return null;
 }
