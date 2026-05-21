@@ -8,6 +8,7 @@ export default function ErrorScreen() {
   const error = state?.error || "SERVER_ERROR";
   const entityName = state?.entityName ?? null;
   const photos = state?.photos ?? [];
+  const mode = state?.mode ?? null;
 
   let icon = "⚠️";
   let title = "Something Went Wrong";
@@ -34,7 +35,7 @@ export default function ErrorScreen() {
         {/* PROFILE */}
         {entityName && (
           <div style={{ width: "100%", marginBottom: "0.5rem" }}>
-            <ProfileAvatars entityName={entityName} photos={photos} />
+            <ProfileAvatars entityName={entityName} photos={photos} mode={mode} />
           </div>
         )}
         <div className="welcome-logo">{icon}</div>

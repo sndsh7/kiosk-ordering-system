@@ -8,6 +8,7 @@ export default function Success() {
   const remaining = state?.remaining ?? 0;
   const entityName = state?.entityName ?? null;
   const photos = state?.photos ?? [];
+  const mode = state?.mode ?? null;
 
   useEffect(() => {
     const t = setTimeout(() => nav("/", { replace: true }), 6000);
@@ -21,7 +22,7 @@ export default function Success() {
         {/* PROFILE */}
         {entityName && (
           <div style={{ width: "100%", marginBottom: "1rem" }}>
-            <ProfileAvatars entityName={entityName} photos={photos} />
+            <ProfileAvatars entityName={entityName} photos={photos} mode={mode} />
           </div>
         )}
 

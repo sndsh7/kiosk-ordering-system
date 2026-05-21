@@ -58,7 +58,7 @@ export default function ModeInfo() {
 
         {/* COMBINED MODE & BALANCE CARD */}
         <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
-          <ProfileAvatars entityName={status.entityName} photos={status.photos} />
+          <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
 
           <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
             {displayMode}{status.entityName ? ` (${status.entityName})` : ""}

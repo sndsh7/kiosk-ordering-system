@@ -83,7 +83,7 @@ export default function Menu() {
         {/* BALANCE */}
         <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
           {/* PROFILE PHOTOS */}
-          <ProfileAvatars entityName={status.entityName} photos={status.photos} />
+          <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
 
           <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px", textTransform: "uppercase" }}>
             {displayMode} MODE

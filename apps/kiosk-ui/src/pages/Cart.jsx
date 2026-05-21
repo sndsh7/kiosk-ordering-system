@@ -35,7 +35,7 @@ export default function Cart() {
         {/* PROFILE INFO CARD */}
         {status && (
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "2rem" }}>
-            <ProfileAvatars entityName={status.entityName} photos={status.photos} />
+            <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
             <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
               {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
             </div>

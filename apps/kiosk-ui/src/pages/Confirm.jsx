@@ -27,11 +27,11 @@ export default function Confirm() {
       const payload = list.map((x) => ({ itemId: x.item.id, quantity: x.qty }));
       const result = await placeOrder(payload);
       dispatch({ type: "CLEAR" });
-      nav("/success", { state: { remaining, orderId: result.orderId, entityName: status?.entityName, photos: status?.photos } });
+      nav("/success", { state: { remaining, orderId: result.orderId, entityName: status?.entityName, photos: status?.photos, mode: status?.mode } });
     } catch (e) {
       const err = e?.response?.data?.error || "SERVER_ERROR";
       const balanceServer = e?.response?.data?.balance;
-      nav("/error", { state: { error: err, balance: balanceServer, entityName: status?.entityName, photos: status?.photos } });
+      nav("/error", { state: { error: err, balance: balanceServer, entityName: status?.entityName, photos: status?.photos, mode: status?.mode } });
     } finally {
       setBusy(false);
     }
@@ -64,7 +64,7 @@ export default function Confirm() {
         {/* PROFILE CARD */}
         {status?.entityName && (
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.5rem 2rem" }}>
-            <ProfileAvatars entityName={status.entityName} photos={status.photos} />
+            <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
           </div>
         )}
 

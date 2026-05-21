@@ -7,8 +7,11 @@ import React from "react";
  * Props:
  *   entityName  – "John + Neha" or "Alice + Bob + Charlie"
  *   photos      – array of photoUrls aligned by index to each name segment
+ *   mode        – kiosk mode string ("individual" | "pair" | "group")
+ *                 When mode is "group", profile photos are hidden.
  */
-export default function ProfileAvatars({ entityName, photos }) {
+export default function ProfileAvatars({ entityName, photos, mode }) {
+  const isGroup = mode?.toLowerCase() === "group";
   const names = entityName
     ? entityName.split("+").map((n) => n.trim())
     : [];
@@ -29,7 +32,7 @@ export default function ProfileAvatars({ entityName, photos }) {
   return (
     <div className="profile-avatars-row">
       {names.map((name, i) => {
-        const photoUrl = photos && photos[i];
+        const photoUrl = !isGroup && photos && photos[i];
         return (
           <div key={i} className="profile-avatar-item">
             <div className="profile-avatar-circle">
