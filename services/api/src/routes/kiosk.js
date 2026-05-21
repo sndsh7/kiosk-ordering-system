@@ -64,6 +64,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
 
   let newBalance = 0;
   let entityName = "";
+  let groupName = null;
   let photos = [];
 
   if (state.refId) {
@@ -91,6 +92,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
         include: { members: { include: { user: true } } }
       });
       newBalance = g.groupPoints;
+      groupName = g.name;
       entityName = g.members.map(m => m.user.name).join(" + ");
       photos = g.photoUrl ? [g.photoUrl] : g.members.map(m => m.user.photoUrl).filter(Boolean);
     }
@@ -98,10 +100,11 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
 
   // Emit flash event to kiosk screen
   req.io.emit("kiosk:flash", {
-    type,        // "BONUS" | "PENALTY"
+    type,
     points: Math.abs(Number(points)),
     newBalance,
     entityName,
+    groupName,
     mode: state.mode,
   });
 
@@ -111,11 +114,12 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
     mode: state.mode,
     refId: state.refId,
     entityName,
+    groupName,
     balance: newBalance,
     photos,
   });
 
-  res.json({ ok: true, newBalance, entityName });
+  res.json({ ok: true, newBalance, entityName, groupName });
 });
 
 async function resolveEntity(prisma, mode, refId) {
