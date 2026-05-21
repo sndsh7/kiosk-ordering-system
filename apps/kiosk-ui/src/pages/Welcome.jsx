@@ -42,8 +42,8 @@ export default function Welcome() {
   }
 
   return (
-    <div className="kiosk-page" style={{ cursor: "pointer" }} onClick={() => nav("/mode")}>
-      <div className="kiosk-card">
+    <div className="kiosk-page" style={{ cursor: "pointer", paddingBottom: "var(--spacing-md)" }} onClick={() => nav("/mode")}>
+      <div className="kiosk-card" style={{ maxWidth: "100%", flexGrow: 1, justifyContent: "center" }}>
         <div className="welcome-logo">🏷️</div>
         <div className="welcome-brand">IDEAZZZZ</div>
         {/* <div className="welcome-tagline">Reality Show Kiosk</div> */}

@@ -68,6 +68,10 @@ export default function Menu() {
     );
   }
 
+  const modeIcon = status?.mode?.toLowerCase() === 'individual' ? '👤' :
+    status?.mode?.toLowerCase() === 'pair' ? '👥' :
+      status?.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
+
   const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (
@@ -75,9 +79,12 @@ export default function Menu() {
       <div className="kiosk-container">
         {/* HEADER */}
         <div className="kiosk-header">
-          <button className="kiosk-back-btn" onClick={() => nav("/mode")}>
-            ←
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <button className="kiosk-back-btn" onClick={() => nav("/mode")}>←</button>
+            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          </div>
+          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
+          <div style={{ width: "48px" }}></div>
         </div>
 
         {/* BALANCE */}

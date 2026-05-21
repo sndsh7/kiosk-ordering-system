@@ -20,6 +20,10 @@ export default function Cart() {
   const remaining = balance - total;
   const canProceed = list.length > 0 && total <= balance;
   
+  const modeIcon = status?.mode?.toLowerCase() === 'individual' ? '👤' :
+    status?.mode?.toLowerCase() === 'pair' ? '👥' :
+      status?.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
+      
   const displayMode = status?.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (
@@ -27,9 +31,12 @@ export default function Cart() {
       <div className="kiosk-container">
         {/* HEADER */}
         <div className="kiosk-header">
-          <button className="kiosk-back-btn" onClick={() => nav("/menu")}>←</button>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <button className="kiosk-back-btn" onClick={() => nav("/menu")}>←</button>
+            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          </div>
           <div className="kiosk-header-title">YOUR CART</div>
-          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
+          <div style={{ width: "48px" }}></div>
         </div>
 
         {/* PROFILE INFO CARD */}

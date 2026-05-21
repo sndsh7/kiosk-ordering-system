@@ -51,14 +51,21 @@ export default function Confirm() {
     );
   }
 
+  const modeIcon = status?.mode?.toLowerCase() === 'individual' ? '👤' :
+    status?.mode?.toLowerCase() === 'pair' ? '👥' :
+      status?.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
+
   return (
     <div className="kiosk-page">
       <div className="kiosk-container">
         {/* HEADER */}
         <div className="kiosk-header">
-          <button className="kiosk-back-btn" onClick={() => nav("/cart")}>←</button>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <button className="kiosk-back-btn" onClick={() => nav("/cart")}>←</button>
+            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          </div>
           <div className="kiosk-header-title">CONFIRM ORDER</div>
-          <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
+          <div style={{ width: "48px" }}></div>
         </div>
 
         {/* PROFILE CARD */}
