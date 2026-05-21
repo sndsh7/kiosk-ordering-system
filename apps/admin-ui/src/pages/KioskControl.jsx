@@ -87,8 +87,10 @@ export default function KioskControl() {
   const [mode, setMode]       = useState("INDIVIDUAL");
   const [isActive, setIsActive] = useState(true);
   const [showItemImages, setShowItemImages] = useState(true);
+  const [showLiveJson, setShowLiveJson]       = useState(false);
   const [refId, setRefId]     = useState("");
   const [msg, setMsg]         = useState("");
+  const [error, setError]     = useState("");
 
   // Entity lists
   const [users, setUsers]   = useState([]);
@@ -119,9 +121,16 @@ export default function KioskControl() {
     setMode(m);
     setRefId("");
     setMsg("");
+    setError("");
   }
 
   async function apply() {
+    if (!refId) {
+      setError(`Please select a ${mode === "INDIVIDUAL" ? "User" : mode === "PAIR" ? "Pair" : "Group"} before applying.`);
+      setMsg("");
+      return;
+    }
+    setError("");
     setMsg("");
     await api.post("/api/kiosk/setMode", {
       isActive,
@@ -328,6 +337,7 @@ export default function KioskControl() {
         <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
           <button onClick={apply} style={s.btn}>✓ Apply Settings</button>
           {msg && <div style={s.msg}>✓ {msg}</div>}
+          {error && <div style={s.errMsg}>⚠️ {error}</div>}
         </div>
       </div>
 
@@ -436,16 +446,30 @@ export default function KioskControl() {
 
       {/* LIVE STATUS */}
       <div style={s.card}>
-        <div style={s.sectionTitle}>Live Status JSON</div>
-        <pre style={{
-          background: "rgba(0,0,0,0.4)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: 10, padding: 16,
-          fontSize: 13, color: colors.gold,
-          margin: 0, overflowX: "auto",
-        }}>
-          {JSON.stringify(status, null, 2)}
-        </pre>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+          <div style={{ ...s.sectionTitle, marginBottom: 0 }}>Live Status JSON</div>
+          <button
+            onClick={() => setShowLiveJson(!showLiveJson)}
+            style={{
+              padding: "6px 12px", borderRadius: 6, fontSize: 12, fontWeight: 700,
+              cursor: "pointer", border: "1px solid rgba(255,255,255,0.15)",
+              background: "rgba(255,255,255,0.05)", color: "#fff"
+            }}
+          >
+            {showLiveJson ? "Hide JSON" : "Show JSON"}
+          </button>
+        </div>
+        {showLiveJson && (
+          <pre style={{
+            background: "rgba(0,0,0,0.4)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 10, padding: 16,
+            fontSize: 13, color: colors.gold,
+            margin: 0, overflowX: "auto",
+          }}>
+            {JSON.stringify(status, null, 2)}
+          </pre>
+        )}
       </div>
     </div>
   );
