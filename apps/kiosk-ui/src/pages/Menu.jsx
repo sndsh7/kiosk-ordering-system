@@ -130,19 +130,21 @@ export default function Menu() {
           {items.map((it) => (
             <div key={it.id} className="kiosk-food-card">
               {/* IMAGE */}
-              <div className="kiosk-food-image">
-                {it.imageUrl ? (
-                  <img
-                    src={it.imageUrl}
-                    alt={it.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                ) : (
-                  <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.5rem" }}>
-                    🍽️
-                  </div>
-                )}
-              </div>
+              {status.showItemImages !== false && (
+                <div className="kiosk-food-image">
+                  {it.imageUrl ? (
+                    <img
+                      src={it.imageUrl}
+                      alt={it.name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  ) : (
+                    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.5rem" }}>
+                      🍽️
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* DETAILS */}
               <div className="kiosk-food-info">

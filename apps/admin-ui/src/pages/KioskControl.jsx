@@ -86,6 +86,7 @@ export default function KioskControl() {
   const [status, setStatus]   = useState(null);
   const [mode, setMode]       = useState("INDIVIDUAL");
   const [isActive, setIsActive] = useState(true);
+  const [showItemImages, setShowItemImages] = useState(true);
   const [refId, setRefId]     = useState("");
   const [msg, setMsg]         = useState("");
 
@@ -105,6 +106,7 @@ export default function KioskControl() {
       setStatus(kiosk);
       setMode(kiosk.mode);
       setIsActive(kiosk.isActive);
+      setShowItemImages(kiosk.showItemImages !== false); // default true
       setRefId(kiosk.refId != null ? String(kiosk.refId) : "");
       setUsers(u);
       setPairs(p);
@@ -123,6 +125,7 @@ export default function KioskControl() {
     setMsg("");
     await api.post("/api/kiosk/setMode", {
       isActive,
+      showItemImages,
       mode,
       refId: refId === "" ? null : Number(refId),
     });
@@ -203,29 +206,59 @@ export default function KioskControl() {
       <div style={s.card}>
         <div style={s.sectionTitle}>Configure Kiosk</div>
 
-        {/* Active toggle */}
-        <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
-          <div
-            onClick={() => setIsActive(!isActive)}
-            style={{
-              width: 52, height: 28, borderRadius: 99, position: "relative",
-              cursor: "pointer", border: "1px solid rgba(255,255,255,0.15)",
-              background: isActive ? "linear-gradient(90deg,#ff1f1f,#920000)" : "rgba(255,255,255,0.1)",
-              transition: "background 0.2s",
-            }}
-          >
-            <div style={{
-              position: "absolute", top: 3, width: 20, height: 20,
-              borderRadius: "50%", background: "#fff", transition: "left 0.2s",
-              left: isActive ? 26 : 3,
-            }} />
+        {/* Active & Image toggles row */}
+        <div style={{ display: "flex", gap: 32, marginBottom: 24, flexWrap: "wrap" }}>
+          
+          {/* Active toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <div
+              onClick={() => setIsActive(!isActive)}
+              style={{
+                width: 52, height: 28, borderRadius: 99, position: "relative",
+                cursor: "pointer", border: "1px solid rgba(255,255,255,0.15)",
+                background: isActive ? "linear-gradient(90deg,#ff1f1f,#920000)" : "rgba(255,255,255,0.1)",
+                transition: "background 0.2s",
+              }}
+            >
+              <div style={{
+                position: "absolute", top: 3, width: 20, height: 20,
+                borderRadius: "50%", background: "#fff", transition: "left 0.2s",
+                left: isActive ? 26 : 3,
+              }} />
+            </div>
+            <span style={{ fontSize: 15, fontWeight: 700 }}>
+              Kiosk Active{" "}
+              {isActive
+                ? <span style={{ color: colors.green }}>ON</span>
+                : <span style={{ color: colors.muted }}>OFF</span>}
+            </span>
           </div>
-          <span style={{ fontSize: 15, fontWeight: 700 }}>
-            Kiosk Active{" "}
-            {isActive
-              ? <span style={{ color: colors.green }}>ON</span>
-              : <span style={{ color: colors.muted }}>OFF</span>}
-          </span>
+
+          {/* Show Item Images toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+            <div
+              onClick={() => setShowItemImages(!showItemImages)}
+              style={{
+                width: 52, height: 28, borderRadius: 99, position: "relative",
+                cursor: "pointer", border: "1px solid rgba(255,255,255,0.15)",
+                background: showItemImages ? "linear-gradient(90deg,#ff1f1f,#920000)" : "rgba(255,255,255,0.1)",
+                transition: "background 0.2s",
+              }}
+            >
+              <div style={{
+                position: "absolute", top: 3, width: 20, height: 20,
+                borderRadius: "50%", background: "#fff", transition: "left 0.2s",
+                left: showItemImages ? 26 : 3,
+              }} />
+            </div>
+            <span style={{ fontSize: 15, fontWeight: 700 }}>
+              Item Images{" "}
+              {showItemImages
+                ? <span style={{ color: colors.green }}>SHOW</span>
+                : <span style={{ color: colors.muted }}>HIDE</span>}
+            </span>
+          </div>
+          
         </div>
 
         {/* Mode segmented buttons */}

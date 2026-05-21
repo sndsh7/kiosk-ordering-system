@@ -21,10 +21,11 @@ model AdminUser {
 
 model KioskState {
   id        Int      @id @default(autoincrement())
-  isActive  Boolean  @default(true)
-  mode      Mode     @default(INDIVIDUAL)
-  refId     Int?
-  updatedAt DateTime @updatedAt
+  isActive       Boolean  @default(true)
+  showItemImages Boolean  @default(true)
+  mode           Mode     @default(INDIVIDUAL)
+  refId          Int?
+  updatedAt      DateTime @updatedAt
 }
 
 model User {

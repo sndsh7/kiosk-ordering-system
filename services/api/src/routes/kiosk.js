@@ -13,6 +13,7 @@ kioskRouter.get("/status", async (req, res) => {
 
   res.json({
     isActive: state.isActive,
+    showItemImages: state.showItemImages,
     mode: state.mode,
     refId: state.refId,
     entityName: resolved?.name ?? null,
@@ -24,7 +25,7 @@ kioskRouter.get("/status", async (req, res) => {
 
 kioskRouter.post("/setMode", requireAdmin, async (req, res) => {
   const prisma = req.prisma;
-  const { isActive, mode, refId } = req.body;
+  const { isActive, showItemImages, mode, refId } = req.body;
 
   let state = await prisma.kioskState.findFirst();
   if (!state) state = await prisma.kioskState.create({ data: {} });
@@ -33,8 +34,9 @@ kioskRouter.post("/setMode", requireAdmin, async (req, res) => {
     where: { id: state.id },
     data: {
       isActive: typeof isActive === "boolean" ? isActive : state.isActive,
+      showItemImages: typeof showItemImages === "boolean" ? showItemImages : state.showItemImages,
       mode: mode ?? state.mode,
-      refId: refId ?? state.refId
+      refId: refId !== undefined ? refId : state.refId
     }
   });
 
@@ -42,6 +44,7 @@ kioskRouter.post("/setMode", requireAdmin, async (req, res) => {
 
   req.io.emit("kiosk:update", {
     isActive: updated.isActive,
+    showItemImages: updated.showItemImages,
     mode: updated.mode,
     refId: updated.refId,
     entityName: resolved?.name ?? null,
@@ -111,6 +114,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
   // Also emit updated status so balance refreshes
   req.io.emit("kiosk:update", {
     isActive: state.isActive,
+    showItemImages: state.showItemImages,
     mode: state.mode,
     refId: state.refId,
     entityName,
