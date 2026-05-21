@@ -46,8 +46,11 @@ export default function App() {
           >
             {/* PROFILE AVATARS */}
             {flash.entityName && (
-              <div style={{ width: "100%", marginBottom: "0.5rem" }}>
+              <div style={{ width: "100%", marginBottom: "1.5rem" }}>
                 <ProfileAvatars entityName={flash.entityName} photos={flash.photos || []} mode={flash.mode} />
+                <div className="mode-name" style={{ marginTop: "1.5rem", color: "#fff", fontSize: "1.4rem", letterSpacing: "1px", textTransform: "uppercase" }}>
+                  {flash.entityName}
+                </div>
               </div>
             )}
 

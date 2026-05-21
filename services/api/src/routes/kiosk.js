@@ -109,6 +109,7 @@ kioskRouter.post("/notify", requireAdmin, async (req, res) => {
     entityName,
     groupName,
     mode: state.mode,
+    photos,
   });
 
   // Also emit updated status so balance refreshes
