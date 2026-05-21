@@ -50,8 +50,8 @@ export default function Cart() {
             ) : (
               <>
                 <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
-                  {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
+                <div className="mode-name" style={{ marginTop: "1.5rem", color: "#fff", fontSize: "1.2rem", letterSpacing: "1px", textTransform: "uppercase" }}>
+                  {status.entityName}
                 </div>
               </>
             )}

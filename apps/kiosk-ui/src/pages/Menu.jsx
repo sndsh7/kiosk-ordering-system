@@ -98,8 +98,8 @@ export default function Menu() {
           ) : (
             <>
               <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px", textTransform: "uppercase" }}>
-                {displayMode} MODE
+              <div className="mode-name" style={{ marginTop: "1.5rem", marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px", textTransform: "uppercase" }}>
+                {status.entityName}
               </div>
             </>
           )}

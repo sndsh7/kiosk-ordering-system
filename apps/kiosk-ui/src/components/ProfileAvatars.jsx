@@ -23,7 +23,6 @@ export default function ProfileAvatars({ entityName, photos, mode }) {
           <div className="profile-avatar-circle profile-avatar-fallback">
             👤
           </div>
-          <div className="profile-avatar-name-tag">User</div>
         </div>
       </div>
     );
@@ -50,7 +49,6 @@ export default function ProfileAvatars({ entityName, photos, mode }) {
                 )}
               </div>
             )}
-            <div className="profile-avatar-name-tag">{name}</div>
           </div>
         );
       })}
