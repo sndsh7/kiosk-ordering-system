@@ -33,11 +33,17 @@ export default function ErrorScreen() {
     <div className="kiosk-page" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div className="kiosk-card">
         {/* PROFILE */}
-        {entityName && mode?.toLowerCase() !== "group" && (
+        {entityName && mode?.toLowerCase() !== "group" ? (
           <div style={{ width: "100%", marginBottom: "0.5rem" }}>
             <ProfileAvatars entityName={entityName} photos={photos} mode={mode} />
           </div>
-        )}
+        ) : entityName && mode?.toLowerCase() === "group" ? (
+          <div style={{ width: "100%", marginBottom: "0.5rem" }}>
+            <div className="mode-name" style={{ color: "#fff", fontSize: "1.3rem", fontWeight: "700", letterSpacing: "1px" }}>
+              Group{entityName ? ` (${entityName.replace(/\s*\+\s*/g, "+")})` : ""}
+            </div>
+          </div>
+        ) : null}
         <div className="welcome-logo">{icon}</div>
         <div className="welcome-title">{title}</div>
         <div className="welcome-subtitle" style={{ maxWidth: "420px", marginBottom: "1.5rem" }}>{message}</div>

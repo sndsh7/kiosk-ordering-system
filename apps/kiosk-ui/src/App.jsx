@@ -45,11 +45,17 @@ export default function App() {
             }`}
           >
             {/* PROFILE AVATARS */}
-            {flash.entityName && flash.mode?.toLowerCase() !== "group" && (
+            {flash.entityName && flash.mode?.toLowerCase() !== "group" ? (
               <div style={{ width: "100%", marginBottom: "0.5rem" }}>
                 <ProfileAvatars entityName={flash.entityName} photos={flash.photos || []} mode={flash.mode} />
               </div>
-            )}
+            ) : flash.entityName && flash.mode?.toLowerCase() === "group" ? (
+              <div style={{ width: "100%", marginBottom: "0.5rem" }}>
+                <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", fontWeight: "700", letterSpacing: "1px" }}>
+                  Group{flash.entityName ? ` (${flash.entityName.replace(/\s*\+\s*/g, "+")})` : ""}
+                </div>
+              </div>
+            ) : null}
 
             {flash.type === "BONUS" ? (
               <>
