@@ -64,7 +64,7 @@ export default function ModeInfo() {
         <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
           {status.mode?.toLowerCase() === "group" ? (
             <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
-              {status.groupName}
+              {status.entityName}
             </div>
           ) : (
             <>

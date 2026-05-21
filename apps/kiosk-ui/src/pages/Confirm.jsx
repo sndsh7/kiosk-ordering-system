@@ -74,14 +74,14 @@ export default function Confirm() {
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.5rem 2rem" }}>
             {status.mode?.toLowerCase() === "group" ? (
               <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
-                {status.groupName}
+                {status.entityName}
               </div>
             ) : (
               <>
                 <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                <div className="mode-name" style={{ marginTop: "1.5rem", color: "#fff", fontSize: "1.2rem", letterSpacing: "1px", textTransform: "uppercase" }}>
-                  {status.entityName}
-                </div>
+                <div className="mode-name" style={{ color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "1px", textTransform: "uppercase" }}>
+                {status.entityName}
+              </div>
               </>
             )}
           </div>

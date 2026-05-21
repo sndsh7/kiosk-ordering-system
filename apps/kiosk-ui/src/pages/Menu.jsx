@@ -93,7 +93,7 @@ export default function Menu() {
           {/* PROFILE + MODE NAME */}
           {status.mode?.toLowerCase() === "group" ? (
             <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px" }}>
-              {status.groupName}
+              {status.entityName}
             </div>
           ) : (
             <>

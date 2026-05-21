@@ -45,7 +45,7 @@ export default function Cart() {
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "2rem" }}>
             {status.mode?.toLowerCase() === "group" ? (
               <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
-                {status.groupName}
+                {status.entityName}
               </div>
             ) : (
               <>
