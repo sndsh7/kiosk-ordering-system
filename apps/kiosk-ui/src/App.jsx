@@ -45,7 +45,7 @@ export default function App() {
             }`}
           >
             {/* PROFILE AVATARS */}
-            {flash.entityName && (
+            {flash.entityName && flash.mode?.toLowerCase() !== "group" && (
               <div style={{ width: "100%", marginBottom: "0.5rem" }}>
                 <ProfileAvatars entityName={flash.entityName} photos={flash.photos || []} mode={flash.mode} />
               </div>

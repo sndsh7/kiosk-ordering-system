@@ -62,7 +62,7 @@ export default function Confirm() {
         </div>
 
         {/* PROFILE CARD */}
-        {status?.entityName && (
+        {status?.entityName && status?.mode?.toLowerCase() !== "group" && (
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.5rem 2rem" }}>
             <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
           </div>

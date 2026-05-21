@@ -33,7 +33,7 @@ export default function ErrorScreen() {
     <div className="kiosk-page" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
       <div className="kiosk-card">
         {/* PROFILE */}
-        {entityName && (
+        {entityName && mode?.toLowerCase() !== "group" && (
           <div style={{ width: "100%", marginBottom: "0.5rem" }}>
             <ProfileAvatars entityName={entityName} photos={photos} mode={mode} />
           </div>

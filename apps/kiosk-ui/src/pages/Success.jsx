@@ -20,7 +20,7 @@ export default function Success() {
       <div className="kiosk-card kiosk-card-success">
 
         {/* PROFILE */}
-        {entityName && (
+        {entityName && mode?.toLowerCase() !== "group" && (
           <div style={{ width: "100%", marginBottom: "1rem" }}>
             <ProfileAvatars entityName={entityName} photos={photos} mode={mode} />
           </div>

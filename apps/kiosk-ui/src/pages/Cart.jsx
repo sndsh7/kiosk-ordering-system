@@ -33,7 +33,7 @@ export default function Cart() {
         </div>
 
         {/* PROFILE INFO CARD */}
-        {status && (
+        {status && status.mode?.toLowerCase() !== "group" && (
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "2rem" }}>
             <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
             <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>

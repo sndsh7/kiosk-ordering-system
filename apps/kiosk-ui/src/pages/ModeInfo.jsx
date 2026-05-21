@@ -58,14 +58,18 @@ export default function ModeInfo() {
 
         {/* COMBINED MODE & BALANCE CARD */}
         <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
-          <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-
-          <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
-            {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
-          </div>
+          {status.mode?.toLowerCase() !== "group" && (
+            <>
+              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+              <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
+                {displayMode}{status.entityName ? ` (${status.entityName})` : ""}
+              </div>
+            </>
+          )}
           <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>Lockup Money</div>
           <div className="kiosk-balance-amount" style={{ marginTop: "1rem" }}>₹ {status.balance}</div>
         </div>
+
 
         {/* ACTIONS */}
         <div className="mode-actions">
