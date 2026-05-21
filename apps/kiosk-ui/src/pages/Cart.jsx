@@ -33,7 +33,7 @@ export default function Cart() {
         </div>
 
         {/* PROFILE INFO CARD */}
-        {status && status.mode?.toLowerCase() !== "group" && (
+        {status && (
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "2rem" }}>
             <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
             <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
@@ -41,13 +41,7 @@ export default function Cart() {
             </div>
           </div>
         )}
-        {status && status.mode?.toLowerCase() === "group" && (
-          <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.2rem 2rem" }}>
-            <div className="mode-name" style={{ color: "#fff", fontSize: "1.3rem", letterSpacing: "1px", fontWeight: "700" }}>
-              Group{status.entityName ? ` (${status.entityName.replace(/\s*\+\s*/g, "+")})` : ""}
-            </div>
-          </div>
-        )}
+
 
         {/* BALANCE SUMMARY */}
         <div className="kiosk-balance-card">

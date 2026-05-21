@@ -62,17 +62,11 @@ export default function Confirm() {
         </div>
 
         {/* PROFILE CARD */}
-        {status?.entityName && status?.mode?.toLowerCase() !== "group" ? (
+        {status?.entityName && (
           <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.5rem 2rem" }}>
             <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
           </div>
-        ) : status?.entityName && status?.mode?.toLowerCase() === "group" ? (
-          <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.2rem 2rem" }}>
-            <div className="mode-name" style={{ color: "#fff", fontSize: "1.3rem", fontWeight: "700", letterSpacing: "1px" }}>
-              Group{status.entityName ? ` (${status.entityName.replace(/\s*\+\s*/g, "+")})` : ""}
-            </div>
-          </div>
-        ) : null}
+        )}
 
         {/* ORDER SUMMARY */}
         <div className="kiosk-balance-card" style={{ textAlign: "left", marginBottom: "1.5rem" }}>

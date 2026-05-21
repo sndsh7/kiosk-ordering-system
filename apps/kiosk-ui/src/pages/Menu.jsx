@@ -82,19 +82,11 @@ export default function Menu() {
 
         {/* BALANCE */}
         <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
-          {/* PROFILE PHOTOS + MODE NAME */}
-          {status.mode?.toLowerCase() !== "group" ? (
-            <>
-              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px", textTransform: "uppercase" }}>
-                {displayMode} MODE
-              </div>
-            </>
-          ) : (
-            <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.4rem", fontWeight: "700", letterSpacing: "1px" }}>
-              Group{status.entityName ? ` (${status.entityName.replace(/\s*\+\s*/g, "+")})` : ""}
-            </div>
-          )}
+          {/* PROFILE + MODE NAME */}
+          <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+          <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px", textTransform: "uppercase" }}>
+            {displayMode} MODE
+          </div>
 
           <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>
             LOCKUP MONEY

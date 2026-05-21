@@ -20,17 +20,11 @@ export default function Success() {
       <div className="kiosk-card kiosk-card-success">
 
         {/* PROFILE */}
-        {entityName && mode?.toLowerCase() !== "group" ? (
+        {entityName && (
           <div style={{ width: "100%", marginBottom: "1rem" }}>
             <ProfileAvatars entityName={entityName} photos={photos} mode={mode} />
           </div>
-        ) : entityName && mode?.toLowerCase() === "group" ? (
-          <div style={{ width: "100%", marginBottom: "1rem" }}>
-            <div className="mode-name" style={{ color: "#fff", fontSize: "1.3rem", fontWeight: "700", letterSpacing: "1px" }}>
-              Group{entityName ? ` (${entityName.replace(/\s*\+\s*/g, "+")})` : ""}
-            </div>
-          </div>
-        ) : null}
+        )}
 
         <div className="success-check-icon">✅</div>
         <div className="success-title">ORDER PLACED!</div>

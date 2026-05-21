@@ -35,19 +35,21 @@ export default function ProfileAvatars({ entityName, photos, mode }) {
         const photoUrl = !isGroup && photos && photos[i];
         return (
           <div key={i} className="profile-avatar-item">
-            <div className="profile-avatar-circle">
-              {photoUrl ? (
-                <img
-                  src={photoUrl}
-                  alt={name}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              ) : (
-                <span className="profile-avatar-initial">
-                  {name.charAt(0).toUpperCase()}
-                </span>
-              )}
-            </div>
+            {!isGroup && (
+              <div className="profile-avatar-circle">
+                {photoUrl ? (
+                  <img
+                    src={photoUrl}
+                    alt={name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                ) : (
+                  <span className="profile-avatar-initial">
+                    {name.charAt(0).toUpperCase()}
+                  </span>
+                )}
+              </div>
+            )}
             <div className="profile-avatar-name-tag">{name}</div>
           </div>
         );
