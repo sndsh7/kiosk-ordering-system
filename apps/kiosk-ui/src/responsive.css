@@ -1,9 +1,73 @@
-/* Custom Google Font for a modern premium feel */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
+/* QB One — self-hosted variable font (covers all weights 100–900) */
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Static weight fallbacks for browsers that don't support variable fonts */
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'QB One';
+  src: url('./fonts/BoxTube Labs - QB One Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* --- RESPONSIVE DESIGN SYSTEM --- */
 :root {
-  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family: 'QB One', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --bg-radial: radial-gradient(circle at top, #2b0000, #000);
   --bg-radial-success: radial-gradient(circle at top, #002b00, #000);
   --card-gradient: linear-gradient(180deg, #3d0000, #170000);
@@ -17,13 +81,13 @@
   --btn-gradient-dark: linear-gradient(180deg, #2a2a2a, #111111);
   
   /* Responsive sizing (defaults for Desktop) */
-  --base-font-size: 16px;
-  --font-title-xl: 3.5rem;
-  --font-title-lg: 2.8rem;
-  --font-title-md: 2rem;
-  --font-body-lg: 1.4rem;
-  --font-body-md: 1.1rem;
-  --font-body-sm: 0.95rem;
+  --base-font-size: 18px;
+  --font-title-xl: 4rem;
+  --font-title-lg: 3.2rem;
+  --font-title-md: 2.4rem;
+  --font-body-lg: 1.6rem;
+  --font-body-md: 1.3rem;
+  --font-body-sm: 1.1rem;
   
   --spacing-xl: 3.5rem;
   --spacing-lg: 2.5rem;
@@ -76,13 +140,13 @@ body {
 /* Mobile Phones (Portrait) */
 @media (max-width: 480px) {
   :root {
-    --base-font-size: 13px;
-    --font-title-xl: 2.5rem;
-    --font-title-lg: 1.8rem;
-    --font-title-md: 1.4rem;
-    --font-body-lg: 1.15rem;
-    --font-body-md: 0.95rem;
-    --font-body-sm: 0.85rem;
+    --base-font-size: 14px;
+    --font-title-xl: 2.8rem;
+    --font-title-lg: 2.1rem;
+    --font-title-md: 1.6rem;
+    --font-body-lg: 1.3rem;
+    --font-body-md: 1.1rem;
+    --font-body-sm: 0.95rem;
     --spacing-xl: 1.8rem;
     --spacing-lg: 1.4rem;
     --spacing-md: 1rem;
@@ -144,13 +208,13 @@ body {
 /* Tablets / iPad Portrait & Landscape */
 @media (min-width: 481px) and (max-width: 1024px) {
   :root {
-    --base-font-size: 15px;
-    --font-title-xl: 3.2rem;
-    --font-title-lg: 2.4rem;
-    --font-title-md: 1.8rem;
-    --font-body-lg: 1.3rem;
-    --font-body-md: 1.05rem;
-    --font-body-sm: 0.9rem;
+    --base-font-size: 16px;
+    --font-title-xl: 3.6rem;
+    --font-title-lg: 2.8rem;
+    --font-title-md: 2rem;
+    --font-body-lg: 1.5rem;
+    --font-body-md: 1.2rem;
+    --font-body-sm: 1rem;
     --spacing-xl: 2.8rem;
     --spacing-lg: 2rem;
     --spacing-md: 1.25rem;
