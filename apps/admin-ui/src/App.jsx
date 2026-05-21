@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate, Link, useLocation, useNavigate } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
@@ -10,7 +10,7 @@ import Pairs from "./pages/Pairs.jsx";
 import Groups from "./pages/Groups.jsx";
 import Categories from "./pages/Categories.jsx";
 import Items from "./pages/Items.jsx";
-import { getToken, clearToken } from "./lib/adminApi.js";
+import { getToken, clearToken, setNavigate } from "./lib/adminApi.js";
 import { colors } from "./lib/adminStyles.js";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -131,6 +131,12 @@ function Protected({ element }) {
 }
 
 export default function App() {
+  const nav = useNavigate();
+
+  // Wire the axios 401 interceptor to React Router's navigate
+  useEffect(() => {
+    setNavigate(nav);
+  }, [nav]);
   return (
     <>
       <SpeedInsights />
