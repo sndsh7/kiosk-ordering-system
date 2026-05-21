@@ -60,12 +60,13 @@ export default function Confirm() {
       <div className="kiosk-container">
         {/* HEADER */}
         <div className="kiosk-header">
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div style={{ width: "60px" }}>
             <button className="kiosk-back-btn" onClick={() => nav("/cart")}>←</button>
-            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
           </div>
           <div className="kiosk-header-title">CONFIRM ORDER</div>
-          <div style={{ width: "48px" }}></div>
+          <div style={{ width: "60px", textAlign: "right" }}>
+            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          </div>
         </div>
 
         {/* PROFILE CARD */}

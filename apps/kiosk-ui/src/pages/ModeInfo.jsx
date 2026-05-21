@@ -51,12 +51,13 @@ export default function ModeInfo() {
       <div className="kiosk-container">
         {/* HEADER */}
         <div className="kiosk-header">
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div style={{ width: "60px" }}>
             <button className="kiosk-back-btn" onClick={() => nav("/")}>←</button>
-            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
           </div>
           <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
-          <div style={{ width: "48px" }}></div> {/* Spacer to keep center balanced */}
+          <div style={{ width: "60px", textAlign: "right" }}>
+            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          </div>
         </div>
 
         {/* COMBINED MODE & BALANCE CARD */}
