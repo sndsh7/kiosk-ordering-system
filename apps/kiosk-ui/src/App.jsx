@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { connectSocket } from "./lib/kioskApi";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ProfileAvatars from "./components/ProfileAvatars";
+import { useCart } from "./state/cart";
 
 import Welcome from "./pages/Welcome.jsx";
 import ModeInfo from "./pages/ModeInfo.jsx";
@@ -14,11 +15,17 @@ import ErrorScreen from "./pages/ErrorScreen.jsx";
 
 export default function App() {
   const [flash, setFlash] = useState(null);
+  const { dispatch } = useCart();
+  const nav = useNavigate();
 
   // Global socket — always connected so flash works on every page
   useEffect(() => {
     const socket = connectSocket(
-      () => {}, // kiosk:update handled per-page
+      () => {
+        // Admin applied new settings → reset kiosk to welcome
+        dispatch({ type: "CLEAR" });
+        nav("/");
+      },
       (data) => {
         setFlash(data);
         setTimeout(() => setFlash(null), 8000);

@@ -98,7 +98,7 @@ export default function Cart() {
               <div key={item.id} className="cart-item-card">
                 {/* IMAGE */}
                 {status?.showItemImages !== false && (
-                  <div className="kiosk-food-image" style={{ width: "80px", height: "80px", flexShrink: 0, borderRadius: "8px", overflow: "hidden", background: "#111" }}>
+                  <div className="kiosk-food-image">
                     {item.imageUrl ? (
                       <img
                         src={item.imageUrl}
@@ -106,7 +106,7 @@ export default function Cart() {
                         style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       />
                     ) : (
-                      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem" }}>
+                      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.5rem" }}>
                         🍽️
                       </div>
                     )}
