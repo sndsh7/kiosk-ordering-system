@@ -105,7 +105,7 @@ export default function Menu() {
           )}
 
           <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>
-            LOCKUP MONEY
+            LOCKUPP MONEY
           </div>
           <div className="kiosk-balance-amount" style={{ marginTop: "1rem" }}>
             ₹ {Math.max(0, remaining)}

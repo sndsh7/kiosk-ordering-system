@@ -74,7 +74,7 @@ export default function ModeInfo() {
               </div>
             </>
           )}
-          <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>Lockup Money</div>
+          <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>Lockupp Money</div>
           <div className="kiosk-balance-amount" style={{ marginTop: "1rem" }}>₹ {status.balance}</div>
         </div>
 
