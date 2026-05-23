@@ -100,6 +100,16 @@ entitiesRouter.delete("/pairs/:id", async (req, res) => {
   }
 });
 
+entitiesRouter.put("/pairs/:id/points", async (req, res) => {
+  const id = Number(req.params.id);
+  const { delta } = req.body;
+  const updated = await req.prisma.pair.update({
+    where: { id },
+    data: { pairPoints: { increment: Number(delta) } }
+  });
+  res.json(updated);
+});
+
 // ─── GROUPS ───────────────────────────────────────────────────────────────────
 entitiesRouter.get("/groups", async (req, res) => {
   res.json(await req.prisma.group.findMany({
@@ -157,4 +167,14 @@ entitiesRouter.delete("/groups/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json({ error: err.message || "Failed to delete group." });
   }
+});
+
+entitiesRouter.put("/groups/:id/points", async (req, res) => {
+  const id = Number(req.params.id);
+  const { delta } = req.body;
+  const updated = await req.prisma.group.update({
+    where: { id },
+    data: { groupPoints: { increment: Number(delta) } }
+  });
+  res.json(updated);
 });

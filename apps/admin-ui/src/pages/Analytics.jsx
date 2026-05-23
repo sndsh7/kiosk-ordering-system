@@ -42,13 +42,24 @@ function StatCard({ title, ordersCount, revenue, accent }) {
 
 export default function Analytics() {
   const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [pairs, setPairs] = useState([]);
+  const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await api.get("/api/orders");
-        setOrders(data);
+        const [oRes, uRes, pRes, gRes] = await Promise.all([
+          api.get("/api/orders"),
+          api.get("/api/users"),
+          api.get("/api/pairs"),
+          api.get("/api/groups"),
+        ]);
+        setOrders(oRes.data);
+        setUsers(uRes.data);
+        setPairs(pRes.data);
+        setGroups(gRes.data);
       } catch (e) {
         console.error(e);
       } finally {
@@ -89,6 +100,55 @@ export default function Analytics() {
     }
   });
 
+  const userStats = users.map(u => ({
+    id: u.id,
+    name: u.name,
+    remaining: u.individualPoints,
+    spent: orders.filter(o => o.mode === "INDIVIDUAL" && o.refId === u.id).reduce((sum, o) => sum + o.totalPoints, 0)
+  })).sort((a,b) => b.spent - a.spent);
+
+  const pairStats = pairs.map(p => ({
+    id: p.id,
+    name: `${p.user1?.name} & ${p.user2?.name}`,
+    remaining: p.pairPoints,
+    spent: orders.filter(o => o.mode === "PAIR" && o.refId === p.id).reduce((sum, o) => sum + o.totalPoints, 0)
+  })).sort((a,b) => b.spent - a.spent);
+
+  const groupStats = groups.map(g => ({
+    id: g.id,
+    name: g.name,
+    remaining: g.groupPoints,
+    spent: orders.filter(o => o.mode === "GROUP" && o.refId === g.id).reduce((sum, o) => sum + o.totalPoints, 0)
+  })).sort((a,b) => b.spent - a.spent);
+
+  const renderTable = (title, data) => (
+    <div style={{ flex: 1, minWidth: 300, background: colors.card, borderRadius: 12, overflow: "hidden", border: `1px solid ${colors.border}` }}>
+      <div style={{ padding: "16px 20px", background: "rgba(255,255,255,0.05)", fontWeight: 800, borderBottom: `1px solid ${colors.border}`, color: colors.gold }}>
+        {title}
+      </div>
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+        <thead>
+          <tr>
+            <th style={{ padding: "12px 20px", textAlign: "left", color: colors.muted, fontWeight: 600, borderBottom: `1px solid rgba(255,255,255,0.1)` }}>Entity</th>
+            <th style={{ padding: "12px 20px", textAlign: "right", color: colors.muted, fontWeight: 600, borderBottom: `1px solid rgba(255,255,255,0.1)` }}>Spent</th>
+            <th style={{ padding: "12px 20px", textAlign: "right", color: colors.muted, fontWeight: 600, borderBottom: `1px solid rgba(255,255,255,0.1)` }}>Remaining</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.length === 0 ? (
+            <tr><td colSpan={3} style={{ padding: "20px", textAlign: "center", color: colors.muted }}>No data available</td></tr>
+          ) : data.map((row, i) => (
+            <tr key={row.id} style={{ borderBottom: i === data.length - 1 ? "none" : `1px solid rgba(255,255,255,0.05)` }}>
+              <td style={{ padding: "12px 20px", fontWeight: 500, color: "#fff" }}>{row.name}</td>
+              <td style={{ padding: "12px 20px", textAlign: "right", color: colors.gold, fontWeight: 700 }}>₹ {row.spent}</td>
+              <td style={{ padding: "12px 20px", textAlign: "right", color: colors.green || "#00ff88", fontWeight: 700 }}>₹ {row.remaining}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
   return (
     <div style={s.page}>
       <div style={s.pageTitle}>Analytics</div>
@@ -103,13 +163,19 @@ export default function Analytics() {
             <StatCard title="This Month" ordersCount={stats.month.count} revenue={stats.month.revenue} accent="#00aaff" />
           </div>
 
-          <div style={{ ...s.card, background: "rgba(255,255,255,0.02)" }}>
+          <div style={{ ...s.card, background: "rgba(255,255,255,0.02)", marginBottom: 32 }}>
              <div style={s.sectionTitle}>Overview</div>
              <p style={{ color: colors.muted, lineHeight: 1.6 }}>
                Here you can monitor the performance of your Kiosk Ordering System over different time periods.
                The data is updated in real-time as new orders are placed. Use this to track peak ordering times
                and overall revenue growth.
              </p>
+          </div>
+
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "flex-start" }}>
+            {renderTable("Individuals", userStats)}
+            {renderTable("Pairs", pairStats)}
+            {renderTable("Groups", groupStats)}
           </div>
         </>
       )}

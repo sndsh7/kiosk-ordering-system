@@ -167,6 +167,26 @@ export default function Users() {
     }
   }
 
+  async function applyPoints(id, type) {
+    const amountStr = window.prompt(`Enter amount to ${type} (in ₹):`);
+    if (!amountStr) return;
+    const amount = Number(amountStr);
+    if (isNaN(amount) || amount <= 0) return alert("Please enter a valid positive number.");
+    
+    const delta = type === "bonus" ? amount : -amount;
+    
+    try {
+      setError("");
+      setSuccess("");
+      await api.put(`/api/users/${id}/points`, { delta });
+      setSuccess(`${type === "bonus" ? "Bonus" : "Penalty"} applied successfully!`);
+      refresh();
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err) {
+      setError(err.response?.data?.error || `Failed to apply ${type}.`);
+    }
+  }
+
   function editUser(user) {
     setEditingId(user.id);
     setName(user.name);
@@ -272,6 +292,8 @@ export default function Users() {
 
                 {/* Actions */}
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <button onClick={() => applyPoints(u.id, 'bonus')} style={{ ...s.btnGhost, background: "rgba(0,255,136,0.1)", color: "#00ff88", margin: 0, padding: "6px 14px", fontSize: 13, border: "1px solid rgba(0,255,136,0.3)" }}>+ Bonus</button>
+                  <button onClick={() => applyPoints(u.id, 'penalty')} style={{ ...s.btnGhost, background: "rgba(255,204,0,0.1)", color: colors.gold, margin: 0, padding: "6px 14px", fontSize: 13, border: "1px solid rgba(255,204,0,0.3)" }}>- Penalty</button>
                   <button onClick={() => editUser(u)} style={{ ...s.btnGhost, margin: 0, padding: "6px 14px", fontSize: 13 }}>Edit</button>
                   <button onClick={() => deleteUser(u.id)} style={s.btnDanger}>Delete</button>
                 </div>

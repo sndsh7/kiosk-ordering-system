@@ -80,6 +80,22 @@ export default function Groups() {
     refresh();
   }
 
+  async function applyPoints(id, type) {
+    const amountStr = window.prompt(`Enter amount to ${type} (in ₹):`);
+    if (!amountStr) return;
+    const amount = Number(amountStr);
+    if (isNaN(amount) || amount <= 0) return alert("Please enter a valid positive number.");
+    
+    const delta = type === "bonus" ? amount : -amount;
+    
+    try {
+      await api.put(`/api/groups/${id}/points`, { delta });
+      refresh();
+    } catch (err) {
+      alert(err.response?.data?.error || `Failed to apply ${type}.`);
+    }
+  }
+
   function startEdit(g) {
     setEditingId(g.id);
     setName(g.name);
@@ -174,8 +190,10 @@ export default function Groups() {
                   : "No members"}
               </div>
             </div>
-            <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={() => startEdit(g)} style={s.btnGhost}>Edit</button>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <button onClick={() => applyPoints(g.id, 'bonus')} style={{ ...s.btnGhost, background: "rgba(0,255,136,0.1)", color: "#00ff88", margin: 0, padding: "6px 14px", fontSize: 13, border: "1px solid rgba(0,255,136,0.3)" }}>+ Bonus</button>
+              <button onClick={() => applyPoints(g.id, 'penalty')} style={{ ...s.btnGhost, background: "rgba(255,204,0,0.1)", color: colors.gold, margin: 0, padding: "6px 14px", fontSize: 13, border: "1px solid rgba(255,204,0,0.3)" }}>- Penalty</button>
+              <button onClick={() => startEdit(g)} style={{ ...s.btnGhost, margin: 0, padding: "6px 14px", fontSize: 13 }}>Edit</button>
               <button onClick={() => deleteGroup(g.id)} style={s.btnDanger}>Delete</button>
             </div>
           </div>

@@ -74,6 +74,23 @@ export default function Pairs() {
     refresh();
   }
 
+  async function applyPoints(id, type) {
+    const amountStr = window.prompt(`Enter amount to ${type} (in ₹):`);
+    if (!amountStr) return;
+    const amount = Number(amountStr);
+    if (isNaN(amount) || amount <= 0) return alert("Please enter a valid positive number.");
+    
+    const delta = type === "bonus" ? amount : -amount;
+    
+    try {
+      setErr("");
+      await api.put(`/api/pairs/${id}/points`, { delta });
+      refresh();
+    } catch (err) {
+      setErr(err.response?.data?.error || `Failed to apply ${type}.`);
+    }
+  }
+
   function startEdit(p) {
     setEditingId(p.id);
     setUser1Id(String(p.user1Id));
@@ -174,8 +191,10 @@ export default function Pairs() {
                 ₹ {p.pairPoints} · ID: {p.id}
               </div>
             </div>
-            <div style={{ display: "flex", gap: 8 }}>
-              <button onClick={() => startEdit(p)} style={s.btnGhost}>Edit</button>
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <button onClick={() => applyPoints(p.id, 'bonus')} style={{ ...s.btnGhost, background: "rgba(0,255,136,0.1)", color: "#00ff88", margin: 0, padding: "6px 14px", fontSize: 13, border: "1px solid rgba(0,255,136,0.3)" }}>+ Bonus</button>
+              <button onClick={() => applyPoints(p.id, 'penalty')} style={{ ...s.btnGhost, background: "rgba(255,204,0,0.1)", color: colors.gold, margin: 0, padding: "6px 14px", fontSize: 13, border: "1px solid rgba(255,204,0,0.3)" }}>- Penalty</button>
+              <button onClick={() => startEdit(p)} style={{ ...s.btnGhost, margin: 0, padding: "6px 14px", fontSize: 13 }}>Edit</button>
               <button onClick={() => deletePair(p.id)} style={s.btnDanger}>Delete</button>
             </div>
           </div>
