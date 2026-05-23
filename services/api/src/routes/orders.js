@@ -111,6 +111,17 @@ ordersRouter.get("/orders", requireAdmin, async (req, res) => {
   res.json(enrichedOrders);
 });
 
+ordersRouter.delete("/orders", requireAdmin, async (req, res) => {
+  try {
+    await req.prisma.orderItem.deleteMany();
+    await req.prisma.order.deleteMany();
+    res.json({ success: true });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Failed to clear orders" });
+  }
+});
+
 ordersRouter.get("/orders/:id", requireAdmin, async (req, res) => {
   const id = Number(req.params.id);
   const order = await req.prisma.order.findUnique({
