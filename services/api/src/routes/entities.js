@@ -34,6 +34,14 @@ entitiesRouter.delete("/users/:id", async (req, res) => {
       });
     }
 
+    // Check if the user is the active user on the kiosk
+    const kioskState = await req.prisma.kioskState.findFirst();
+    if (kioskState && kioskState.mode === "INDIVIDUAL" && kioskState.refId === id) {
+      return res.status(400).json({
+        error: "Cannot delete user because they are currently assigned to the active kiosk."
+      });
+    }
+
     await req.prisma.user.delete({ where: { id } });
     res.json({ ok: true });
   } catch (err) {

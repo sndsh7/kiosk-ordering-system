@@ -82,23 +82,31 @@ ordersRouter.get("/orders", requireAdmin, async (req, res) => {
     orderBy: { createdAt: "desc" }
   });
 
-  const enrichedOrders = await Promise.all(orders.map(async (o) => {
+  const userIds = orders.filter(o => o.mode === "INDIVIDUAL" && o.refId).map(o => o.refId);
+  const pairIds = orders.filter(o => o.mode === "PAIR" && o.refId).map(o => o.refId);
+  const groupIds = orders.filter(o => o.mode === "GROUP" && o.refId).map(o => o.refId);
+
+  const [users, pairs, groups] = await Promise.all([
+    userIds.length > 0 ? req.prisma.user.findMany({ where: { id: { in: userIds } } }) : Promise.resolve([]),
+    pairIds.length > 0 ? req.prisma.pair.findMany({ where: { id: { in: pairIds } }, include: { user1: true, user2: true } }) : Promise.resolve([]),
+    groupIds.length > 0 ? req.prisma.group.findMany({ where: { id: { in: groupIds } } }) : Promise.resolve([])
+  ]);
+
+  const usersMap = new Map(users.map(u => [u.id, u.name]));
+  const pairsMap = new Map(pairs.map(p => [p.id, `${p.user1.name} & ${p.user2.name}`]));
+  const groupsMap = new Map(groups.map(g => [g.id, g.name]));
+
+  const enrichedOrders = orders.map(o => {
     let entityName = "Unknown";
     if (o.mode === "INDIVIDUAL" && o.refId) {
-      const u = await req.prisma.user.findUnique({ where: { id: o.refId } });
-      if (u) entityName = u.name;
+      entityName = usersMap.get(o.refId) || "Unknown";
     } else if (o.mode === "PAIR" && o.refId) {
-      const p = await req.prisma.pair.findUnique({ 
-        where: { id: o.refId },
-        include: { user1: true, user2: true } 
-      });
-      if (p) entityName = `${p.user1.name} & ${p.user2.name}`;
+      entityName = pairsMap.get(o.refId) || "Unknown";
     } else if (o.mode === "GROUP" && o.refId) {
-      const g = await req.prisma.group.findUnique({ where: { id: o.refId } });
-      if (g) entityName = g.name;
+      entityName = groupsMap.get(o.refId) || "Unknown";
     }
     return { ...o, entityName };
-  }));
+  });
 
   res.json(enrichedOrders);
 });
