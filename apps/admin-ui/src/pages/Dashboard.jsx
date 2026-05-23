@@ -38,9 +38,30 @@ export default function Dashboard() {
   const todayOrders = orders.filter(o => new Date(o.createdAt).toDateString() === today);
   const todaySpend = todayOrders.reduce((s, o) => s + o.totalPoints, 0);
 
+  const handleFactoryReset = async () => {
+    const confirmation1 = window.confirm("WARNING: This will erase ALL data (orders, items, users, groups, etc.). Are you absolutely sure?");
+    if (!confirmation1) return;
+    
+    const confirmation2 = window.confirm("FINAL WARNING: This cannot be undone. Proceed with Factory Reset?");
+    if (!confirmation2) return;
+
+    try {
+      await api.post("/api/admin/reset");
+      alert("Factory Reset successful. Please refresh the page.");
+      window.location.reload();
+    } catch (e) {
+      alert("Failed to perform factory reset");
+    }
+  };
+
   return (
     <div style={s.page}>
-      <div style={s.pageTitle}>Dashboard</div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+        <div style={{ ...s.pageTitle, marginBottom: 0 }}>Dashboard</div>
+        <button onClick={handleFactoryReset} style={{ ...s.btnSm, background: colors.danger || colors.red || "#ff0000", color: "#fff", fontWeight: "bold" }}>
+          ⚠️ Factory Reset
+        </button>
+      </div>
 
       {/* STAT CARDS */}
       <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 24 }}>

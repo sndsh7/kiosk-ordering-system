@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, Navigate, Link, useLocation, useNavigate } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import Analytics from "./pages/Analytics.jsx";
 import KioskControl from "./pages/KioskControl.jsx";
 import Orders from "./pages/Orders.jsx";
 import OrderDetail from "./pages/OrderDetail.jsx";
@@ -17,6 +18,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 const navLinks = [
   { group: "Overview", items: [
     { to: "/dashboard", label: "Dashboard", icon: "📊" },
+    { to: "/analytics", label: "Analytics", icon: "📈" },
     { to: "/kiosk",     label: "Kiosk Control", icon: "🖥️" },
     { to: "/orders",    label: "Orders", icon: "🧾" },
   ]},
@@ -143,6 +145,7 @@ export default function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard"    element={<Protected element={<Layout><Dashboard /></Layout>} />} />
+        <Route path="/analytics"    element={<Protected element={<Layout><Analytics /></Layout>} />} />
         <Route path="/kiosk"        element={<Protected element={<Layout><KioskControl /></Layout>} />} />
         <Route path="/orders"       element={<Protected element={<Layout><Orders /></Layout>} />} />
         <Route path="/orders/:id"   element={<Protected element={<Layout><OrderDetail /></Layout>} />} />
