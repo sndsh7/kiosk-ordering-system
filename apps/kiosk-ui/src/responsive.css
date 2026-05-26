@@ -1223,3 +1223,345 @@ body {
   from { width: 100%; }
   to { width: 0%; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   MENU PAGE — FUTURISTIC CYBERPUNK DESIGN
+   ══════════════════════════════════════════════════════════ */
+
+/* Page modifier */
+.menu-page {
+  position: relative;
+}
+
+/* Top spotlight glow */
+.menu-spotlight {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Futuristic Balance Card ── */
+.menu-balance-card {
+  position: relative;
+  border: 1px solid rgba(0, 220, 255, 0.25);
+  background: linear-gradient(180deg, rgba(0, 30, 40, 0.85) 0%, rgba(0, 10, 15, 0.95) 100%);
+  border-radius: 18px;
+  padding: 2rem 1.8rem;
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+  overflow: hidden;
+  box-shadow:
+    0 0 30px rgba(0, 200, 255, 0.08),
+    inset 0 1px 0 rgba(0, 220, 255, 0.15);
+}
+
+/* Horizontal scan lines — top & bottom */
+.menu-balance-scanline {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 220, 255, 0.7), rgba(0, 255, 200, 0.5), rgba(0, 220, 255, 0.7), transparent);
+  box-shadow: 0 0 8px rgba(0, 220, 255, 0.5);
+}
+.menu-balance-scanline--top { top: 0; }
+.menu-balance-scanline--bottom { bottom: 0; }
+
+/* Corner accents (tech bracket look) */
+.menu-balance-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: rgba(0, 220, 255, 0.6);
+  border-style: solid;
+  border-width: 0;
+}
+.menu-balance-corner--tl { top: 4px; left: 4px; border-top-width: 2px; border-left-width: 2px; }
+.menu-balance-corner--tr { top: 4px; right: 4px; border-top-width: 2px; border-right-width: 2px; }
+.menu-balance-corner--bl { bottom: 4px; left: 4px; border-bottom-width: 2px; border-left-width: 2px; }
+.menu-balance-corner--br { bottom: 4px; right: 4px; border-bottom-width: 2px; border-right-width: 2px; }
+
+/* Mode label (e.g. "GROUP") */
+.menu-balance-mode {
+  font-size: var(--font-body-lg);
+  font-weight: 900;
+  color: #00e676;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+/* Entity name below avatars */
+.menu-balance-entity {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+/* "LOCKUPP MONEY" label */
+.menu-balance-label {
+  font-size: var(--font-body-md);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+/* Big balance amount */
+.menu-balance-amount {
+  font-size: var(--font-title-xl);
+  font-weight: 900;
+  color: var(--accent-gold);
+  margin-top: 0.6rem;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+}
+
+/* ── Food List ── */
+.menu-food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Individual food card */
+.menu-food-card {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(10, 2, 2, 0.98));
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  border-radius: 16px;
+  padding: 0.9rem;
+  gap: 0.9rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.menu-food-card:hover {
+  border-color: rgba(255, 0, 0, 0.45);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.1);
+}
+
+/* Circular food image */
+.menu-food-image {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  background: #0a0000;
+  flex-shrink: 0;
+}
+
+.menu-food-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: #0d0000;
+}
+
+/* Food info */
+.menu-food-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.menu-food-name {
+  font-size: var(--font-body-md);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.2rem;
+  color: #fff;
+}
+
+.menu-food-desc {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.menu-food-price {
+  font-size: var(--font-body-md);
+  font-weight: 900;
+  color: #00e676;
+}
+
+/* Action button area */
+.menu-food-action {
+  flex-shrink: 0;
+}
+
+/* +ADD button */
+.menu-add-btn {
+  min-width: 72px;
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 0, 0, 0.6);
+  background: var(--btn-gradient);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+.menu-add-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 0, 0, 0.4);
+}
+.menu-add-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+.menu-add-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Quantity stepper (compact) */
+.menu-qty-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 90px;
+  height: 38px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 0, 0, 0.6);
+  background: var(--btn-gradient);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
+}
+
+.menu-qty-btn {
+  width: 32px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.menu-qty-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+}
+.menu-qty-btn:disabled {
+  opacity: 0.3;
+}
+
+.menu-qty-text {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+/* ── Responsive overrides for Menu ── */
+
+/* Mobile */
+@media (max-width: 480px) {
+  .menu-spotlight {
+    width: 200px;
+    height: 120px;
+  }
+  .menu-balance-card {
+    padding: 1.4rem 1.2rem;
+  }
+  .menu-food-image {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+  }
+  .menu-food-card {
+    padding: 0.7rem;
+    gap: 0.7rem;
+  }
+  .menu-add-btn {
+    min-width: 60px;
+    height: 34px;
+    font-size: 0.75rem;
+  }
+  .menu-qty-wrap {
+    min-width: 80px;
+    height: 34px;
+  }
+}
+
+/* 4K Kiosk */
+@media (min-width: 2000px) {
+  .menu-spotlight {
+    width: 600px;
+    height: 350px;
+  }
+  .menu-balance-card {
+    padding: 3.5rem 3rem;
+    border-radius: 32px;
+  }
+  .menu-balance-scanline {
+    height: 3px;
+  }
+  .menu-balance-corner {
+    width: 28px;
+    height: 28px;
+  }
+  .menu-food-image {
+    width: 140px;
+    height: 140px;
+    min-width: 140px;
+  }
+  .menu-food-card {
+    border-radius: 28px;
+    padding: 1.6rem;
+    gap: 1.6rem;
+  }
+  .menu-add-btn {
+    min-width: 130px;
+    height: 64px;
+    font-size: 1.3rem;
+    border-radius: 16px;
+  }
+  .menu-qty-wrap {
+    min-width: 160px;
+    height: 64px;
+    border-radius: 16px;
+  }
+  .menu-qty-btn {
+    width: 52px;
+    font-size: 1.8rem;
+  }
+}
+
+@keyframes scanPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.menu-balance-scanline {
+  animation: scanPulse 3s ease-in-out infinite;
+}

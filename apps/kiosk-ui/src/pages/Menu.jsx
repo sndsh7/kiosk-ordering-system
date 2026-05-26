@@ -75,7 +75,10 @@ export default function Menu() {
   const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (
-    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+    <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+      {/* TOP SPOTLIGHT GLOW */}
+      <div className="menu-spotlight" />
+
       <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
         <div className="kiosk-header">
@@ -88,28 +91,31 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* BALANCE */}
-        <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
+        {/* FUTURISTIC BALANCE CARD */}
+        <div className="menu-balance-card">
+          {/* Top scan line */}
+          <div className="menu-balance-scanline menu-balance-scanline--top" />
+          {/* Corner accents */}
+          <div className="menu-balance-corner menu-balance-corner--tl" />
+          <div className="menu-balance-corner menu-balance-corner--tr" />
+          <div className="menu-balance-corner menu-balance-corner--bl" />
+          <div className="menu-balance-corner menu-balance-corner--br" />
+
           {/* PROFILE + MODE NAME */}
           {status.mode?.toLowerCase() === "group" ? (
-            <div className="mode-name" style={{ marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px" }}>
-              {status.entityName}
-            </div>
+            <div className="menu-balance-mode">{displayMode}</div>
           ) : (
             <>
               <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="mode-name" style={{ marginTop: "1.5rem", marginBottom: "1.5rem", color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "2px", textTransform: "uppercase" }}>
-                {status.entityName}
-              </div>
+              <div className="menu-balance-entity">{status.entityName}</div>
             </>
           )}
 
-          <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>
-            LOCKUPP MONEY
-          </div>
-          <div className="kiosk-balance-amount" style={{ marginTop: "1rem" }}>
-            ₹ {Math.max(0, remaining)}
-          </div>
+          <div className="menu-balance-label">LOCKUPP MONEY</div>
+          <div className="menu-balance-amount">₹{Math.max(0, remaining)}</div>
+
+          {/* Bottom scan line */}
+          <div className="menu-balance-scanline menu-balance-scanline--bottom" />
         </div>
 
         {/* CATEGORY TABS */}
@@ -126,105 +132,69 @@ export default function Menu() {
         </div>
 
         {/* FOOD LIST */}
-        <div className="kiosk-list" style={{ flex: 1, overflowY: "auto", paddingBottom: "130px" }}>
-          {items.map((it) => (
-            <div key={it.id} className="kiosk-food-card">
-              {/* IMAGE */}
-              {status.showItemImages !== false && (
-                <div className="kiosk-food-image">
-                  {it.imageUrl ? (
-                    <img
-                      src={it.imageUrl}
-                      alt={it.name}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
+        <div className="menu-food-list" style={{ flex: 1, overflowY: "auto", paddingBottom: "130px" }}>
+          {items.map((it) => {
+            const cartItem = list.find((x) => x.item.id === it.id);
+            const qty = cartItem?.qty || 0;
+
+            return (
+              <div key={it.id} className="menu-food-card">
+                {/* CIRCULAR IMAGE */}
+                {status.showItemImages !== false && (
+                  <div className="menu-food-image">
+                    {it.imageUrl ? (
+                      <img
+                        src={it.imageUrl}
+                        alt={it.name}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    ) : (
+                      <div className="menu-food-image-placeholder">🍽️</div>
+                    )}
+                  </div>
+                )}
+
+                {/* DETAILS */}
+                <div className="menu-food-info">
+                  <div className="menu-food-name">{it.name}</div>
+                  <div className="menu-food-desc">
+                    {it.description || "Fresh & delicious food item"}
+                  </div>
+                  <div className="menu-food-price">₹ {it.pricePoints}</div>
+                </div>
+
+                {/* BUTTON */}
+                <div className="menu-food-action">
+                  {qty === 0 ? (
+                    <button
+                      className="menu-add-btn"
+                      disabled={it.pricePoints > remaining}
+                      onClick={() => dispatch({ type: "ADD", item: it })}
+                    >
+                      +ADD
+                    </button>
                   ) : (
-                    <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.5rem" }}>
-                      🍽️
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* DETAILS */}
-              <div className="kiosk-food-info">
-                <div className="kiosk-food-name">
-                  {it.name}
-                </div>
-
-                <div className="kiosk-food-desc">
-                  {it.description || "Fresh & delicious food item"}
-                </div>
-
-                <div className="kiosk-food-price">
-                  ₹ {it.pricePoints}
-                </div>
-              </div>
-
-              {/* BUTTON */}
-              <div className="kiosk-btn-wrap">
-                {(() => {
-                  const cartItem = list.find(
-                    (x) => x.item.id === it.id
-                  );
-
-                  const qty = cartItem?.qty || 0;
-
-                  // SHOW ADD BUTTON
-                  if (qty === 0) {
-                    return (
+                    <div className="menu-qty-wrap">
                       <button
-                        className="kiosk-btn"
-                        disabled={it.pricePoints > remaining}
-                        onClick={() =>
-                          dispatch({
-                            type: "ADD",
-                            item: it
-                          })
-                        }
+                        className="menu-qty-btn"
+                        onClick={() => dispatch({ type: "DEC", itemId: it.id })}
                       >
-                        + ADD
+                        −
                       </button>
-                    );
-                  }
-
-                  // SHOW QUANTITY CONTROLLER
-                  return (
-                    <div className="kiosk-qty-wrap">
+                      <div className="menu-qty-text">{qty}</div>
                       <button
-                        className="kiosk-qty-btn"
-                        onClick={() =>
-                          dispatch({
-                            type: "DEC",
-                            itemId: it.id
-                          })
-                        }
-                      >
-                        -
-                      </button>
-
-                      <div className="kiosk-qty-text">
-                        {qty}
-                      </div>
-
-                      <button
-                        className="kiosk-qty-btn"
+                        className="menu-qty-btn"
                         disabled={it.pricePoints > remaining}
-                        onClick={() =>
-                          dispatch({
-                            type: "ADD",
-                            item: it
-                          })
-                        }
+                        onClick={() => dispatch({ type: "ADD", item: it })}
                       >
                         +
                       </button>
                     </div>
-                  );
-                })()}
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* CART */}
