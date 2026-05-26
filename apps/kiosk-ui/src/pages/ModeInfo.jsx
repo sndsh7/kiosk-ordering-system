@@ -47,8 +47,8 @@ export default function ModeInfo() {
   const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (
-    <div className="kiosk-page">
-      <div className="kiosk-container">
+    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+      <div className="kiosk-container" style={{ overflow: "hidden" }}>
         {/* HEADER */}
         <div className="kiosk-header">
           <div style={{ width: "60px" }}>

@@ -111,6 +111,7 @@
 html {
   font-size: var(--base-font-size);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 *, *:before, *:after {
