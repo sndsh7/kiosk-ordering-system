@@ -56,8 +56,8 @@ export default function Confirm() {
       status?.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
 
   return (
-    <div className="kiosk-page">
-      <div className="kiosk-container">
+    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+      <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
         <div className="kiosk-header">
           <div style={{ width: "60px" }}>
@@ -87,6 +87,8 @@ export default function Confirm() {
           </div>
         )}
 
+        {/* SCROLLABLE CONTENT */}
+        <div style={{ flex: 1, overflowY: "auto" }}>
         {/* ORDER SUMMARY */}
         <div className="kiosk-balance-card" style={{ textAlign: "left", marginBottom: "1.5rem" }}>
           <div className="mode-label" style={{ marginBottom: "1rem" }}>ORDER SUMMARY</div>
@@ -123,6 +125,7 @@ export default function Confirm() {
               ₹ {Math.max(0, remaining)}
             </span>
           </div>
+        </div>
         </div>
 
         {/* ACTIONS */}

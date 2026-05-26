@@ -75,8 +75,8 @@ export default function Menu() {
   const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (
-    <div className="kiosk-page">
-      <div className="kiosk-container">
+    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+      <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
         <div className="kiosk-header">
           <div style={{ width: "60px" }}>
@@ -126,7 +126,7 @@ export default function Menu() {
         </div>
 
         {/* FOOD LIST */}
-        <div className="kiosk-list" style={{ paddingBottom: "130px" }}>
+        <div className="kiosk-list" style={{ flex: 1, overflowY: "auto", paddingBottom: "130px" }}>
           {items.map((it) => (
             <div key={it.id} className="kiosk-food-card">
               {/* IMAGE */}

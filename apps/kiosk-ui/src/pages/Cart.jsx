@@ -27,8 +27,8 @@ export default function Cart() {
   const displayMode = status?.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (
-    <div className="kiosk-page">
-      <div className="kiosk-container">
+    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+      <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
         <div className="kiosk-header">
           <div style={{ width: "60px" }}>
@@ -93,7 +93,7 @@ export default function Cart() {
             </button>
           </div>
         ) : (
-          <div className="kiosk-list" style={{ marginBottom: "2rem" }}>
+          <div className="kiosk-list" style={{ flex: 1, overflowY: "auto", marginBottom: "2rem" }}>
             {list.map(({ item, qty }) => (
               <div key={item.id} className="cart-item-card">
                 {/* IMAGE */}
