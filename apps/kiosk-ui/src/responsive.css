@@ -135,6 +135,15 @@ body {
   user-select: none;
 }
 
+/* Hide scrollbar for all screens */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* --- MEDIA QUERIES --- */
 
 /* Mobile Phones (Portrait) */
@@ -454,6 +463,7 @@ body {
   margin-bottom: var(--spacing-md);
   box-shadow: 0 0 30px rgba(255, 0, 0, 0.15);
   text-align: center;
+  overflow: hidden;
 }
 
 .kiosk-wallet-text {
