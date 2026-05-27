@@ -95,10 +95,9 @@ export default function App() {
 
                 <button
                   onClick={() => setFlash(null)}
-                  className="action-btn-proceed"
-                  style={{ marginTop: "1.5rem", width: "100%", letterSpacing: "3px" }}
+                  style={{ marginTop: "1.5rem", width: "100%", padding: 0, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", boxShadow: "none", cursor: "pointer" }}
                 >
-                  CONTINUE SHOPPING
+                  <img src={continueShoppingImg} alt="Continue Shopping" style={{ width: "100%", height: "auto", objectFit: "contain" }} />
                 </button>
               </>
             ) : (

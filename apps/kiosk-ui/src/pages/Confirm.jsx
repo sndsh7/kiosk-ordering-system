@@ -145,9 +145,8 @@ export default function Confirm() {
             ✕ CANCEL
           </button>
           <button
-            className="action-btn-proceed"
             disabled={busy || total > balance}
-            style={{ opacity: busy || total > balance ? 0.4 : 1, padding: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', boxShadow: 'none' }}
+            style={{ flex: 2, height: "var(--cart-btn-height)", padding: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', boxShadow: 'none', cursor: "pointer", opacity: busy || total > balance ? 0.4 : 1 }}
             onClick={submit}
           >
             {busy ? (
@@ -155,7 +154,7 @@ export default function Confirm() {
                 ⏳ PROCESSING…
               </span>
             ) : (
-              <img src={placeOrderImg} alt="Place Order" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
+              <img src={placeOrderImg} alt="Place Order" style={{ width: "100%", height: "auto", objectFit: "contain" }} />
             )}
           </button>
         </div>

@@ -656,7 +656,7 @@ body {
   height: var(--cart-btn-height);
   border-radius: 20px;
   border: none;
-  background-image: url('./assets/Asset_PLACE-ORDER.png');
+  background-image: url('./assets/Asset_PlaceOrder.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -1726,7 +1726,7 @@ body {
   height: var(--cart-btn-height);
   border-radius: 6px;
   border: none;
-  background-image: url('./assets/Asset_PLACE-ORDER.png');
+  background-image: url('./assets/Asset_PlaceOrder.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -1822,7 +1822,7 @@ body {
   height: var(--cart-btn-height);
   border-radius: 6px;
   border: none;
-  background-image: url('./assets/Asset_PLACE-ORDER.png');
+  background-image: url('./assets/Asset_PlaceOrder.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
