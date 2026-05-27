@@ -138,22 +138,24 @@ export default function Confirm() {
         {/* ACTIONS */}
         <div className="kiosk-actions-fixed">
           <button
+            className="action-btn-clear"
             disabled={busy}
             onClick={() => nav("/cart")}
-            style={{ flex: 1, height: "var(--cart-btn-height)", borderRadius: "6px", border: "none", cursor: "pointer", opacity: busy ? 0.4 : 1, backgroundImage: `url(${cancelBtnImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent" }}
+            style={{ opacity: busy ? 0.4 : 1 }}
           >
-            {/* Image contains text */}
+            ✕ CANCEL
           </button>
           <button
+            className="action-btn-proceed"
             disabled={busy || total > balance}
-            style={{ flex: 2, height: "var(--cart-btn-height)", borderRadius: "6px", border: "none", cursor: "pointer", opacity: busy || total > balance ? 0.4 : 1, backgroundImage: `url(${placeOrderImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent" }}
+            style={{ opacity: busy || total > balance ? 0.4 : 1 }}
             onClick={submit}
           >
-            {busy && (
+            {busy ? (
               <span style={{ fontSize: "var(--font-body-lg)", fontWeight: 900, color: "#fff", background: "linear-gradient(180deg, #e03030, #8b0000)", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px" }}>
                 ⏳ PROCESSING…
               </span>
-            )}
+            ) : "✓ PLACE ORDER"}
           </button>
         </div>
       </div>
