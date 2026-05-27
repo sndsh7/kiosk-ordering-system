@@ -2347,3 +2347,29 @@ body {
     margin-top: 1.5rem;
   }
 }
+
+/* ── Icon image helpers ── */
+.success-check-img {
+  width: 70px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 12px rgba(0, 200, 83, 0.6));
+}
+
+.flash-icon-img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  margin: 0.4rem 0;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+@media (min-width: 2000px) {
+  .success-check-img {
+    width: 160px;
+  }
+  .flash-icon-img {
+    width: 180px;
+  }
+}

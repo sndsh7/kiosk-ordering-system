@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import backgroundImg from "../assets/Background.png";
 import boxBg from "../assets/Box.png";
+import correctIcon from "../assets/Asset_Correct.png";
 
 export default function Success() {
   const nav = useNavigate();
@@ -37,8 +38,8 @@ export default function Success() {
           backgroundRepeat: "no-repeat",
         }}
       >
-        {/* Green checkmark */}
-        <div className="success-check-circle">✓</div>
+        {/* Checkmark icon */}
+        <img src={correctIcon} alt="Success" className="success-check-img" />
 
         <div className="success-title">ORDER PLACED!</div>
         <div className="success-subtitle">YOUR ORDER HAS BEEN RECEIVED.</div>

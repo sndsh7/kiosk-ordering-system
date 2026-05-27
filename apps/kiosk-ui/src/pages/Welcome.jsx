@@ -4,7 +4,7 @@ import { getKioskStatus, connectSocket } from "../lib/kioskApi";
 
 import backgroundImg from "../assets/Background.png";
 import boxBg from "../assets/Box.png";
-import logoBgImg from "../assets/Asset_LogoBg.png";
+import logoImg from "../assets/Asset_Logo.png";
 
 export default function Welcome() {
   const nav = useNavigate();
@@ -63,7 +63,7 @@ export default function Welcome() {
       {/* Central Box frame with logo inside */}
       <div className="welcome-box-frame" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
         {/* LOCK UPP Logo */}
-        <img src={logoBgImg} alt="LOCK UPP" className="welcome-logo-img" />
+        <img src={logoImg} alt="LOCK UPP" className="welcome-logo-img" />
 
         {/* Fingerprint scan area */}
         <div className="welcome-fingerprint-wrap">

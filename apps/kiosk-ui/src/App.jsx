@@ -9,6 +9,9 @@ import backgroundImg from "./assets/Background.png";
 import bonusBoxImg from "./assets/Asset_congratulationsBox_Green.png";
 import penaltyBoxImg from "./assets/Asset_congratulationsBox_Red.png";
 import continueShoppingImg from "./assets/Asset_continue-shopping.png";
+import awardIcon from "./assets/Asset_Awward.png";
+import penaltyIcon from "./assets/Asset_PENALTY_Icon.png";
+import correctIcon from "./assets/Asset_Correct.png";
 
 import Welcome from "./pages/Welcome.jsx";
 import ModeInfo from "./pages/ModeInfo.jsx";
@@ -80,7 +83,7 @@ export default function App() {
             {flash.type === "BONUS" ? (
               <>
                 <div className="flash-title flash-title-bonus">CONGRATULATIONS</div>
-                <div style={{ fontSize: "4rem", lineHeight: 1, margin: "0.4rem 0" }}>🏆</div>
+                <img src={awardIcon} alt="Award" className="flash-icon-img" />
                 <div className="flash-task-won">TASK WON!</div>
 
                 <div className="flash-bonus-label">BONUS ADDED</div>
@@ -102,7 +105,7 @@ export default function App() {
             ) : (
               <>
                 <div className="flash-title flash-title-penalty">RULE VIOLATION!</div>
-                <div style={{ fontSize: "3.5rem", lineHeight: 1, margin: "0.4rem 0" }}>⚠️</div>
+                <img src={penaltyIcon} alt="Penalty" className="flash-icon-img" />
 
                 <div className="flash-bonus-label" style={{ color: "rgba(255,255,255,0.7)" }}>PENALTY DEDUCTED</div>
                 <div className="flash-points flash-points-penalty">−₹{flash.points}</div>
