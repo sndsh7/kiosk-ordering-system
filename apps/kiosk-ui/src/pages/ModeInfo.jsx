@@ -73,8 +73,11 @@ export default function ModeInfo() {
           </div>
         </div>
 
+        {/* TOP SPACER for centering */}
+        <div style={{ flex: 1 }} />
+
         {/* CENTRAL BOX CARD */}
-        <div className="modeinfo-box-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
+        <div className="modeinfo-box-card" style={{ backgroundImage: `url(${logoBgImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", width: "100%", aspectRatio: "1 / 1.1", margin: "0 auto", padding: "10% 2rem" }}>
           {status.mode?.toLowerCase() === "group" ? (
             <>
               <div className="modeinfo-mode-label">{displayMode}</div>
@@ -91,15 +94,15 @@ export default function ModeInfo() {
           )}
         </div>
 
-        {/* SPACER */}
-        <div style={{ flex: 1 }} />
-
         {/* START ORDERING BUTTON */}
-        <div className="modeinfo-actions">
+        <div className="modeinfo-actions" style={{ marginTop: "2rem" }}>
           <button className="modeinfo-start-btn" onClick={() => nav("/menu")}>
             START ORDERING
           </button>
         </div>
+
+        {/* BOTTOM SPACER */}
+        <div style={{ flex: 1 }} />
       </div>
     </div>
   );

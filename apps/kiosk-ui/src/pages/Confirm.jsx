@@ -6,7 +6,7 @@ import ProfileAvatars from "../components/ProfileAvatars";
 
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
-import boxBg from "../assets/Box.png";
+import logoBgImg from "../assets/Asset_LogoBg.png";
 import placeOrderImg from "../assets/Asset_PLACE-ORDER.png";
 import cancelBtnImg from "../assets/Asset_CancelButton.png";
 import groupIcon from "../assets/GroupIcon.png";
@@ -84,7 +84,7 @@ export default function Confirm() {
 
         {/* MODE BOX CARD — just mode name, no balance */}
         {status && (
-          <div className="confirm-mode-box" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
+          <div className="confirm-mode-box" style={{ backgroundImage: `url(${logoBgImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
             {status.mode?.toLowerCase() === "group" ? (
               <div className="menu-balance-mode">{displayMode}</div>
             ) : (

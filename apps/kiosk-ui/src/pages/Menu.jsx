@@ -12,7 +12,7 @@ import ProfileAvatars from "../components/ProfileAvatars";
 
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
-import boxBg from "../assets/Box.png";
+import logoBgImg from "../assets/Asset_LogoBg.png";
 import groupIcon from "../assets/GroupIcon.png";
 import pairIcon from "../assets/PairIcon.png";
 import singleIcon from "../assets/Single.png";
@@ -99,8 +99,8 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* BALANCE CARD — using Box.png */}
-        <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
+        {/* BALANCE CARD — using Asset_LogoBg */}
+        <div className="menu-balance-card" style={{ backgroundImage: `url(${logoBgImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
           {status.mode?.toLowerCase() === "group" ? (
             <div className="menu-balance-mode">{displayMode}</div>
           ) : (
