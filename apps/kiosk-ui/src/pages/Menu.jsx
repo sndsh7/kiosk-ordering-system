@@ -10,6 +10,12 @@ import {
 import { useCart } from "../state/cart.jsx";
 import ProfileAvatars from "../components/ProfileAvatars";
 
+import backArrowIcon from "../assets/Back_Arrow.png";
+import backgroundImg from "../assets/Background.png";
+import groupIcon from "../assets/GroupIcon.png";
+import pairIcon from "../assets/PairIcon.png";
+import singleIcon from "../assets/Single.png";
+
 export default function Menu() {
   const nav = useNavigate();
 
@@ -68,26 +74,28 @@ export default function Menu() {
     );
   }
 
-  const modeIcon = status?.mode?.toLowerCase() === 'individual' ? '👤' :
-    status?.mode?.toLowerCase() === 'pair' ? '👥' :
-      status?.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
+  const modeIconSrc = status?.mode?.toLowerCase() === 'individual' ? singleIcon :
+    status?.mode?.toLowerCase() === 'pair' ? pairIcon :
+      status?.mode?.toLowerCase() === 'group' ? groupIcon : null;
 
   const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
 
   return (
-    <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+    <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
       {/* TOP SPOTLIGHT GLOW */}
       <div className="menu-spotlight" />
 
       <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
-        <div className="kiosk-header">
-          <div style={{ width: "60px" }}>
-            <button className="kiosk-back-btn" onClick={() => nav("/mode")}>←</button>
+        <div className="kiosk-header" style={{ marginBottom: "1rem" }}>
+          <div style={{ width: "80px", display: "flex", alignItems: "center" }}>
+            <button className="kiosk-back-btn" onClick={() => nav("/mode")} style={{ background: "none", border: "none", padding: 0 }}>
+              <img src={backArrowIcon} alt="Back" style={{ width: "40px", height: "auto" }} />
+            </button>
           </div>
           <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
-          <div style={{ width: "60px", textAlign: "right" }}>
-            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          <div style={{ width: "80px", textAlign: "right", display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+            {modeIconSrc && <img src={modeIconSrc} alt={status.mode} style={{ width: "50px", height: "auto" }} />}
           </div>
         </div>
 
