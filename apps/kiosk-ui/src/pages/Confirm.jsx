@@ -7,6 +7,7 @@ import ProfileAvatars from "../components/ProfileAvatars";
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
 import boxBg from "../assets/Box.png";
+import placeOrderImg from "../assets/Asset_PLACE-ORDER.png";
 import groupIcon from "../assets/GroupIcon.png";
 import pairIcon from "../assets/PairIcon.png";
 import singleIcon from "../assets/Single.png";
@@ -146,10 +147,16 @@ export default function Confirm() {
           <button
             className="action-btn-proceed"
             disabled={busy || total > balance}
-            style={{ opacity: busy || total > balance ? 0.4 : 1 }}
+            style={{ opacity: busy || total > balance ? 0.4 : 1, padding: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', boxShadow: 'none' }}
             onClick={submit}
           >
-            {busy ? "⏳ PROCESSING…" : "✓ PLACE ORDER"}
+            {busy ? (
+              <span style={{ fontSize: "var(--font-body-lg)", fontWeight: 900, color: "#fff", background: "linear-gradient(180deg, #e03030, #8b0000)", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px" }}>
+                ⏳ PROCESSING…
+              </span>
+            ) : (
+              <img src={placeOrderImg} alt="Place Order" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
+            )}
           </button>
         </div>
       </div>

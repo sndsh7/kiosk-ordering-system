@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getKioskStatus, connectSocket } from "../lib/kioskApi";
 
 import backgroundImg from "../assets/Background.png";
-import boxBg from "../assets/Box.png";
+import logoBgImg from "../assets/Asset_LogoBg.png";
 import logoImg from "../assets/Asset_Logo.png";
 
 export default function Welcome() {
@@ -60,8 +60,8 @@ export default function Welcome() {
       {/* Top spotlight */}
       <div className="menu-spotlight" />
 
-      {/* Central Box frame with logo inside */}
-      <div className="welcome-box-frame" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
+      {/* Central frame with logo background */}
+      <div className="welcome-box-frame" style={{ backgroundImage: `url(${logoBgImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
         {/* LOCK UPP Logo */}
         <img src={logoImg} alt="LOCK UPP" className="welcome-logo-img" />
 
