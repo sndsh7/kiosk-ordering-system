@@ -1,53 +1,57 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import ProfileAvatars from "../components/ProfileAvatars";
 
 import backgroundImg from "../assets/Background.png";
-import successBoxBg from "../assets/Asset_congratulationsBox_Green.png";
-import thumbImg from "../assets/Asset_Thumb.png";
+import boxBg from "../assets/Box.png";
 
 export default function Success() {
   const nav = useNavigate();
   const { state } = useLocation();
   const remaining = state?.remaining ?? 0;
-  const entityName = state?.entityName ?? null;
-  const photos = state?.photos ?? [];
-  const mode = state?.mode ?? null;
 
   useEffect(() => {
-    const t = setTimeout(() => nav("/", { replace: true }), 6000);
+    const t = setTimeout(() => nav("/", { replace: true }), 7000);
     return () => clearTimeout(t);
   }, [nav]);
 
   return (
-    <div className="kiosk-page kiosk-page-success" style={{ display: "flex", alignItems: "center", justifyContent: "center", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
-      <div className="kiosk-card kiosk-card-success" style={{ backgroundImage: `url(${successBoxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none", padding: "4rem", width: "80%", maxWidth: "800px" }}>
+    <div
+      className="welcome-screen"
+      style={{
+        backgroundImage: `url(${backgroundImg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundColor: "#000",
+        cursor: "default",
+      }}
+    >
+      {/* Spotlight */}
+      <div className="menu-spotlight" />
 
-        {/* PROFILE */}
-        {entityName && (
-          <div style={{ width: "100%", marginBottom: "1rem" }}>
-            <ProfileAvatars entityName={entityName} photos={photos} mode={mode} />
-          </div>
-        )}
+      {/* Box card */}
+      <div
+        className="success-box-card"
+        style={{
+          backgroundImage: `url(${boxBg})`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Green checkmark */}
+        <div className="success-check-circle">✓</div>
 
-        <div className="success-check-icon" style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
-          <img src={thumbImg} alt="Success" style={{ width: "120px", height: "auto" }} />
-        </div>
         <div className="success-title">ORDER PLACED!</div>
-        <div className="success-subtitle">Your order has been received.</div>
-
-        <div className="success-divider" />
+        <div className="success-subtitle">YOUR ORDER HAS BEEN RECEIVED.</div>
 
         <div className="success-balance-label">REMAINING BALANCE</div>
-        <div className="success-balance-amount">₹ {Math.max(0, remaining)}</div>
+        <div className="success-balance-amount">₹{Math.max(0, remaining)}</div>
 
-        <div className="success-divider" />
-
-        <div className="success-return-msg">Returning to home in a moment…</div>
-
-        {/* Progress bar */}
-        <div className="success-progress-track">
-          <div className="success-progress-bar" />
+        {/* Return message + progress bar */}
+        <div className="success-return-wrap">
+          <div className="success-return-msg">RETURNING TO HOME IN A MOMENT...</div>
+          <div className="success-progress-track">
+            <div className="success-progress-bar" style={{ animationDuration: "7s" }} />
+          </div>
         </div>
       </div>
     </div>

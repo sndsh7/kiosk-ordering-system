@@ -1985,3 +1985,365 @@ body {
   }
 }
 
+/* ════════════════════════════════════════
+   WELCOME SCREEN
+   ════════════════════════════════════════ */
+
+.welcome-screen {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Central Box.png frame */
+.welcome-box-frame {
+  width: 85%;
+  max-width: 520px;
+  aspect-ratio: 1 / 1.05;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* LOCK UPP logo image */
+.welcome-logo-img {
+  width: 85%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(200, 0, 0, 0.5));
+}
+
+/* Fingerprint scan area */
+.welcome-fingerprint-wrap {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-fingerprint-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  animation: fpRingPulse 2.5s ease-in-out infinite;
+}
+
+.welcome-fingerprint-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.65;
+}
+
+.welcome-fingerprint-svg {
+  width: 100%;
+  height: 100%;
+  animation: fpFade 2.5s ease-in-out infinite;
+}
+
+@keyframes fpRingPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+@keyframes fpFade {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* 4K Welcome overrides */
+@media (min-width: 2000px) {
+  .welcome-box-frame {
+    width: 75%;
+    max-width: 1100px;
+    gap: 4rem;
+    padding: 5rem;
+  }
+  .welcome-logo-img {
+    max-width: 800px;
+  }
+  .welcome-fingerprint-wrap {
+    width: 200px;
+    height: 200px;
+  }
+  .welcome-fingerprint-icon {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* ════════════════════════════════════════
+   SUCCESS SCREEN (Order Placed)
+   ════════════════════════════════════════ */
+
+.success-box-card {
+  width: 88%;
+  max-width: 560px;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.success-check-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #00c853;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 200, 83, 0.6);
+}
+
+.success-title {
+  font-size: var(--font-title-md);
+  font-weight: 900;
+  color: #00e676;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.success-subtitle {
+  font-size: var(--font-body-md);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.success-balance-label {
+  font-size: var(--font-body-md);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.success-balance-amount {
+  font-size: var(--font-title-xl);
+  font-weight: 900;
+  color: #00e676;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  text-shadow: 0 0 24px rgba(0, 230, 118, 0.6);
+}
+
+.success-return-wrap {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.success-return-msg {
+  font-size: var(--font-body-sm);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.success-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.success-progress-bar {
+  height: 100%;
+  background: #00e676;
+  border-radius: 4px;
+  animation: successProgress 7s linear forwards;
+}
+
+@keyframes successProgress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+/* ════════════════════════════════════════
+   FLASH OVERLAY — Bonus & Penalty
+   ════════════════════════════════════════ */
+
+.flash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card using congrats box image */
+.flash-card {
+  width: 88%;
+  max-width: 560px;
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.4rem;
+  position: relative;
+  z-index: 2;
+  animation: kFlashIn 0.35s ease-out forwards;
+}
+
+.flash-mode-name {
+  font-size: var(--font-body-md);
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+/* Bonus */
+.flash-title-bonus {
+  font-size: var(--font-title-md);
+  font-weight: 900;
+  color: #00e676;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.flash-task-won {
+  font-size: var(--font-body-lg);
+  font-weight: 900;
+  color: #00e676;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.flash-bonus-label {
+  font-size: var(--font-body-md);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.flash-points-bonus {
+  font-size: var(--font-title-lg);
+  font-weight: 900;
+  color: #00e676;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(0, 230, 118, 0.5);
+  line-height: 1.1;
+}
+
+/* Penalty */
+.flash-title-penalty {
+  font-size: var(--font-title-md);
+  font-weight: 900;
+  color: #ff4444;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.flash-points-penalty {
+  font-size: var(--font-title-lg);
+  font-weight: 900;
+  color: #ff4444;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+  line-height: 1.1;
+}
+
+/* Balance box inside flash card */
+.flash-balance-box {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 230, 118, 0.5);
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  margin-top: 0.6rem;
+}
+
+.flash-balance-box-penalty {
+  border-color: rgba(255, 68, 68, 0.5);
+}
+
+.flash-balance-title {
+  font-size: var(--font-body-sm);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.flash-balance-bonus {
+  font-size: var(--font-title-md);
+  font-weight: 900;
+  color: #00e676;
+  text-shadow: 0 0 16px rgba(0, 230, 118, 0.5);
+  letter-spacing: 1px;
+}
+
+.flash-balance-penalty {
+  font-size: var(--font-title-md);
+  font-weight: 900;
+  color: #ff4444;
+  text-shadow: 0 0 16px rgba(255, 68, 68, 0.5);
+  letter-spacing: 1px;
+}
+
+/* 4K overrides */
+@media (min-width: 2000px) {
+  .success-box-card, .flash-card {
+    width: 75%;
+    max-width: 1100px;
+    padding: 6rem 5rem;
+    border-radius: 32px;
+    gap: 1rem;
+  }
+  .success-check-circle {
+    width: 120px;
+    height: 120px;
+    font-size: 4rem;
+  }
+  .flash-balance-box {
+    padding: 1.5rem 2.5rem;
+    border-radius: 16px;
+    margin-top: 1.5rem;
+  }
+}

@@ -5,6 +5,11 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import ProfileAvatars from "./components/ProfileAvatars";
 import { useCart } from "./state/cart";
 
+import backgroundImg from "./assets/Background.png";
+import bonusBoxImg from "./assets/Asset_congratulationsBox_Green.png";
+import penaltyBoxImg from "./assets/Asset_congratulationsBox_Red.png";
+import continueShoppingImg from "./assets/Asset_continue-shopping.png";
+
 import Welcome from "./pages/Welcome.jsx";
 import ModeInfo from "./pages/ModeInfo.jsx";
 import Menu from "./pages/Menu.jsx";
@@ -42,82 +47,80 @@ export default function App() {
       {/* ── GLOBAL FLASH OVERLAY ─────────────────────────────────────────── */}
       {flash && (
         <div
-          className={`flash-overlay ${
-            flash.type === "BONUS" ? "flash-overlay-bonus" : "flash-overlay-penalty"
-          }`}
+          className="flash-overlay"
+          style={{
+            backgroundImage: `url(${backgroundImg})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundColor: "#000",
+          }}
         >
+          {/* Spotlight */}
+          <div className="menu-spotlight" />
+
+          {/* Card */}
           <div
-            className={`flash-card ${
-              flash.type === "BONUS" ? "flash-card-bonus" : "flash-card-penalty"
-            }`}
+            className="flash-card"
+            style={{
+              backgroundImage: `url(${flash.type === "BONUS" ? bonusBoxImg : penaltyBoxImg})`,
+              backgroundSize: "100% 100%",
+              backgroundRepeat: "no-repeat",
+              backgroundColor: "transparent",
+              border: "none",
+              boxShadow: "none",
+            }}
           >
-            {/* PROFILE AVATARS */}
+            {/* Mode name */}
             {flash.entityName && (
-              <div style={{ width: "100%", marginBottom: "1.5rem" }}>
-                <ProfileAvatars entityName={flash.entityName} photos={flash.photos || []} mode={flash.mode} />
-                <div className="mode-name" style={{ marginTop: "1.5rem", color: "#fff", fontSize: "1.4rem", letterSpacing: "1px", textTransform: "uppercase" }}>
-                  {flash.entityName}
-                </div>
+              <div className="flash-mode-name">
+                {flash.mode ? flash.mode.toUpperCase() : flash.entityName.toUpperCase()}
               </div>
             )}
 
             {flash.type === "BONUS" ? (
               <>
-                <div className="flash-title flash-title-bonus">
-                  CONGRATULATIONS!
+                <div className="flash-title flash-title-bonus">CONGRATULATIONS</div>
+                <div style={{ fontSize: "4rem", lineHeight: 1, margin: "0.4rem 0" }}>🏆</div>
+                <div className="flash-task-won">TASK WON!</div>
+
+                <div className="flash-bonus-label">BONUS ADDED</div>
+                <div className="flash-points flash-points-bonus">+₹{flash.points}</div>
+
+                <div className="flash-balance-box">
+                  <div className="flash-balance-title">BONUS ADDED</div>
+                  <div className="flash-balance-amount flash-balance-bonus">₹{flash.newBalance}</div>
                 </div>
-                <div style={{ fontSize: "5rem", lineHeight: 1.1 }}>🏆</div>
-                <div
-                  className="flash-title flash-title-bonus"
-                  style={{ fontSize: "1.8rem", marginTop: "0.6rem" }}
+
+                <button
+                  onClick={() => setFlash(null)}
+                  className="action-btn-proceed"
+                  style={{ marginTop: "1.5rem", width: "100%", letterSpacing: "3px" }}
                 >
-                  TASK WON!
-                </div>
-                <div className="flash-subtitle">
-                  Bonus Added To
-                  <br />
-                  <strong style={{ color: "#fff" }}>{flash.entityName || "Wallet"}</strong>
-                </div>
-                <div className="flash-points flash-points-bonus">
-                  + ₹ {flash.points}
-                </div>
+                  CONTINUE SHOPPING
+                </button>
               </>
             ) : (
               <>
-                <div className="flash-title flash-title-penalty">
-                  RULE VIOLATION!
+                <div className="flash-title flash-title-penalty">RULE VIOLATION!</div>
+                <div style={{ fontSize: "3.5rem", lineHeight: 1, margin: "0.4rem 0" }}>⚠️</div>
+
+                <div className="flash-bonus-label" style={{ color: "rgba(255,255,255,0.7)" }}>PENALTY DEDUCTED</div>
+                <div className="flash-points flash-points-penalty">−₹{flash.points}</div>
+
+                <div className="flash-balance-box flash-balance-box-penalty">
+                  <div className="flash-balance-title">NEW BALANCE</div>
+                  <div className="flash-balance-amount flash-balance-penalty">₹{flash.newBalance}</div>
                 </div>
-                <div style={{ fontSize: "5rem", lineHeight: 1.1 }}>⚠️</div>
-                <div className="flash-subtitle">
-                  Penalty Deducted From
-                  <br />
-                  <strong style={{ color: "#fff" }}>{flash.entityName || "Wallet"}</strong>
-                </div>
-                <div className="flash-points flash-points-penalty">
-                  − ₹ {flash.points}
-                </div>
+
+                <button
+                  onClick={() => setFlash(null)}
+                  className="action-btn-proceed"
+                  style={{ marginTop: "1.5rem", width: "100%", letterSpacing: "3px" }}
+                >
+                  OK, GOT IT
+                </button>
               </>
             )}
-
-            {/* New balance box */}
-            <div className="flash-balance-box">
-              <div className="flash-balance-title">
-                NEW BALANCE
-              </div>
-              <div className="flash-balance-amount">
-                ₹ {flash.newBalance}
-              </div>
-            </div>
-
-            {/* Dismiss button */}
-            <button
-              onClick={() => setFlash(null)}
-              className={`flash-btn ${
-                flash.type === "BONUS" ? "flash-btn-bonus" : "flash-btn-penalty"
-              }`}
-            >
-              {flash.type === "BONUS" ? "CONTINUE SHOPPING" : "OK, GOT IT"}
-            </button>
           </div>
 
           <style>{`
