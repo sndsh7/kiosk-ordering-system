@@ -2167,8 +2167,7 @@ body {
 
 /* LOCK UPP logo image — fill the frame */
 .welcome-logo-img {
-  width: 100%;
-  max-width: 100%;
+  width: auto;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 16px rgba(200, 0, 0, 0.5));
@@ -2242,8 +2241,8 @@ body {
   }
 
   .welcome-logo-img {
-    width: 100%;
-    max-width: 100%;
+    width: 85%;
+    max-width: 1400px;
   }
 
   .welcome-fingerprint-wrap {
