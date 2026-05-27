@@ -88,14 +88,14 @@ export default function Menu() {
       <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
         <div className="kiosk-header" style={{ marginBottom: "1rem" }}>
-          <div style={{ width: "80px", display: "flex", alignItems: "center" }}>
+          <div className="header-left-col">
             <button className="kiosk-back-btn" onClick={() => nav("/mode")} style={{ background: "none", border: "none", padding: 0 }}>
-              <img src={backArrowIcon} alt="Back" style={{ width: "40px", height: "auto" }} />
+              <img src={backArrowIcon} alt="Back" className="header-back-icon" />
             </button>
           </div>
           <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
-          <div style={{ width: "80px", textAlign: "right", display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
-            {modeIconSrc && <img src={modeIconSrc} alt={status.mode} style={{ width: "50px", height: "auto" }} />}
+          <div className="header-right-col">
+            {modeIconSrc && <img src={modeIconSrc} alt={status.mode} className="header-mode-icon" />}
           </div>
         </div>
 

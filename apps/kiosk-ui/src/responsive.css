@@ -276,6 +276,17 @@ body {
   .flash-card {
     max-width: 800px !important;
   }
+  
+  /* Header icons 4K upscaling */
+  .header-left-col, .header-right-col {
+    width: 220px !important;
+  }
+  .header-back-icon {
+    width: 140px !important;
+  }
+  .header-mode-icon {
+    width: 160px !important;
+  }
 }
 
 /* --- REUSABLE CLASS STYLES --- */
@@ -410,6 +421,30 @@ body {
   font-size: var(--font-title-md);
   font-weight: 800;
   letter-spacing: 1px;
+}
+
+.header-left-col {
+  width: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.header-right-col {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.header-back-icon {
+  width: 40px;
+  height: auto;
+}
+
+.header-mode-icon {
+  width: 50px;
+  height: auto;
 }
 
 .kiosk-back-btn {
