@@ -2003,25 +2003,25 @@ body {
   user-select: none;
 }
 
-/* Central Box.png frame */
+/* Central Box.png frame — full screen fit */
 .welcome-box-frame {
-  width: 85%;
-  max-width: 520px;
-  aspect-ratio: 1 / 1.05;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 2.5rem;
-  position: relative;
+  gap: 3rem;
+  padding: 0;
   z-index: 2;
 }
 
-/* LOCK UPP logo image */
+/* LOCK UPP logo image — fill the frame */
 .welcome-logo-img {
-  width: 85%;
-  max-width: 360px;
+  width: 75%;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 16px rgba(200, 0, 0, 0.5));
@@ -2073,13 +2073,10 @@ body {
 /* 4K Welcome overrides */
 @media (min-width: 2000px) {
   .welcome-box-frame {
-    width: 75%;
-    max-width: 1100px;
-    gap: 4rem;
-    padding: 5rem;
+    gap: 6rem;
   }
   .welcome-logo-img {
-    max-width: 800px;
+    width: 70%;
   }
   .welcome-fingerprint-wrap {
     width: 200px;
