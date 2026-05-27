@@ -16,6 +16,7 @@ import logoBgImg from "../assets/Asset_LogoBg.png";
 import groupIcon from "../assets/GroupIcon.png";
 import pairIcon from "../assets/PairIcon.png";
 import singleIcon from "../assets/Single.png";
+import cartIconPng from "../assets/Cart.png";
 
 export default function Menu() {
   const nav = useNavigate();
@@ -199,7 +200,9 @@ export default function Menu() {
             onClick={() => nav("/cart")}
           >
             <div className="kiosk-cart-left">
-              <div className="kiosk-cart-icon">🛒</div>
+              <div className="kiosk-cart-icon">
+                <img src={cartIconPng} alt="Cart" style={{ height: "1em", width: "auto" }} />
+              </div>
               {cartCount > 0 && (
                 <div className="kiosk-cart-badge">{cartCount}</div>
               )}
