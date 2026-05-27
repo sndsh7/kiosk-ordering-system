@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProfileAvatars from "../components/ProfileAvatars";
 
+import backgroundImg from "../assets/Background.png";
+import successBoxBg from "../assets/Asset_congratulationsBox_Green.png";
+import thumbImg from "../assets/Asset_Thumb.png";
+
 export default function Success() {
   const nav = useNavigate();
   const { state } = useLocation();
@@ -16,8 +20,8 @@ export default function Success() {
   }, [nav]);
 
   return (
-    <div className="kiosk-page kiosk-page-success" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div className="kiosk-card kiosk-card-success">
+    <div className="kiosk-page kiosk-page-success" style={{ display: "flex", alignItems: "center", justifyContent: "center", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
+      <div className="kiosk-card kiosk-card-success" style={{ backgroundImage: `url(${successBoxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none", padding: "4rem", width: "80%", maxWidth: "800px" }}>
 
         {/* PROFILE */}
         {entityName && (
@@ -26,7 +30,9 @@ export default function Success() {
           </div>
         )}
 
-        <div className="success-check-icon">✅</div>
+        <div className="success-check-icon" style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
+          <img src={thumbImg} alt="Success" style={{ width: "120px", height: "auto" }} />
+        </div>
         <div className="success-title">ORDER PLACED!</div>
         <div className="success-subtitle">Your order has been received.</div>
 

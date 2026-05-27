@@ -2,6 +2,9 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProfileAvatars from "../components/ProfileAvatars";
 
+import backgroundImg from "../assets/Background.png";
+import errorBoxBg from "../assets/Asset_congratulationsBox_Red.png";
+
 export default function ErrorScreen() {
   const nav = useNavigate();
   const { state } = useLocation();
@@ -30,8 +33,8 @@ export default function ErrorScreen() {
   }
 
   return (
-    <div className="kiosk-page" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div className="kiosk-card">
+    <div className="kiosk-page kiosk-page-success" style={{ display: "flex", alignItems: "center", justifyContent: "center", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
+      <div className="kiosk-card kiosk-card-success" style={{ backgroundImage: `url(${errorBoxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none", padding: "4rem", width: "80%", maxWidth: "800px", display: "flex", flexDirection: "column", alignItems: "center" }}>
         {/* PROFILE */}
         {entityName && (
           <div style={{ width: "100%", marginBottom: "0.5rem" }}>

@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { getKioskStatus, connectSocket } from "../lib/kioskApi";
 import ProfileAvatars from "../components/ProfileAvatars";
 
+import backArrowIcon from "../assets/Back_Arrow.png";
+import backgroundImg from "../assets/Background.png";
+import boxBg from "../assets/Box.png";
+import groupIcon from "../assets/GroupIcon.png";
+import pairIcon from "../assets/PairIcon.png";
+import singleIcon from "../assets/Single.png";
+import logoBgImg from "../assets/Asset_LogoBg.png";
+
 export default function ModeInfo() {
   const nav = useNavigate();
   const [status, setStatus] = useState(null);
@@ -19,7 +27,7 @@ export default function ModeInfo() {
 
   if (!status) {
     return (
-      <div className="kiosk-page">
+      <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#000" }}>
         <div className="welcome-loading-text" style={{ margin: "auto" }}>Loading…</div>
       </div>
     );
@@ -27,7 +35,7 @@ export default function ModeInfo() {
 
   if (!status.isActive) {
     return (
-      <div className="kiosk-page">
+      <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#000" }}>
         <div className="kiosk-card">
           <div className="welcome-error-icon">🚫</div>
           <div className="welcome-title">OUT OF SERVICE</div>
@@ -40,49 +48,56 @@ export default function ModeInfo() {
     );
   }
 
-  const modeIcon = status.mode?.toLowerCase() === 'individual' ? '👤' :
-    status.mode?.toLowerCase() === 'pair' ? '👥' :
-      status.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
+  const modeIconSrc = status.mode?.toLowerCase() === 'individual' ? singleIcon :
+    status.mode?.toLowerCase() === 'pair' ? pairIcon :
+      status.mode?.toLowerCase() === 'group' ? groupIcon : null;
 
-  const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
+  const displayMode = status.mode ? status.mode.toUpperCase() : "";
 
   return (
-    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
-      <div className="kiosk-container" style={{ overflow: "hidden" }}>
+    <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
+      {/* TOP SPOTLIGHT GLOW */}
+      <div className="menu-spotlight" />
+
+      <div className="kiosk-container" style={{ height: "100%", overflow: "hidden", display: "flex", flexDirection: "column" }}>
         {/* HEADER */}
-        <div className="kiosk-header">
-          <div style={{ width: "60px" }}>
-            <button className="kiosk-back-btn" onClick={() => nav("/")}>←</button>
+        <div className="kiosk-header" style={{ marginBottom: "1rem" }}>
+          <div className="header-left-col">
+            <button className="kiosk-back-btn" onClick={() => nav("/")} style={{ background: "none", border: "none", padding: 0 }}>
+              <img src={backArrowIcon} alt="Back" className="header-back-icon" />
+            </button>
           </div>
           <div className="kiosk-header-title" style={{ fontSize: "2rem" }}></div>
-          <div style={{ width: "60px", textAlign: "right" }}>
-            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          <div className="header-right-col">
+            {modeIconSrc && <img src={modeIconSrc} alt={status.mode} className="header-mode-icon" />}
           </div>
         </div>
 
-        {/* COMBINED MODE & BALANCE CARD */}
-        <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "3rem 2rem" }}>
+        {/* CENTRAL BOX CARD */}
+        <div className="modeinfo-box-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
           {status.mode?.toLowerCase() === "group" ? (
-            <div className="mode-name" style={{ marginBottom: "1.5rem", color: "#fff" }}>
-              {status.entityName}
-            </div>
+            <>
+              <div className="modeinfo-mode-label">{displayMode}</div>
+              <div className="modeinfo-money-label">LOCKUPP MONEY</div>
+              <div className="modeinfo-balance">₹{status.balance}</div>
+            </>
           ) : (
             <>
               <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="mode-name" style={{ marginTop: "1.5rem", marginBottom: "1.5rem", color: "#fff", fontSize: "1.2rem", letterSpacing: "1px", textTransform: "uppercase" }}>
-                {status.entityName}
-              </div>
+              <div className="modeinfo-entity">{status.entityName}</div>
+              <div className="modeinfo-money-label">LOCKUPP MONEY</div>
+              <div className="modeinfo-balance">₹{status.balance}</div>
             </>
           )}
-          <div className="kiosk-wallet-text" style={{ opacity: 0.8, fontSize: "1.2rem", textTransform: "uppercase", letterSpacing: "2px" }}>Lockupp Money</div>
-          <div className="kiosk-balance-amount" style={{ marginTop: "1rem" }}>₹ {status.balance}</div>
         </div>
 
+        {/* SPACER */}
+        <div style={{ flex: 1 }} />
 
-        {/* ACTIONS */}
-        <div className="mode-actions">
-          <button className="kiosk-btn" style={{ width: "100%", height: "var(--cart-btn-height)", fontSize: "1.6rem" }} onClick={() => nav("/menu")}>
-            🛒 START ORDERING
+        {/* START ORDERING BUTTON */}
+        <div className="modeinfo-actions">
+          <button className="modeinfo-start-btn" onClick={() => nav("/menu")}>
+            START ORDERING
           </button>
         </div>
       </div>

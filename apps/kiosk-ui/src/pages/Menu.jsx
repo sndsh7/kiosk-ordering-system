@@ -12,6 +12,7 @@ import ProfileAvatars from "../components/ProfileAvatars";
 
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
+import boxBg from "../assets/Box.png";
 import groupIcon from "../assets/GroupIcon.png";
 import pairIcon from "../assets/PairIcon.png";
 import singleIcon from "../assets/Single.png";
@@ -40,7 +41,6 @@ export default function Menu() {
       setCategories(cats);
 
       const first = cats[0]?.id ?? null;
-
       setActiveCat(first);
 
       if (first) {
@@ -68,7 +68,7 @@ export default function Menu() {
 
   if (!status) {
     return (
-      <div className="kiosk-page">
+      <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundColor: "#000" }}>
         <div className="welcome-loading-text" style={{ margin: "auto" }}>Loading...</div>
       </div>
     );
@@ -78,7 +78,7 @@ export default function Menu() {
     status?.mode?.toLowerCase() === 'pair' ? pairIcon :
       status?.mode?.toLowerCase() === 'group' ? groupIcon : null;
 
-  const displayMode = status.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
+  const displayMode = status.mode ? status.mode.toUpperCase() : "";
 
   return (
     <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
@@ -87,7 +87,7 @@ export default function Menu() {
 
       <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
-        <div className="kiosk-header" style={{ marginBottom: "1rem" }}>
+        <div className="kiosk-header" style={{ marginBottom: "0.5rem" }}>
           <div className="header-left-col">
             <button className="kiosk-back-btn" onClick={() => nav("/mode")} style={{ background: "none", border: "none", padding: 0 }}>
               <img src={backArrowIcon} alt="Back" className="header-back-icon" />
@@ -99,17 +99,8 @@ export default function Menu() {
           </div>
         </div>
 
-        {/* FUTURISTIC BALANCE CARD */}
-        <div className="menu-balance-card">
-          {/* Top scan line */}
-          <div className="menu-balance-scanline menu-balance-scanline--top" />
-          {/* Corner accents */}
-          <div className="menu-balance-corner menu-balance-corner--tl" />
-          <div className="menu-balance-corner menu-balance-corner--tr" />
-          <div className="menu-balance-corner menu-balance-corner--bl" />
-          <div className="menu-balance-corner menu-balance-corner--br" />
-
-          {/* PROFILE + MODE NAME */}
+        {/* BALANCE CARD — using Box.png */}
+        <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
           {status.mode?.toLowerCase() === "group" ? (
             <div className="menu-balance-mode">{displayMode}</div>
           ) : (
@@ -118,12 +109,8 @@ export default function Menu() {
               <div className="menu-balance-entity">{status.entityName}</div>
             </>
           )}
-
           <div className="menu-balance-label">LOCKUPP MONEY</div>
           <div className="menu-balance-amount">₹{Math.max(0, remaining)}</div>
-
-          {/* Bottom scan line */}
-          <div className="menu-balance-scanline menu-balance-scanline--bottom" />
         </div>
 
         {/* CATEGORY TABS */}
@@ -147,7 +134,7 @@ export default function Menu() {
 
             return (
               <div key={it.id} className="menu-food-card">
-                {/* CIRCULAR IMAGE */}
+                {/* IMAGE */}
                 {status.showItemImages !== false && (
                   <div className="menu-food-image">
                     {it.imageUrl ? (
@@ -171,7 +158,7 @@ export default function Menu() {
                   <div className="menu-food-price">₹ {it.pricePoints}</div>
                 </div>
 
-                {/* BUTTON */}
+                {/* ADD / QTY */}
                 <div className="menu-food-action">
                   {qty === 0 ? (
                     <button
@@ -205,31 +192,20 @@ export default function Menu() {
           })}
         </div>
 
-        {/* CART */}
+        {/* VIEW CART BAR */}
         <div className="kiosk-cart-wrapper">
           <button
             className="kiosk-cart-btn"
             onClick={() => nav("/cart")}
           >
             <div className="kiosk-cart-left">
-              <div className="kiosk-cart-icon">
-                🛒
-              </div>
-
+              <div className="kiosk-cart-icon">🛒</div>
               {cartCount > 0 && (
-                <div className="kiosk-cart-badge">
-                  {cartCount}
-                </div>
+                <div className="kiosk-cart-badge">{cartCount}</div>
               )}
             </div>
-
-            <div className="kiosk-cart-center">
-              VIEW CART
-            </div>
-
-            <div className="kiosk-cart-right">
-              ₹ {total}
-            </div>
+            <div className="kiosk-cart-center">VIEW CART</div>
+            <div className="kiosk-cart-right">₹{total}</div>
           </button>
         </div>
       </div>

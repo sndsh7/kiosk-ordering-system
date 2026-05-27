@@ -4,6 +4,13 @@ import { getKioskStatus } from "../lib/kioskApi";
 import { useCart } from "../state/cart.jsx";
 import ProfileAvatars from "../components/ProfileAvatars";
 
+import backArrowIcon from "../assets/Back_Arrow.png";
+import backgroundImg from "../assets/Background.png";
+import boxBg from "../assets/Box.png";
+import groupIcon from "../assets/GroupIcon.png";
+import pairIcon from "../assets/PairIcon.png";
+import singleIcon from "../assets/Single.png";
+
 export default function Cart() {
   const nav = useNavigate();
   const { list, total, dispatch } = useCart();
@@ -19,67 +26,65 @@ export default function Cart() {
   const balance = status?.balance || 0;
   const remaining = balance - total;
   const canProceed = list.length > 0 && total <= balance;
-  
-  const modeIcon = status?.mode?.toLowerCase() === 'individual' ? '👤' :
-    status?.mode?.toLowerCase() === 'pair' ? '👥' :
-      status?.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
-      
-  const displayMode = status?.mode ? status.mode.charAt(0).toUpperCase() + status.mode.slice(1).toLowerCase() : "";
+
+  const modeIconSrc = status?.mode?.toLowerCase() === 'individual' ? singleIcon :
+    status?.mode?.toLowerCase() === 'pair' ? pairIcon :
+      status?.mode?.toLowerCase() === 'group' ? groupIcon : null;
+
+  const displayMode = status?.mode ? status.mode.toUpperCase() : "";
 
   return (
-    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+    <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
+      {/* TOP SPOTLIGHT GLOW */}
+      <div className="menu-spotlight" />
+
       <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
-        <div className="kiosk-header">
-          <div style={{ width: "60px" }}>
-            <button className="kiosk-back-btn" onClick={() => nav("/menu")}>←</button>
+        <div className="kiosk-header" style={{ marginBottom: "0.5rem" }}>
+          <div className="header-left-col">
+            <button className="kiosk-back-btn" onClick={() => nav("/menu")} style={{ background: "none", border: "none", padding: 0 }}>
+              <img src={backArrowIcon} alt="Back" className="header-back-icon" />
+            </button>
           </div>
           <div className="kiosk-header-title">YOUR CART</div>
-          <div style={{ width: "60px", textAlign: "right" }}>
-            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          <div className="header-right-col">
+            {modeIconSrc && status && <img src={modeIconSrc} alt={status.mode} className="header-mode-icon" />}
           </div>
         </div>
 
-        {/* PROFILE INFO CARD */}
+        {/* BALANCE CARD — Box.png */}
         {status && (
-          <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "2rem" }}>
+          <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
             {status.mode?.toLowerCase() === "group" ? (
-              <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
-                {status.entityName}
-              </div>
+              <div className="menu-balance-mode">{displayMode}</div>
             ) : (
               <>
                 <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                <div className="mode-name" style={{ marginTop: "1.5rem", color: "#fff", fontSize: "1.2rem", letterSpacing: "1px", textTransform: "uppercase" }}>
-                  {status.entityName}
-                </div>
+                <div className="menu-balance-entity">{status.entityName}</div>
               </>
             )}
+            <div className="menu-balance-label">LOCKUPP MONEY</div>
+            <div className="menu-balance-amount">₹{Math.max(0, remaining)}</div>
           </div>
         )}
 
-
-        {/* BALANCE SUMMARY */}
-        <div className="kiosk-balance-card">
-          <div className="cart-balance-row">
-            <span className="cart-balance-label">Total</span>
-            <span className="cart-balance-value">₹ {total}</span>
+        {/* SUMMARY ROWS */}
+        <div className="cart-summary-box">
+          <div className="cart-summary-row">
+            <span className="cart-summary-label">TOTAL</span>
+            <span className="cart-summary-value">₹ {total}</span>
           </div>
-          <div className="cart-divider" />
-          <div className="cart-balance-row">
-            <span className="cart-balance-label">Wallet</span>
-            <span className="cart-balance-value">₹ {balance}</span>
+          <div className="cart-summary-divider" />
+          <div className="cart-summary-row">
+            <span className="cart-summary-label">WALLET</span>
+            <span className="cart-summary-value">₹ {balance}</span>
           </div>
-          <div className="cart-balance-row">
-            <span className="cart-balance-label">Remaining</span>
-            <span className="cart-balance-value" style={{ color: remaining < 0 ? "#ff4444" : "#ffcc00" }}>
-              ₹ {Math.max(0, remaining)}
-            </span>
+          <div className="cart-summary-row">
+            <span className="cart-summary-label">REMAINNING</span>
+            <span className="cart-summary-value" style={{ color: remaining < 0 ? "#ff4444" : "#fff" }}>₹ {Math.max(0, remaining)}</span>
           </div>
           {total > balance && (
-            <div className="cart-warning-text">
-              ⚠ Insufficient balance. Remove items to proceed.
-            </div>
+            <div className="cart-warning-text">⚠ Insufficient balance. Remove items to proceed.</div>
           )}
         </div>
 
@@ -88,27 +93,21 @@ export default function Cart() {
           <div className="cart-empty-state">
             <div className="cart-empty-icon">🛒</div>
             <div className="cart-empty-text">Your cart is empty</div>
-            <button className="kiosk-btn" style={{ height: "auto", padding: "1rem 2rem" }} onClick={() => nav("/menu")}>
+            <button className="kiosk-btn" style={{ marginTop: "2rem" }} onClick={() => nav("/menu")}>
               Browse Menu
             </button>
           </div>
         ) : (
-          <div className="kiosk-list" style={{ flex: 1, overflowY: "auto", marginBottom: "2rem" }}>
+          <div className="kiosk-list" style={{ flex: 1, overflowY: "auto", marginBottom: "1rem" }}>
             {list.map(({ item, qty }) => (
               <div key={item.id} className="cart-item-card">
                 {/* IMAGE */}
                 {status?.showItemImages !== false && (
                   <div className="kiosk-food-image">
                     {item.imageUrl ? (
-                      <img
-                        src={item.imageUrl}
-                        alt={item.name}
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                      />
+                      <img src={item.imageUrl} alt={item.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     ) : (
-                      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.5rem" }}>
-                        🍽️
-                      </div>
+                      <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2.5rem" }}>🍽️</div>
                     )}
                   </div>
                 )}
@@ -122,19 +121,9 @@ export default function Cart() {
 
                 {/* QTY STEPPER */}
                 <div className="cart-qty-wrap">
-                  <button
-                    className="cart-qty-btn"
-                    onClick={() => dispatch({ type: "DEC", itemId: item.id })}
-                  >
-                    −
-                  </button>
+                  <button className="cart-qty-btn" onClick={() => dispatch({ type: "DEC", itemId: item.id })}>−</button>
                   <div className="cart-qty-text">{qty}</div>
-                  <button
-                    className="cart-qty-btn"
-                    onClick={() => dispatch({ type: "INC", itemId: item.id })}
-                  >
-                    +
-                  </button>
+                  <button className="cart-qty-btn" onClick={() => dispatch({ type: "INC", itemId: item.id })}>+</button>
                 </div>
               </div>
             ))}
@@ -144,16 +133,17 @@ export default function Cart() {
         {/* ACTIONS */}
         <div className="kiosk-actions-fixed">
           <button
-            className="kiosk-clear-btn"
+            className="action-btn-clear"
             disabled={list.length === 0}
             onClick={() => dispatch({ type: "CLEAR" })}
+            style={{ opacity: list.length === 0 ? 0.4 : 1 }}
           >
             🗑 CLEAR
           </button>
           <button
-            className="kiosk-proceed-btn"
+            className="action-btn-proceed"
             disabled={!canProceed}
-            style={{ opacity: canProceed ? 1 : 0.4, cursor: canProceed ? "pointer" : "not-allowed" }}
+            style={{ opacity: canProceed ? 1 : 0.4 }}
             onClick={() => nav("/confirm")}
           >
             CHECKOUT →

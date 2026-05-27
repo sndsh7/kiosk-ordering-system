@@ -1,4 +1,5 @@
 import React from "react";
+import profileFrame from "../assets/Asset_ProfilePhoto.png";
 
 /**
  * ProfileAvatars — renders a horizontal row of circular avatars + name tags.
@@ -35,18 +36,21 @@ export default function ProfileAvatars({ entityName, photos, mode }) {
         return (
           <div key={i} className="profile-avatar-item">
             {!isGroup && (
-              <div className="profile-avatar-circle">
-                {photoUrl ? (
-                  <img
-                    src={photoUrl}
-                    alt={name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                ) : (
-                  <span className="profile-avatar-initial">
-                    {name.charAt(0).toUpperCase()}
-                  </span>
-                )}
+              <div className="profile-avatar-wrapper" style={{ position: "relative", width: "150px", height: "150px" }}>
+                <img src={profileFrame} alt="Frame" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none" }} />
+                <div className="profile-avatar-inner" style={{ position: "absolute", top: "8%", left: "8%", width: "84%", height: "84%", borderRadius: "50%", overflow: "hidden", zIndex: 1, background: "#1a0000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  {photoUrl ? (
+                    <img
+                      src={photoUrl}
+                      alt={name}
+                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                    />
+                  ) : (
+                    <span className="profile-avatar-initial" style={{ fontSize: "3rem", fontWeight: "bold", color: "#000", background: "var(--accent-gold)", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {name.charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                </div>
               </div>
             )}
           </div>

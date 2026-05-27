@@ -4,6 +4,13 @@ import { getKioskStatus, placeOrder } from "../lib/kioskApi";
 import { useCart } from "../state/cart.jsx";
 import ProfileAvatars from "../components/ProfileAvatars";
 
+import backArrowIcon from "../assets/Back_Arrow.png";
+import backgroundImg from "../assets/Background.png";
+import boxBg from "../assets/Box.png";
+import groupIcon from "../assets/GroupIcon.png";
+import pairIcon from "../assets/PairIcon.png";
+import singleIcon from "../assets/Single.png";
+
 export default function Confirm() {
   const nav = useNavigate();
   const { list, total, dispatch } = useCart();
@@ -18,7 +25,6 @@ export default function Confirm() {
   }, []);
 
   const balance = status?.balance || 0;
-
   const remaining = balance - total;
 
   async function submit() {
@@ -39,104 +45,108 @@ export default function Confirm() {
 
   if (list.length === 0) {
     return (
-      <div className="kiosk-page">
+      <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundColor: "#000" }}>
         <div className="kiosk-card">
           <div className="welcome-error-icon">🛒</div>
           <div className="welcome-title" style={{ fontSize: "2rem", marginBottom: "1.5rem" }}>No items in cart.</div>
-          <button className="kiosk-btn" onClick={() => nav("/menu")}>
-            Back to Menu
-          </button>
+          <button className="kiosk-btn" onClick={() => nav("/menu")}>Back to Menu</button>
         </div>
       </div>
     );
   }
 
-  const modeIcon = status?.mode?.toLowerCase() === 'individual' ? '👤' :
-    status?.mode?.toLowerCase() === 'pair' ? '👥' :
-      status?.mode?.toLowerCase() === 'group' ? '👨‍👦‍👦' : '⚙️';
+  const modeIconSrc = status?.mode?.toLowerCase() === 'individual' ? singleIcon :
+    status?.mode?.toLowerCase() === 'pair' ? pairIcon :
+      status?.mode?.toLowerCase() === 'group' ? groupIcon : null;
+
+  const displayMode = status?.mode ? status.mode.toUpperCase() : "";
 
   return (
-    <div className="kiosk-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden" }}>
+    <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
+      {/* TOP SPOTLIGHT GLOW */}
+      <div className="menu-spotlight" />
+
       <div className="kiosk-container" style={{ height: "100%", overflow: "hidden" }}>
         {/* HEADER */}
-        <div className="kiosk-header">
-          <div style={{ width: "60px" }}>
-            <button className="kiosk-back-btn" onClick={() => nav("/cart")}>←</button>
+        <div className="kiosk-header" style={{ marginBottom: "0.5rem" }}>
+          <div className="header-left-col">
+            <button className="kiosk-back-btn" onClick={() => nav("/cart")} style={{ background: "none", border: "none", padding: 0 }}>
+              <img src={backArrowIcon} alt="Back" className="header-back-icon" />
+            </button>
           </div>
           <div className="kiosk-header-title">CONFIRM ORDER</div>
-          <div style={{ width: "60px", textAlign: "right" }}>
-            <span style={{ fontSize: "2.5rem" }}>{modeIcon}</span>
+          <div className="header-right-col">
+            {modeIconSrc && status && <img src={modeIconSrc} alt={status.mode} className="header-mode-icon" />}
           </div>
         </div>
 
-        {/* PROFILE CARD */}
-        {status?.entityName && (
-          <div className="kiosk-balance-card" style={{ marginBottom: "1.5rem", padding: "1.5rem 2rem" }}>
+        {/* MODE BOX CARD — just mode name, no balance */}
+        {status && (
+          <div className="confirm-mode-box" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat" }}>
             {status.mode?.toLowerCase() === "group" ? (
-              <div className="mode-name" style={{ color: "#fff", fontSize: "1.2rem", letterSpacing: "1px" }}>
-                {status.entityName}
-              </div>
+              <div className="menu-balance-mode">{displayMode}</div>
             ) : (
               <>
                 <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                <div className="mode-name" style={{ color: "var(--accent-gold)", fontSize: "1.3rem", fontWeight: "bold", letterSpacing: "1px", textTransform: "uppercase" }}>
-                {status.entityName}
-              </div>
+                <div className="menu-balance-entity">{status.entityName}</div>
               </>
             )}
           </div>
         )}
 
         {/* SCROLLABLE CONTENT */}
-        <div style={{ flex: 1, overflowY: "auto" }}>
-        {/* ORDER SUMMARY */}
-        <div className="kiosk-balance-card" style={{ textAlign: "left", marginBottom: "1.5rem" }}>
-          <div className="mode-label" style={{ marginBottom: "1rem" }}>ORDER SUMMARY</div>
-          <div className="kiosk-list" style={{ gap: "0.8rem" }}>
+        <div style={{ flex: 1, overflowY: "auto", paddingBottom: "1rem" }}>
+
+          {/* ORDER SUMMARY BOX */}
+          <div className="confirm-summary-box">
+            <div className="confirm-summary-header">ORDER SUMMARY</div>
             {list.map(({ item, qty }) => (
               <div key={item.id} className="confirm-item-row">
                 <div className="confirm-item-name">{item.name}</div>
-                <div className="confirm-item-qty">× {qty}</div>
-                <div className="confirm-item-price">₹ {item.pricePoints * qty}</div>
+                <div className="confirm-item-qty-price">{qty}X ₹{item.pricePoints}</div>
               </div>
             ))}
           </div>
-          <div className="cart-divider" style={{ margin: "1.2rem 0" }} />
-          <div className="confirm-item-row" style={{ justifyContent: "space-between" }}>
-            <span className="confirm-total-label">TOTAL</span>
-            <span className="confirm-total-amount">₹ {total}</span>
-          </div>
-        </div>
 
-        {/* BALANCE CARD */}
-        <div className="kiosk-balance-card" style={{ marginBottom: "2rem" }}>
-          <div className="cart-balance-row">
-            <span className="cart-balance-label">Wallet Balance</span>
-            <span className="cart-balance-value">₹ {balance}</span>
+          {/* TOTAL ROW */}
+          <div className="confirm-total-row">
+            <span className="confirm-total-label">TOTAL</span>
+            <span className="confirm-total-amount">₹{total}</span>
           </div>
-          <div className="cart-balance-row">
-            <span className="cart-balance-label">Order Total</span>
-            <span className="cart-balance-value" style={{ color: "#ff4444" }}>− ₹ {total}</span>
+
+          {/* BALANCE BOX */}
+          <div className="confirm-balance-box">
+            <div className="confirm-balance-row">
+              <span className="confirm-balance-label">WALLET BALANCE</span>
+              <span className="confirm-balance-value">₹{balance}</span>
+            </div>
+            <div className="confirm-balance-row">
+              <span className="confirm-balance-label">ORDER TOTAL</span>
+              <span className="confirm-balance-value" style={{ color: "#ff4444" }}>−₹{total}</span>
+            </div>
           </div>
-          <div className="cart-divider" style={{ opacity: 0.3 }} />
-          <div className="cart-balance-row">
-            <span className="cart-balance-label">Remaining</span>
-            <span className="cart-balance-value" style={{ color: remaining < 0 ? "#ff4444" : "#ffcc00" }}>
-              ₹ {Math.max(0, remaining)}
-            </span>
+
+          {/* REMAINING ROW */}
+          <div className="confirm-remaining-row">
+            <span className="confirm-remaining-label">REMAINING</span>
+            <span className="confirm-remaining-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>₹{Math.max(0, remaining)}</span>
           </div>
-        </div>
         </div>
 
         {/* ACTIONS */}
         <div className="kiosk-actions-fixed">
-          <button className="kiosk-clear-btn" disabled={busy} onClick={() => nav("/cart")}>
+          <button
+            className="action-btn-clear"
+            disabled={busy}
+            onClick={() => nav("/cart")}
+            style={{ opacity: busy ? 0.4 : 1 }}
+          >
             ✕ CANCEL
           </button>
           <button
-            className="kiosk-proceed-btn"
+            className="action-btn-proceed"
             disabled={busy || total > balance}
-            style={{ opacity: busy || total > balance ? 0.4 : 1, cursor: busy || total > balance ? "not-allowed" : "pointer" }}
+            style={{ opacity: busy || total > balance ? 0.4 : 1 }}
             onClick={submit}
           >
             {busy ? "⏳ PROCESSING…" : "✓ PLACE ORDER"}
