@@ -655,21 +655,22 @@ body {
   width: 100%;
   height: var(--cart-btn-height);
   border-radius: 20px;
-  border: 1px solid rgba(255, 0, 0, 0.5);
-  background: linear-gradient(90deg, #420000, #1a0000);
+  border: none;
+  background-image: url('./assets/Asset_PlaceOrder.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--spacing-md);
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.15);
   transition: all 0.25s ease;
 }
 .kiosk-cart-btn:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 0, 0, 0.8);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 0, 0, 0.3);
+  filter: brightness(1.2);
 }
 
 .kiosk-cart-left {
@@ -1725,18 +1726,21 @@ body {
   height: var(--cart-btn-height);
   border-radius: 6px;
   border: none;
-  background: linear-gradient(180deg, #e03030, #8b0000);
+  background-image: url('./assets/Asset_PlaceOrder.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
   color: #fff;
   font-size: var(--font-body-lg);
   font-weight: 900;
   cursor: pointer;
   letter-spacing: 3px;
   text-transform: uppercase;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
   transition: all 0.2s ease;
+  box-shadow: none;
 }
 .modeinfo-start-btn:hover {
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.65);
+  filter: brightness(1.2);
 }
 
 /* ── Cart Page Summary Box ── */
@@ -1792,18 +1796,21 @@ body {
   flex: 1;
   height: var(--cart-btn-height);
   border-radius: 6px;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  background: #000;
+  border: none;
+  background-image: url('./assets/Asset_CancelButton.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
   color: #fff;
   font-size: var(--font-body-lg);
   font-weight: 900;
   cursor: pointer;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: border-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 .action-btn-clear:hover:not(:disabled) {
-  border-color: #fff;
+  filter: brightness(1.2);
 }
 .action-btn-clear:disabled {
   opacity: 0.4;
@@ -1815,18 +1822,21 @@ body {
   height: var(--cart-btn-height);
   border-radius: 6px;
   border: none;
-  background: linear-gradient(180deg, #e03030, #8b0000);
+  background-image: url('./assets/Asset_PlaceOrder.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: transparent;
   color: #fff;
   font-size: var(--font-body-lg);
   font-weight: 900;
   cursor: pointer;
   letter-spacing: 2px;
   text-transform: uppercase;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
   transition: all 0.2s ease;
+  box-shadow: none;
 }
 .action-btn-proceed:hover:not(:disabled) {
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.65);
+  filter: brightness(1.2);
 }
 .action-btn-proceed:disabled {
   opacity: 0.4;

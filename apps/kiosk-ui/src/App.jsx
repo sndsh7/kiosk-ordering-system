@@ -7,7 +7,6 @@ import { useCart } from "./state/cart";
 
 import backgroundImg from "./assets/Background.png";
 import bonusBoxImg from "./assets/Asset_congratulationsBox_Green.png";
-import penaltyBoxImg from "./assets/Asset_congratulationsBox_Red.png";
 import continueShoppingImg from "./assets/Asset_continue-shopping.png";
 import awardIcon from "./assets/Asset_Awward.png";
 import penaltyIcon from "./assets/Asset_PENALTY_Icon.png";
@@ -97,9 +96,9 @@ export default function App() {
                 <button
                   onClick={() => setFlash(null)}
                   className="action-btn-proceed"
-                  style={{ marginTop: "1.5rem", width: "100%", padding: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', boxShadow: 'none' }}
+                  style={{ marginTop: "1.5rem", width: "100%", letterSpacing: "3px" }}
                 >
-                  <img src={continueShoppingImg} alt="Continue Shopping" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
+                  CONTINUE SHOPPING
                 </button>
               </>
             ) : (
