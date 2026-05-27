@@ -8,6 +8,7 @@ import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
 import boxBg from "../assets/Box.png";
 import placeOrderImg from "../assets/Asset_PLACE-ORDER.png";
+import cancelBtnImg from "../assets/Asset_CancelButton.png";
 import groupIcon from "../assets/GroupIcon.png";
 import pairIcon from "../assets/PairIcon.png";
 import singleIcon from "../assets/Single.png";
@@ -137,24 +138,21 @@ export default function Confirm() {
         {/* ACTIONS */}
         <div className="kiosk-actions-fixed">
           <button
-            className="action-btn-clear"
             disabled={busy}
             onClick={() => nav("/cart")}
-            style={{ opacity: busy ? 0.4 : 1 }}
+            style={{ flex: 1, height: "var(--cart-btn-height)", borderRadius: "6px", border: "none", cursor: "pointer", opacity: busy ? 0.4 : 1, backgroundImage: `url(${cancelBtnImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent" }}
           >
-            ✕ CANCEL
+            {/* Image contains text */}
           </button>
           <button
             disabled={busy || total > balance}
-            style={{ flex: 2, height: "var(--cart-btn-height)", padding: 0, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'transparent', border: 'none', boxShadow: 'none', cursor: "pointer", opacity: busy || total > balance ? 0.4 : 1 }}
+            style={{ flex: 2, height: "var(--cart-btn-height)", borderRadius: "6px", border: "none", cursor: "pointer", opacity: busy || total > balance ? 0.4 : 1, backgroundImage: `url(${placeOrderImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent" }}
             onClick={submit}
           >
-            {busy ? (
+            {busy && (
               <span style={{ fontSize: "var(--font-body-lg)", fontWeight: 900, color: "#fff", background: "linear-gradient(180deg, #e03030, #8b0000)", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "6px" }}>
                 ⏳ PROCESSING…
               </span>
-            ) : (
-              <img src={placeOrderImg} alt="Place Order" style={{ width: "100%", height: "auto", objectFit: "contain" }} />
             )}
           </button>
         </div>
