@@ -1816,7 +1816,7 @@ body {
 
 .modeinfo-money-label {
   font-family: 'QB One Condensed', sans-serif;
-  font-size: var(--font-body-lg);
+  font-size: calc(var(--font-body-lg) * 1.05);
   font-weight: 600;
   color: #4cff00;
   letter-spacing: 2px;
@@ -2105,7 +2105,10 @@ body {
   }
 
   .modeinfo-mode-label,
-  .modeinfo-money-label,
+  .modeinfo-money-label {
+    font-size: 3.675rem;
+  }
+
   .modeinfo-entity {
     font-size: 3.5rem;
   }
