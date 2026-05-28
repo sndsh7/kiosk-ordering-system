@@ -1864,8 +1864,9 @@ body {
   background-repeat: no-repeat;
   background-color: transparent;
   color: #fff;
+  font-family: 'QB One Condensed', sans-serif;
   font-size: var(--font-body-lg);
-  font-weight: 900;
+  font-weight: 600;
   cursor: pointer;
   letter-spacing: 3px;
   text-transform: uppercase;
