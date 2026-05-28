@@ -2563,7 +2563,16 @@ body {
 /* 4K overrides */
 @media (min-width: 2000px) {
 
-  .success-box-card,
+  .success-box-card {
+    width: 90%;
+    max-width: 1900px;
+    height: 85%;
+    padding: 6rem 5rem;
+    border-radius: 32px;
+    gap: 2rem;
+    justify-content: center;
+  }
+
   .flash-card {
     width: 75%;
     max-width: 1100px;
