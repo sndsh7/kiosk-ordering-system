@@ -1558,7 +1558,7 @@ body {
 }
 
 .menu-food-desc {
-  font-size: 0.96rem;
+  font-size: 1.15rem;
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
   line-height: 1.35;
@@ -1583,13 +1583,13 @@ body {
 
 /* +ADD button */
 .menu-add-btn {
-  min-width: 86px;
-  height: 46px;
+  min-width: 104px;
+  height: 52px;
   border-radius: 10px;
   border: 1px solid rgba(255, 0, 0, 0.9);
   background: var(--btn-gradient);
   color: #fff;
-  font-size: 1.02rem;
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: 1px;
   cursor: pointer;
@@ -1619,8 +1619,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 108px;
-  height: 46px;
+  min-width: 125px;
+  height: 52px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255, 0, 0, 0.9);
@@ -1629,12 +1629,12 @@ body {
 }
 
 .menu-qty-btn {
-  width: 38px;
+  width: 44px;
   height: 100%;
   border: none;
   background: transparent;
   color: #fff;
-  font-size: 1.44rem;
+  font-size: 1.6rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -1654,7 +1654,7 @@ body {
 .menu-qty-text {
   flex: 1;
   text-align: center;
-  font-size: 1.08rem;
+  font-size: 1.25rem;
   font-weight: 800;
 }
 
