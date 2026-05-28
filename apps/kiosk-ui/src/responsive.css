@@ -2172,10 +2172,9 @@ body {
   z-index: 2;
 }
 
-/* LOCK UPP logo image — fill the frame */
 .welcome-logo-img {
-  width: 95%;
-  max-width: 900px;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
   height: auto;
   object-fit: contain;
@@ -2250,8 +2249,8 @@ body {
   }
 
   .welcome-logo-img {
-    width: 95%;
-    max-width: 1500px;
+    width: 100%;
+    max-width: 1600px;
   }
 
   .welcome-fingerprint-wrap {
