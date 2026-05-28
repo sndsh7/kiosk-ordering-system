@@ -1802,6 +1802,7 @@ body {
 }
 
 .menu-balance-amount {
+  font-family: 'QB One Medium Condensed', sans-serif;
   font-size: var(--font-title-xl);
   font-weight: 900;
   color: #4cff00;
