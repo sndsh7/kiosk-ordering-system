@@ -704,7 +704,8 @@ body {
 }
 
 .kiosk-cart-btn {
-  width: 100%;
+  width: 115%;
+  margin-left: -7.5%;
   height: auto;
   aspect-ratio: 6.5 / 1;
   border-radius: 20px;
@@ -1450,7 +1451,7 @@ body {
   color: #00e676;
   letter-spacing: 3px;
   text-transform: uppercase;
-  margin-top: 40px;
+  margin-top: 50px;
   margin-bottom: 0.3rem;
 }
 
