@@ -718,6 +718,7 @@ body {
   justify-content: space-between;
   padding: 0 var(--spacing-md);
   color: #fff;
+  font-family: 'QB One Medium Condensed', sans-serif;
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
@@ -736,6 +737,7 @@ body {
 
 .kiosk-cart-icon {
   font-size: 2.2rem;
+  margin-right: 1rem;
 }
 
 .kiosk-cart-badge {
@@ -765,6 +767,7 @@ body {
   font-size: var(--font-title-md);
   font-weight: 900;
   color: #fff;
+  margin-left: 1rem;
 }
 
 /* Kiosk welcome screen dynamic elements */
