@@ -128,7 +128,7 @@ export default function Menu() {
         </div>
 
         {/* FOOD LIST */}
-        <div className="menu-food-list" style={{ flex: 1, overflowY: "auto", paddingBottom: "130px" }}>
+        <div className="menu-food-list" style={{ flex: 1, overflowY: "auto" }}>
           {items.map((it) => {
             const cartItem = list.find((x) => x.item.id === it.id);
             const qty = cartItem?.qty || 0;
