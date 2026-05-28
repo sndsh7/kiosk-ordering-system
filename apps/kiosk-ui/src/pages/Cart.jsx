@@ -124,10 +124,10 @@ export default function Cart() {
                 </div>
 
                 {/* QTY STEPPER */}
-                <div className="cart-qty-wrap">
-                  <button className="cart-qty-btn" onClick={() => dispatch({ type: "DEC", itemId: item.id })}>−</button>
-                  <div className="cart-qty-text">{qty}</div>
-                  <button className="cart-qty-btn" onClick={() => dispatch({ type: "INC", itemId: item.id })}>+</button>
+                <div className="menu-qty-wrap">
+                  <button className="menu-qty-btn" onClick={() => dispatch({ type: "DEC", itemId: item.id })}>−</button>
+                  <div className="menu-qty-text">{qty}</div>
+                  <button className="menu-qty-btn" onClick={() => dispatch({ type: "INC", itemId: item.id })}>+</button>
                 </div>
               </div>
             ))}
