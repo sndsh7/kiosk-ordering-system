@@ -2353,30 +2353,31 @@ body {
 }
 
 .success-title {
-  font-family: 'QB One Medium Condensed', sans-serif;
+  font-family: 'QB One Regular Condensed', sans-serif;
   font-size: var(--font-title-lg);
-  font-weight: 900;
-  color: #00e676;
-  letter-spacing: 2px;
+  font-weight: 400;
+  color: #4cff00;
+  letter-spacing: 8px;
   line-height: 1.2;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .success-subtitle {
-  font-family: 'QB One Medium Condensed', sans-serif;
+  font-family: 'QB One Condensed', sans-serif;
   font-size: var(--font-body-lg);
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
 
 .success-balance-label {
-  font-family: 'QB One Medium Condensed', sans-serif;
-  font-size: var(--font-body-lg);
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
+  font-family: 'QB One Condensed', sans-serif;
+  font-size: calc(var(--font-body-lg) * 1.10);
+  font-weight: 600;
+  color: #4cff00;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 0.5rem;
@@ -2384,12 +2385,12 @@ body {
 
 .success-balance-amount {
   font-family: 'QB One', sans-serif;
-  font-size: calc(var(--font-title-xl) * 1.2);
+  font-size: var(--font-title-xl);
   font-weight: 900;
-  color: #00e676;
+  color: #4cff00;
   letter-spacing: 2px;
   line-height: 1.1;
-  text-shadow: 0 0 24px rgba(0, 230, 118, 0.6);
+  text-shadow: 0 0 24px rgba(76, 255, 0, 0.6);
 }
 
 .success-return-wrap {
@@ -2398,9 +2399,9 @@ body {
 }
 
 .success-return-msg {
-  font-family: 'QB One Medium Condensed', sans-serif;
+  font-family: 'QB One Condensed', sans-serif;
   font-size: var(--font-body-md);
-  font-weight: 700;
+  font-weight: 600;
   color: rgba(255, 255, 255, 0.75);
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
@@ -2417,7 +2418,7 @@ body {
 
 .success-progress-bar {
   height: 100%;
-  background: #00e676;
+  background: #4cff00;
   border-radius: 4px;
   animation: successProgress 7s linear forwards;
 }
@@ -2576,6 +2577,32 @@ body {
     border-radius: 32px;
     gap: 2rem;
     justify-content: center;
+  }
+
+  .success-title,
+  .success-balance-label {
+    font-size: 3.86rem;
+  }
+
+  .success-subtitle {
+    font-size: 3.5rem;
+  }
+
+  .success-balance-amount {
+    font-size: 9rem;
+  }
+
+  .success-check-img {
+    width: 180px;
+  }
+
+  .success-return-msg {
+    font-size: 2.5rem;
+  }
+
+  .success-progress-track {
+    height: 10px;
+    border-radius: 10px;
   }
 
   .flash-card {
