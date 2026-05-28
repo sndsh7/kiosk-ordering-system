@@ -1807,9 +1807,9 @@ body {
 
 .modeinfo-mode-label {
   font-size: var(--font-body-lg);
-  font-weight: 600;
+  font-weight: 700;
   color: #4cff00;
-  letter-spacing: 4px;
+  letter-spacing: 6px;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
 }
