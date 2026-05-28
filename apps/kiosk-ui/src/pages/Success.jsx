@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import backgroundImg from "../assets/Background.png";
-import boxBg from "../assets/Box.png";
+import logoBgImg from "../assets/Asset_LogoBg.png";
 import correctIcon from "../assets/Asset_Correct.png";
 
 export default function Success() {
@@ -29,13 +29,17 @@ export default function Success() {
       {/* Spotlight */}
       <div className="menu-spotlight" />
 
-      {/* Box card */}
+      {/* Box card — same as ModeInfo */}
       <div
-        className="success-box-card"
+        className="modeinfo-box-card"
         style={{
-          backgroundImage: `url(${boxBg})`,
+          backgroundImage: `url(${logoBgImg})`,
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
+          width: "100%",
+          aspectRatio: "2037 / 2040",
+          margin: "0 auto",
+          padding: "10% 2rem",
         }}
       >
         {/* Checkmark icon */}
