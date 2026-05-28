@@ -203,9 +203,9 @@ export default function Menu() {
               <div className="kiosk-cart-icon">
                 <img src={cartIconPng} alt="Cart" style={{ height: "1em", width: "auto" }} />
               </div>
-              {cartCount > 0 && (
+              {/* {cartCount > 0 && (
                 <div className="kiosk-cart-badge">{cartCount}</div>
-              )}
+              )} */}
             </div>
             <div className="kiosk-cart-center">VIEW CART</div>
             <div className="kiosk-cart-right">₹{total}</div>

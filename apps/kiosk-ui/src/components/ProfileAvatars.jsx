@@ -36,9 +36,9 @@ export default function ProfileAvatars({ entityName, photos, mode }) {
         return (
           <div key={i} className="profile-avatar-item">
             {!isGroup && (
-              <div className="profile-avatar-wrapper" style={{ position: "relative", width: "150px", height: "150px" }}>
+              <div className="profile-avatar-wrapper" style={{ position: "relative", width: "var(--profile-photo-size)", height: "var(--profile-photo-size)" }}>
 
-                <div className="profile-avatar-inner" style={{ position: "absolute", top: "8%", left: "8%", width: "84%", height: "84%", borderRadius: "50%", overflow: "hidden", zIndex: 1, background: "#1a0000", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div className="profile-avatar-inner" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", zIndex: 1, background: "#1a0000", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {photoUrl ? (
                     <img
                       src={photoUrl}

@@ -111,7 +111,7 @@
   --btn-height: 62px;
   --cart-btn-height: 90px;
   --container-max-width: 1200px;
-  --profile-photo-size: 150px;
+  --profile-photo-size: 200px;
 }
 
 /* Base Scaling */
@@ -277,7 +277,7 @@ body {
     --btn-height: 160px;
     --cart-btn-height: 280px;
     --container-max-width: 1800px;
-    --profile-photo-size: 160px;
+    --profile-photo-size: 380px;
   }
 
   /* Additional padding for easy hand reach */
@@ -2094,9 +2094,15 @@ body {
     border-radius: 28px;
   }
 
+  .modeinfo-mode-label,
+  .modeinfo-money-label,
+  .modeinfo-entity {
+    font-size: 3.5rem;
+  }
+
   .modeinfo-balance,
   .menu-balance-amount {
-    font-size: 7rem;
+    font-size: 9rem;
   }
 
   .modeinfo-start-btn,
@@ -2176,8 +2182,8 @@ body {
 /* Fingerprint scan area */
 .welcome-fingerprint-wrap {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 320px;
+  height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2192,8 +2198,8 @@ body {
 }
 
 .welcome-fingerprint-icon {
-  width: 80px;
-  height: 80px;
+  width: 280px;
+  height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2235,8 +2241,8 @@ body {
 /* 4K Welcome overrides */
 @media (min-width: 2000px) {
   .welcome-box-frame {
-    width: 100%;
-    max-width: 100%;
+    width: 90%;
+    max-width: 90%;
     gap: 6rem;
   }
 
@@ -2246,13 +2252,13 @@ body {
   }
 
   .welcome-fingerprint-wrap {
-    width: 200px;
-    height: 200px;
+    width: 650px;
+    height: 650px;
   }
 
   .welcome-fingerprint-icon {
-    width: 160px;
-    height: 160px;
+    width: 580px;
+    height: 580px;
   }
 }
 
