@@ -2029,10 +2029,12 @@ body {
 }
 
 .confirm-summary-box {
-  border: 1px solid rgba(0, 230, 118, 0.5);
-  border-radius: 6px;
+  border: 1px solid #00e676;
+  border-radius: 8px;
   padding: 0.8rem 1rem;
   margin-bottom: 0.5rem;
+  box-shadow: inset 0 0 5px rgba(0, 230, 118, 0.1), 0 0 5px rgba(0, 230, 118, 0.2);
+  background: rgba(5, 15, 10, 0.5);
 }
 
 .confirm-summary-header {
@@ -2070,9 +2072,11 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 1rem;
-  border: 1px solid rgba(0, 230, 118, 0.5);
-  border-radius: 6px;
+  border: 1px solid #00e676;
+  border-radius: 8px;
   margin-bottom: 0.5rem;
+  box-shadow: inset 0 0 5px rgba(0, 230, 118, 0.1), 0 0 5px rgba(0, 230, 118, 0.2);
+  background: rgba(5, 15, 10, 0.5);
 }
 
 .confirm-total-label {
@@ -2089,10 +2093,12 @@ body {
 }
 
 .confirm-balance-box {
-  border: 1px solid rgba(0, 230, 118, 0.5);
-  border-radius: 6px;
+  border: 1px solid #00e676;
+  border-radius: 8px;
   padding: 0.6rem 1rem;
   margin-bottom: 0.5rem;
+  box-shadow: inset 0 0 5px rgba(0, 230, 118, 0.1), 0 0 5px rgba(0, 230, 118, 0.2);
+  background: rgba(5, 15, 10, 0.5);
 }
 
 .confirm-balance-row {
@@ -2120,10 +2126,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgba(0, 230, 118, 0.5);
-  border-radius: 6px;
+  border: 1px solid #00e676;
+  border-radius: 8px;
   padding: 0.7rem 1rem;
   margin-bottom: 1rem;
+  box-shadow: inset 0 0 5px rgba(0, 230, 118, 0.1), 0 0 5px rgba(0, 230, 118, 0.2);
+  background: rgba(5, 15, 10, 0.5);
 }
 
 .confirm-remaining-label {
