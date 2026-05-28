@@ -1573,7 +1573,7 @@ body {
 .menu-food-price {
   font-size: calc(var(--font-body-md) * 1.2);
   font-weight: 900;
-  color: #00e676;
+  color: red;
 }
 
 /* Action button area */
@@ -1583,13 +1583,13 @@ body {
 
 /* +ADD button */
 .menu-add-btn {
-  min-width: 104px;
-  height: 52px;
+  min-width: 120px;
+  height: 60px;
   border-radius: 10px;
   border: 1px solid rgba(255, 0, 0, 0.9);
   background: var(--btn-gradient);
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.44rem;
   font-weight: 800;
   letter-spacing: 1px;
   cursor: pointer;
@@ -1619,8 +1619,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 125px;
-  height: 52px;
+  min-width: 144px;
+  height: 60px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255, 0, 0, 0.9);
@@ -1629,12 +1629,12 @@ body {
 }
 
 .menu-qty-btn {
-  width: 44px;
+  width: 51px;
   height: 100%;
   border: none;
   background: transparent;
   color: #fff;
-  font-size: 1.6rem;
+  font-size: 1.84rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -1654,7 +1654,7 @@ body {
 .menu-qty-text {
   flex: 1;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1.44rem;
   font-weight: 800;
 }
 
