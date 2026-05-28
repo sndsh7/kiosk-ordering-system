@@ -523,6 +523,7 @@ body {
   border: 1px solid rgba(0, 230, 118, 0.4);
   color: #00e676;
   padding: var(--spacing-sm) 0.5rem;
+  font-family: 'QB One Medium Condensed', sans-serif;
   font-size: calc(var(--font-body-md) * 1.20);
   font-weight: 800;
   cursor: pointer;
