@@ -70,7 +70,7 @@ export default function Welcome() {
         <div className="welcome-fingerprint-wrap">
           <div className="welcome-fingerprint-ring" />
           <div className="welcome-fingerprint-icon">
-            <img src={thumbImg} alt="Scan Fingerprint" className="welcome-fingerprint-svg" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            <img src={thumbImg} alt="Scan Fingerprint" className="welcome-fingerprint-svg" style={{ width: "100%", height: "100%", objectFit: "contain", marginBottom: "100px" }} />
           </div>
         </div>
       </div>
