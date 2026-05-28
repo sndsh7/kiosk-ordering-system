@@ -2032,7 +2032,7 @@ body {
   border: 1px solid rgba(0, 230, 118, 0.5);
   border-radius: 6px;
   padding: 0.8rem 1rem;
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
 .confirm-summary-header {
@@ -2070,9 +2070,9 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 1rem;
-  border-top: 1px solid rgba(0, 230, 118, 0.5);
-  border-bottom: 1px solid rgba(0, 230, 118, 0.5);
-  margin-bottom: 0;
+  border: 1px solid rgba(0, 230, 118, 0.5);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
 }
 
 .confirm-total-label {
@@ -2090,9 +2090,9 @@ body {
 
 .confirm-balance-box {
   border: 1px solid rgba(0, 230, 118, 0.5);
-  border-top: none;
-  border-bottom: none;
+  border-radius: 6px;
   padding: 0.6rem 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .confirm-balance-row {
@@ -2121,7 +2121,7 @@ body {
   justify-content: space-between;
   align-items: center;
   border: 1px solid rgba(0, 230, 118, 0.5);
-  border-top: 1px solid rgba(0, 230, 118, 0.5);
+  border-radius: 6px;
   padding: 0.7rem 1rem;
   margin-bottom: 1rem;
 }
