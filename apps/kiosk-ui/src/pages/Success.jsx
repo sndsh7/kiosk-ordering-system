@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import backgroundImg from "../assets/Background.png";
 import boxBg from "../assets/Box.png";
+import logoBgImg from "../assets/Asset_LogoBg.png";
 import correctIcon from "../assets/Asset_Correct.png";
 
 export default function Success() {
@@ -29,23 +30,28 @@ export default function Success() {
       {/* Spotlight */}
       <div className="menu-spotlight" />
 
-      {/* Box card */}
+      {/* Box card matching ModeInfo */}
       <div
-        className="success-box-card"
+        className="modeinfo-box-card"
         style={{
-          backgroundImage: `url(${boxBg})`,
+          backgroundImage: `url(${logoBgImg})`,
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
+          width: "100%",
+          aspectRatio: "2037 / 2040",
+          margin: "0 auto",
+          padding: "10% 2rem",
+          maxWidth: "680px" /* To prevent it from stretching too wildly on ultra-wide unless in 4K override */
         }}
       >
         {/* Checkmark icon */}
         <img src={correctIcon} alt="Success" className="success-check-img" />
 
-        <div className="success-title">ORDER PLACED!</div>
-        <div className="success-subtitle">YOUR ORDER HAS BEEN RECEIVED.</div>
+        <div className="modeinfo-mode-label">ORDER PLACED!</div>
+        <div className="modeinfo-entity" style={{ marginTop: 0, marginBottom: '1.5rem' }}>YOUR ORDER HAS BEEN RECEIVED.</div>
 
-        <div className="success-balance-label">REMAINING BALANCE</div>
-        <div className="success-balance-amount">₹{Math.max(0, remaining)}</div>
+        <div className="modeinfo-money-label">REMAINING BALANCE</div>
+        <div className="modeinfo-balance">₹{Math.max(0, remaining)}</div>
 
         {/* Return message + progress bar */}
         <div className="success-return-wrap">

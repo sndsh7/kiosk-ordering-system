@@ -84,17 +84,32 @@ export default function Confirm() {
 
         {/* MODE BOX CARD — just mode name, no balance */}
         {status && (
-          <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
-            {status.mode?.toLowerCase() === "group" ? (
-              <div className="menu-balance-mode">{displayMode}</div>
-            ) : (
-              <>
-                <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                <div className="menu-balance-entity">{status.entityName}</div>
-              </>
-            )}
-            <div className="menu-balance-label" style={{ visibility: 'hidden' }}>LOCKUPP MONEY</div>
-            <div className="menu-balance-amount" style={{ visibility: 'hidden' }}>₹{Math.max(0, remaining)}</div>
+          <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none", position: "relative" }}>
+            {/* Hidden placeholders to match the Cart screen's exact height */}
+            <div style={{ visibility: 'hidden', opacity: 0 }}>
+              {status.mode?.toLowerCase() === "group" ? (
+                <div className="menu-balance-mode">{displayMode}</div>
+              ) : (
+                <>
+                  <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+                  <div className="menu-balance-entity">{status.entityName}</div>
+                </>
+              )}
+              <div className="menu-balance-label">LOCKUPP MONEY</div>
+              <div className="menu-balance-amount">₹{Math.max(0, remaining)}</div>
+            </div>
+            
+            {/* Centered visible content */}
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+              {status.mode?.toLowerCase() === "group" ? (
+                <div className="menu-balance-mode" style={{ margin: 0 }}>{displayMode}</div>
+              ) : (
+                <>
+                  <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+                  <div className="menu-balance-entity" style={{ margin: '1rem 0 0 0' }}>{status.entityName}</div>
+                </>
+              )}
+            </div>
           </div>
         )}
 
