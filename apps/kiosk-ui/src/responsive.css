@@ -88,6 +88,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'QB One Medium Condensed';
+  src: url('./fonts/BoxTube Labs - QB One Medium Condensed.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* --- RESPONSIVE DESIGN SYSTEM --- */
 :root {
   --font-family: 'QB One', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -1765,7 +1773,8 @@ body {
 }
 
 .menu-balance-mode {
-  font-size: var(--font-body-lg);
+  font-family: 'QB One Medium Condensed', sans-serif;
+  font-size: calc(var(--font-body-lg) * 1.5);
   font-weight: 600;
   color: #4cff00;
   letter-spacing: 3px;
@@ -1783,7 +1792,8 @@ body {
 }
 
 .menu-balance-label {
-  font-size: var(--font-body-lg);
+  font-family: 'QB One Medium Condensed', sans-serif;
+  font-size: calc(var(--font-body-lg) * 1.5);
   font-weight: 800;
   color: #4cff00;
   letter-spacing: 2px;
