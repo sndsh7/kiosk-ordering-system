@@ -317,11 +317,11 @@ body {
   }
 
   .header-back-icon {
-    width: 167px !important;
+    width: 175px !important;
   }
 
   .header-mode-icon {
-    width: 188px !important;
+    width: 197px !important;
   }
 }
 
@@ -475,12 +475,12 @@ body {
 }
 
 .header-back-icon {
-  width: 42px;
+  width: 44px;
   height: auto;
 }
 
 .header-mode-icon {
-  width: 53px;
+  width: 56px;
   height: auto;
 }
 
@@ -1863,6 +1863,9 @@ body {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
   font-family: 'QB One Condensed', sans-serif;
   font-size: var(--font-body-lg);
