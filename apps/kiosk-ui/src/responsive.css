@@ -1728,15 +1728,11 @@ body {
   }
 
   .menu-add-btn {
-    min-width: 130px;
-    height: 64px;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     border-radius: 16px;
   }
 
   .menu-qty-wrap {
-    min-width: 160px;
-    height: 64px;
     border-radius: 16px;
   }
 
