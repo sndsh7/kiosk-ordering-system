@@ -1816,7 +1816,7 @@ body {
 
 .modeinfo-money-label {
   font-family: 'QB One Condensed', sans-serif;
-  font-size: calc(var(--font-body-lg) * 1.05);
+  font-size: calc(var(--font-body-lg) * 1.10);
   font-weight: 600;
   color: #4cff00;
   letter-spacing: 2px;
@@ -1824,7 +1824,7 @@ body {
 }
 
 .modeinfo-balance {
-  font-size: calc(var(--font-title-xl) * 1.05);
+  font-size: var(--font-title-xl);
   font-weight: 900;
   color: #4cff00;
   text-shadow: 0 0 24px rgba(76, 255, 0, 0.6);
@@ -2106,7 +2106,7 @@ body {
 
   .modeinfo-mode-label,
   .modeinfo-money-label {
-    font-size: 3.675rem;
+    font-size: 3.86rem;
   }
 
   .modeinfo-entity {
@@ -2115,7 +2115,7 @@ body {
 
   .modeinfo-balance,
   .menu-balance-amount {
-    font-size: 9.45rem;
+    font-size: 9rem;
   }
 
   .modeinfo-start-btn,
