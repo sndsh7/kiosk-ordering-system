@@ -1522,9 +1522,9 @@ body {
 
 /* Rectangular food image */
 .menu-food-image {
-  width: 100px;
-  height: 75px;
-  min-width: 100px;
+  width: 120px;
+  height: 90px;
+  min-width: 120px;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1549,7 +1549,7 @@ body {
 }
 
 .menu-food-name {
-  font-size: var(--font-body-md);
+  font-size: calc(var(--font-body-md) * 1.2);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1558,7 +1558,7 @@ body {
 }
 
 .menu-food-desc {
-  font-size: 0.8rem;
+  font-size: 0.96rem;
   color: rgba(255, 255, 255, 0.85);
   font-weight: 600;
   line-height: 1.35;
@@ -1571,7 +1571,7 @@ body {
 }
 
 .menu-food-price {
-  font-size: var(--font-body-md);
+  font-size: calc(var(--font-body-md) * 1.2);
   font-weight: 900;
   color: #00e676;
 }
@@ -1583,13 +1583,13 @@ body {
 
 /* +ADD button */
 .menu-add-btn {
-  min-width: 72px;
-  height: 38px;
+  min-width: 86px;
+  height: 46px;
   border-radius: 10px;
   border: 1px solid rgba(255, 0, 0, 0.9);
   background: var(--btn-gradient);
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 1.02rem;
   font-weight: 800;
   letter-spacing: 1px;
   cursor: pointer;
@@ -1619,8 +1619,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 90px;
-  height: 38px;
+  min-width: 108px;
+  height: 46px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(255, 0, 0, 0.9);
@@ -1629,12 +1629,12 @@ body {
 }
 
 .menu-qty-btn {
-  width: 32px;
+  width: 38px;
   height: 100%;
   border: none;
   background: transparent;
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.44rem;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -1654,7 +1654,7 @@ body {
 .menu-qty-text {
   flex: 1;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 1.08rem;
   font-weight: 800;
 }
 
