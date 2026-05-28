@@ -36,7 +36,7 @@ export default function Success() {
           backgroundImage: `url(${logoBgImg})`,
           backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
-          width: "100%",
+          width: "90%",
           aspectRatio: "2037 / 2040",
           margin: "0 auto",
           padding: "10% 2rem",
