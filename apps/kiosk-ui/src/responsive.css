@@ -704,12 +704,12 @@ body {
 }
 
 .kiosk-cart-btn {
-  width: 115%;
-  margin-left: -7.5%;
+  width: 106%;
+  margin-left: -4%;
   height: auto;
   aspect-ratio: 6.5 / 1;
-  border-radius: 20px;
-  border: none;
+  border-radius: 0;
+  /* border: none; */
   background-image: url('./assets/Asset_PLACE-ORDER.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -721,8 +721,8 @@ body {
   color: #fff;
   font-family: 'QB One Medium Condensed', sans-serif;
   cursor: pointer;
-  transition: all 0.25s ease;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  /* transition: all .25s ease; */
+  /* box-shadow: 0 0 20px #f009; */
 }
 
 .kiosk-cart-btn:hover {
