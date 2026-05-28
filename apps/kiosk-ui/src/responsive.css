@@ -1824,7 +1824,7 @@ body {
 }
 
 .modeinfo-balance {
-  font-size: var(--font-title-xl);
+  font-size: calc(var(--font-title-xl) * 1.05);
   font-weight: 900;
   color: #4cff00;
   text-shadow: 0 0 24px rgba(76, 255, 0, 0.6);
@@ -2115,7 +2115,7 @@ body {
 
   .modeinfo-balance,
   .menu-balance-amount {
-    font-size: 9rem;
+    font-size: 9.45rem;
   }
 
   .modeinfo-start-btn,
