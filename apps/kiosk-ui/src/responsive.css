@@ -2353,7 +2353,8 @@ body {
 }
 
 .success-title {
-  font-size: var(--font-title-md);
+  font-family: 'QB One Medium Condensed', sans-serif;
+  font-size: var(--font-title-lg);
   font-weight: 900;
   color: #00e676;
   letter-spacing: 2px;
@@ -2362,7 +2363,8 @@ body {
 }
 
 .success-subtitle {
-  font-size: var(--font-body-md);
+  font-family: 'QB One Medium Condensed', sans-serif;
+  font-size: var(--font-body-lg);
   font-weight: 700;
   color: #fff;
   letter-spacing: 1px;
@@ -2371,7 +2373,8 @@ body {
 }
 
 .success-balance-label {
-  font-size: var(--font-body-md);
+  font-family: 'QB One Medium Condensed', sans-serif;
+  font-size: var(--font-body-lg);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.7);
   letter-spacing: 2px;
@@ -2380,7 +2383,8 @@ body {
 }
 
 .success-balance-amount {
-  font-size: var(--font-title-xl);
+  font-family: 'QB One', sans-serif;
+  font-size: calc(var(--font-title-xl) * 1.2);
   font-weight: 900;
   color: #00e676;
   letter-spacing: 2px;
@@ -2394,7 +2398,8 @@ body {
 }
 
 .success-return-msg {
-  font-size: var(--font-body-sm);
+  font-family: 'QB One Medium Condensed', sans-serif;
+  font-size: var(--font-body-md);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.75);
   letter-spacing: 1px;

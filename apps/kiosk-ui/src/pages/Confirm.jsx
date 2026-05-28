@@ -93,6 +93,8 @@ export default function Confirm() {
                 <div className="menu-balance-entity">{status.entityName}</div>
               </>
             )}
+            <div className="menu-balance-label" style={{ visibility: 'hidden' }}>LOCKUPP MONEY</div>
+            <div className="menu-balance-amount" style={{ visibility: 'hidden' }}>₹{Math.max(0, remaining)}</div>
           </div>
         )}
 
