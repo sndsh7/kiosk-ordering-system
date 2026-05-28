@@ -70,18 +70,22 @@ export default function Cart() {
 
         {/* SUMMARY ROWS */}
         <div className="cart-summary-box">
-          <div className="cart-summary-row">
-            <span className="cart-summary-label">TOTAL</span>
-            <span className="cart-summary-value">₹ {total}</span>
+          <div className="cart-summary-group">
+            <div className="cart-summary-row">
+              <span className="cart-summary-label">TOTAL</span>
+              <span className="cart-summary-value" style={{ color: "#00e676" }}>₹ {total}</span>
+            </div>
           </div>
-          <div className="cart-summary-divider" />
-          <div className="cart-summary-row">
-            <span className="cart-summary-label">WALLET</span>
-            <span className="cart-summary-value">₹ {balance}</span>
-          </div>
-          <div className="cart-summary-row">
-            <span className="cart-summary-label">REMAINNING</span>
-            <span className="cart-summary-value" style={{ color: remaining < 0 ? "#ff4444" : "#fff" }}>₹ {Math.max(0, remaining)}</span>
+          
+          <div className="cart-summary-group">
+            <div className="cart-summary-row">
+              <span className="cart-summary-label">WALLET</span>
+              <span className="cart-summary-value" style={{ color: "#00e676" }}>₹ {balance}</span>
+            </div>
+            <div className="cart-summary-row">
+              <span className="cart-summary-label">REMAINNING</span>
+              <span className="cart-summary-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>₹ {Math.max(0, remaining)}</span>
+            </div>
           </div>
           {total > balance && (
             <div className="cart-warning-text">⚠ Insufficient balance. Remove items to proceed.</div>

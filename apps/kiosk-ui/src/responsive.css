@@ -1898,10 +1898,18 @@ body {
 /* ── Cart Page Summary Box ── */
 .cart-summary-box {
   background: transparent;
-  border-top: 1px solid rgba(0, 230, 118, 0.4);
-  border-bottom: 1px solid rgba(0, 230, 118, 0.4);
-  padding: 0.6rem 0.5rem;
   margin-bottom: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cart-summary-group {
+  border: 1px solid #00e676;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  box-shadow: inset 0 0 5px rgba(0, 230, 118, 0.1), 0 0 5px rgba(0, 230, 118, 0.2);
+  background: rgba(5, 15, 10, 0.5);
 }
 
 .cart-summary-row {
@@ -1922,12 +1930,6 @@ body {
 .cart-summary-value {
   color: #fff;
   font-weight: 800;
-}
-
-.cart-summary-divider {
-  height: 1px;
-  background: rgba(0, 230, 118, 0.3);
-  margin: 0.3rem 0;
 }
 
 /* Cart item card — green border to match design */
