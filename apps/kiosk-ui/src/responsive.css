@@ -1471,6 +1471,7 @@ body {
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .menu-food-card::before {
