@@ -1051,7 +1051,7 @@ body {
   left: var(--spacing-md);
   right: var(--spacing-md);
   display: flex;
-  gap: 15px;
+  gap: 5px;
   z-index: 100;
 }
 
