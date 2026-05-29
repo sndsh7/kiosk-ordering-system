@@ -56,8 +56,12 @@ export default function Cart() {
         {/* BALANCE CARD — Box.png */}
         {status && (
           <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
-            <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-            <div className="menu-balance-entity">{status.entityName}</div>
+            {status.mode?.toLowerCase() !== "group" && (
+              <>
+                <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+                <div className="menu-balance-entity">{status.entityName}</div>
+              </>
+            )}
             <div className="menu-balance-label">WEEKLY MONEY BANK</div>
             <div className="menu-balance-amount">{formatPoints(Math.max(0, remaining))}</div>
           </div>

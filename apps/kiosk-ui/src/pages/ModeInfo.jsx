@@ -79,8 +79,12 @@ export default function ModeInfo() {
 
         {/* CENTRAL BOX CARD */}
         <div className="modeinfo-box-card" style={{ backgroundImage: `url(${logoBgImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", width: "100%", aspectRatio: "2037 / 2040", margin: "0 auto", padding: "10% 2rem" }}>
-          <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-          <div className="modeinfo-entity">{status.entityName}</div>
+          {status.mode?.toLowerCase() !== "group" && (
+            <>
+              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+              <div className="modeinfo-entity">{status.entityName}</div>
+            </>
+          )}
           <div className="modeinfo-money-label">WEEKLY MONEY BANK</div>
           <div className="modeinfo-balance">{formatPoints(status.balance)}</div>
         </div>

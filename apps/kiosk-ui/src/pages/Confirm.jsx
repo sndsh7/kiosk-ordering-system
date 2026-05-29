@@ -88,16 +88,24 @@ export default function Confirm() {
           <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none", position: "relative" }}>
             {/* Hidden placeholders to match the Cart screen's exact height */}
             <div style={{ visibility: 'hidden', opacity: 0 }}>
-              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="menu-balance-entity">{status.entityName}</div>
+              {status.mode?.toLowerCase() !== "group" && (
+                <>
+                  <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+                  <div className="menu-balance-entity">{status.entityName}</div>
+                </>
+              )}
               <div className="menu-balance-label">WEEKLY MONEY BANK</div>
               <div className="menu-balance-amount">{formatPoints(Math.max(0, remaining))}</div>
             </div>
             
             {/* Centered visible content */}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="menu-balance-entity" style={{ margin: '1rem 0 0 0' }}>{status.entityName}</div>
+              {status.mode?.toLowerCase() !== "group" && (
+                <>
+                  <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+                  <div className="menu-balance-entity" style={{ margin: '1rem 0 0 0' }}>{status.entityName}</div>
+                </>
+              )}
             </div>
           </div>
         )}
