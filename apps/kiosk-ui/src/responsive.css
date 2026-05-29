@@ -460,10 +460,6 @@ body {
   justify-content: space-between;
   margin-bottom: var(--spacing-md);
   padding: 0.5rem 0;
-  margin-left: calc(-1 * var(--spacing-md));
-  margin-right: calc(-1 * var(--spacing-md));
-  padding-left: var(--spacing-sm);
-  padding-right: var(--spacing-sm);
 }
 
 .kiosk-header-title {
