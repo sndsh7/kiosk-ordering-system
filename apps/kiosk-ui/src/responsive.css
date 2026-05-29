@@ -1807,10 +1807,10 @@ body {
 }
 
 .confirm-balance-logo {
-  width: 140px;
+  width: 1280px;
   height: auto;
   object-fit: contain;
-  margin-bottom: 1rem;
+  margin-bottom: 0px;
 }
 
 .menu-balance-label {
@@ -2669,7 +2669,7 @@ body {
   }
 
   .confirm-balance-logo {
-    width: 280px;
-    margin-bottom: 2rem;
+    width: 1280px;
+    margin-bottom: 0px;
   }
 }
