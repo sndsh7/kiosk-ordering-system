@@ -1810,7 +1810,7 @@ body {
   font-family: 'QB One Medium Condensed', sans-serif;
   font-size: calc(var(--font-body-lg) * 1.5);
   font-weight: 800;
-  color: #4cff00;
+  color: #e0e0e0;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 0.2rem;
