@@ -422,7 +422,7 @@ body {
 
 .kiosk-container {
   width: 100%;
-  max-width: var(--container-max-width);
+  /* max-width: var(--container-max-width); */
   margin: 0 auto;
   flex-grow: 1;
   display: flex;
