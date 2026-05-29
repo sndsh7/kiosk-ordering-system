@@ -1806,6 +1806,13 @@ body {
   margin-bottom: 0.4rem;
 }
 
+.confirm-balance-logo {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
 .menu-balance-label {
   font-family: 'QB One Medium Condensed', sans-serif;
   font-size: calc(var(--font-body-lg) * 1.10);
@@ -2659,5 +2666,10 @@ body {
 
   .flash-icon-img {
     width: 180px;
+  }
+
+  .confirm-balance-logo {
+    width: 280px;
+    margin-bottom: 2rem;
   }
 }
