@@ -1473,11 +1473,11 @@ body {
   margin-bottom: 0.3rem;
 }
 
-/* "LOCKUPP MONEY" label */
+/* "WEEKLY MONEY BANK" label */
 .menu-balance-label {
   font-size: var(--font-body-md);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.75);
+  color: #e0e0e0;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 0.3rem;
@@ -1853,7 +1853,7 @@ body {
   font-family: 'QB One Condensed', sans-serif;
   font-size: calc(var(--font-body-lg) * 1.10);
   font-weight: 600;
-  color: #4cff00;
+  color: #e0e0e0;
   letter-spacing: 2px;
   margin-bottom: 0.3rem;
 }
@@ -2385,7 +2385,7 @@ body {
   font-family: 'QB One Condensed', sans-serif;
   font-size: calc(var(--font-body-lg) * 1.10);
   font-weight: 600;
-  color: #4cff00;
+  color: #e0e0e0;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-top: 0.5rem;

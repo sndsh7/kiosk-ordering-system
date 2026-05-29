@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getKioskStatus, connectSocket } from "../lib/kioskApi";
 import ProfileAvatars from "../components/ProfileAvatars";
+import { formatPoints } from "../lib/formatPoints";
 
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
@@ -78,20 +79,10 @@ export default function ModeInfo() {
 
         {/* CENTRAL BOX CARD */}
         <div className="modeinfo-box-card" style={{ backgroundImage: `url(${logoBgImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", width: "100%", aspectRatio: "2037 / 2040", margin: "0 auto", padding: "10% 2rem" }}>
-          {status.mode?.toLowerCase() === "group" ? (
-            <>
-              <div className="modeinfo-mode-label">{displayMode}</div>
-              <div className="modeinfo-money-label">LOCKUPP MONEY</div>
-              <div className="modeinfo-balance">₹{status.balance}</div>
-            </>
-          ) : (
-            <>
-              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="modeinfo-entity">{status.entityName}</div>
-              <div className="modeinfo-money-label">LOCKUPP MONEY</div>
-              <div className="modeinfo-balance">₹{status.balance}</div>
-            </>
-          )}
+          <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+          <div className="modeinfo-entity">{status.entityName}</div>
+          <div className="modeinfo-money-label">WEEKLY MONEY BANK</div>
+          <div className="modeinfo-balance">{formatPoints(status.balance)}</div>
         </div>
 
         {/* START ORDERING BUTTON */}

@@ -9,6 +9,7 @@ import {
 
 import { useCart } from "../state/cart.jsx";
 import ProfileAvatars from "../components/ProfileAvatars";
+import { formatPoints } from "../lib/formatPoints";
 
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
@@ -102,16 +103,10 @@ export default function Menu() {
 
         {/* BALANCE CARD — using Asset_LogoBg */}
         <div className="menu-balance-card" style={{ backgroundImage: `url(${logoBgImg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
-          {status.mode?.toLowerCase() === "group" ? (
-            <div className="menu-balance-mode">{displayMode}</div>
-          ) : (
-            <>
-              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-              <div className="menu-balance-entity">{status.entityName}</div>
-            </>
-          )}
-          <div className="menu-balance-label">LOCKUPP MONEY</div>
-          <div className="menu-balance-amount">₹{Math.max(0, remaining)}</div>
+          <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+          <div className="menu-balance-entity">{status.entityName}</div>
+          <div className="menu-balance-label">WEEKLY MONEY BANK</div>
+          <div className="menu-balance-amount">{formatPoints(Math.max(0, remaining))}</div>
         </div>
 
         {/* CATEGORY TABS */}
@@ -156,7 +151,7 @@ export default function Menu() {
                   <div className="menu-food-desc">
                     {it.description || "Fresh & delicious food item"}
                   </div>
-                  <div className="menu-food-price">₹ {it.pricePoints}</div>
+                  <div className="menu-food-price">{formatPoints(it.pricePoints)}</div>
                 </div>
 
                 {/* ADD / QTY */}
@@ -208,7 +203,7 @@ export default function Menu() {
               )} */}
             </div>
             <div className="kiosk-cart-center">VIEW CART</div>
-            <div className="kiosk-cart-right">₹{total}</div>
+            <div className="kiosk-cart-right">{formatPoints(total)}</div>
           </button>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getKioskStatus, placeOrder } from "../lib/kioskApi";
 import { useCart } from "../state/cart.jsx";
 import ProfileAvatars from "../components/ProfileAvatars";
+import { formatPoints } from "../lib/formatPoints";
 
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
@@ -87,28 +88,16 @@ export default function Confirm() {
           <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none", position: "relative" }}>
             {/* Hidden placeholders to match the Cart screen's exact height */}
             <div style={{ visibility: 'hidden', opacity: 0 }}>
-              {status.mode?.toLowerCase() === "group" ? (
-                <div className="menu-balance-mode">{displayMode}</div>
-              ) : (
-                <>
-                  <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                  <div className="menu-balance-entity">{status.entityName}</div>
-                </>
-              )}
-              <div className="menu-balance-label">LOCKUPP MONEY</div>
-              <div className="menu-balance-amount">₹{Math.max(0, remaining)}</div>
+              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+              <div className="menu-balance-entity">{status.entityName}</div>
+              <div className="menu-balance-label">WEEKLY MONEY BANK</div>
+              <div className="menu-balance-amount">{formatPoints(Math.max(0, remaining))}</div>
             </div>
             
             {/* Centered visible content */}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              {status.mode?.toLowerCase() === "group" ? (
-                <div className="menu-balance-mode" style={{ margin: 0 }}>{displayMode}</div>
-              ) : (
-                <>
-                  <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                  <div className="menu-balance-entity" style={{ margin: '1rem 0 0 0' }}>{status.entityName}</div>
-                </>
-              )}
+              <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+              <div className="menu-balance-entity" style={{ margin: '1rem 0 0 0' }}>{status.entityName}</div>
             </div>
           </div>
         )}
@@ -122,7 +111,7 @@ export default function Confirm() {
             {list.map(({ item, qty }) => (
               <div key={item.id} className="confirm-item-row">
                 <div className="confirm-item-name">{item.name}</div>
-                <div className="confirm-item-qty-price">{qty}X ₹{item.pricePoints}</div>
+                <div className="confirm-item-qty-price">{qty}X {formatPoints(item.pricePoints)}</div>
               </div>
             ))}
           </div>
@@ -130,25 +119,25 @@ export default function Confirm() {
           {/* TOTAL ROW */}
           <div className="confirm-total-row">
             <span className="confirm-total-label">TOTAL</span>
-            <span className="confirm-total-amount">₹{total}</span>
+            <span className="confirm-total-amount">{formatPoints(total)}</span>
           </div>
 
           {/* BALANCE BOX */}
           <div className="confirm-balance-box">
             <div className="confirm-balance-row">
               <span className="confirm-balance-label">WALLET BALANCE</span>
-              <span className="confirm-balance-value">₹{balance}</span>
+              <span className="confirm-balance-value">{formatPoints(balance)}</span>
             </div>
             <div className="confirm-balance-row">
               <span className="confirm-balance-label">ORDER TOTAL</span>
-              <span className="confirm-balance-value" style={{ color: "#ff4444" }}>−₹{total}</span>
+              <span className="confirm-balance-value" style={{ color: "#ff4444" }}>−{formatPoints(total)}</span>
             </div>
           </div>
 
           {/* REMAINING ROW */}
           <div className="confirm-remaining-row">
             <span className="confirm-remaining-label">REMAINING</span>
-            <span className="confirm-remaining-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>₹{Math.max(0, remaining)}</span>
+            <span className="confirm-remaining-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>{formatPoints(Math.max(0, remaining))}</span>
           </div>
         </div>
 

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getKioskStatus } from "../lib/kioskApi";
 import { useCart } from "../state/cart.jsx";
 import ProfileAvatars from "../components/ProfileAvatars";
+import { formatPoints } from "../lib/formatPoints";
 
 import backArrowIcon from "../assets/Back_Arrow.png";
 import backgroundImg from "../assets/Background.png";
@@ -55,16 +56,10 @@ export default function Cart() {
         {/* BALANCE CARD — Box.png */}
         {status && (
           <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none" }}>
-            {status.mode?.toLowerCase() === "group" ? (
-              <div className="menu-balance-mode">{displayMode}</div>
-            ) : (
-              <>
-                <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
-                <div className="menu-balance-entity">{status.entityName}</div>
-              </>
-            )}
-            <div className="menu-balance-label">LOCKUPP MONEY</div>
-            <div className="menu-balance-amount">₹{Math.max(0, remaining)}</div>
+            <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
+            <div className="menu-balance-entity">{status.entityName}</div>
+            <div className="menu-balance-label">WEEKLY MONEY BANK</div>
+            <div className="menu-balance-amount">{formatPoints(Math.max(0, remaining))}</div>
           </div>
         )}
 
@@ -73,18 +68,18 @@ export default function Cart() {
           <div className="cart-summary-group">
             <div className="cart-summary-row">
               <span className="cart-summary-label">TOTAL</span>
-              <span className="cart-summary-value" style={{ color: "#00e676" }}>₹ {total}</span>
+              <span className="cart-summary-value" style={{ color: "#00e676" }}>{formatPoints(total)}</span>
             </div>
           </div>
           
           <div className="cart-summary-group">
             <div className="cart-summary-row">
               <span className="cart-summary-label">WALLET</span>
-              <span className="cart-summary-value" style={{ color: "#00e676" }}>₹ {balance}</span>
+              <span className="cart-summary-value" style={{ color: "#00e676" }}>{formatPoints(balance)}</span>
             </div>
             <div className="cart-summary-row">
               <span className="cart-summary-label">REMAINNING</span>
-              <span className="cart-summary-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>₹ {Math.max(0, remaining)}</span>
+              <span className="cart-summary-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>{formatPoints(Math.max(0, remaining))}</span>
             </div>
           </div>
           {total > balance && (
@@ -119,7 +114,7 @@ export default function Cart() {
                 <div className="cart-item-info">
                   <div className="cart-item-name">{item.name}</div>
                   <div className="cart-item-price">
-                    ₹ {item.pricePoints} × {qty} = <span className="cart-item-total">₹ {item.pricePoints * qty}</span>
+                    {formatPoints(item.pricePoints)} × {qty} = <span className="cart-item-total">{formatPoints(item.pricePoints * qty)}</span>
                   </div>
                 </div>
 

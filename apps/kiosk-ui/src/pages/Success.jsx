@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { formatPoints } from "../lib/formatPoints";
 
 import backgroundImg from "../assets/Background.png";
 import logoBgImg from "../assets/Asset_LogoBg.png";
@@ -49,7 +50,7 @@ export default function Success() {
         <div className="success-subtitle">YOUR ORDER HAS BEEN RECEIVED.</div>
 
         <div className="success-balance-label">REMAINING BALANCE</div>
-        <div className="success-balance-amount">₹{Math.max(0, remaining)}</div>
+        <div className="success-balance-amount">{formatPoints(Math.max(0, remaining))}</div>
 
         {/* Return message + progress bar */}
         <div className="success-return-wrap">
