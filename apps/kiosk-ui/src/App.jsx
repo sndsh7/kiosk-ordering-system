@@ -8,6 +8,7 @@ import { formatPoints } from "./lib/formatPoints";
 
 import backgroundImg from "./assets/Background.png";
 import bonusBoxImg from "./assets/Asset_congratulationsBox_Green.png";
+import penaltyBoxImg from "./assets/Asset_congratulationsBox_Red.png";
 import continueShoppingImg from "./assets/Asset_continue-shopping.png";
 import awardIcon from "./assets/Asset_Awward.png";
 import penaltyIcon from "./assets/Asset_PENALTY_Icon.png";

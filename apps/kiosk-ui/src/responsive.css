@@ -313,10 +313,7 @@ body {
     max-width: 1100px !important;
   }
 
-  /* Flash TV adjustments */
-  .flash-card {
-    max-width: 800px !important;
-  }
+  /* Flash TV adjustments removed (moved to end of file) */
 
   /* Header icons 4K upscaling */
   .header-left-col,
@@ -2622,11 +2619,11 @@ body {
   }
 
   .flash-card {
-    width: 75%;
-    max-width: 1100px;
-    padding: 6rem 5rem;
-    border-radius: 32px;
-    gap: 1rem;
+    width: 90%;
+    max-width: 1600px;
+    padding: 8rem 6rem;
+    border-radius: 48px;
+    gap: 3rem;
   }
 
   .success-check-circle {
@@ -2636,9 +2633,9 @@ body {
   }
 
   .flash-balance-box {
-    padding: 1.5rem 2.5rem;
-    border-radius: 16px;
-    margin-top: 1.5rem;
+    padding: 3rem 4rem;
+    border-radius: 24px;
+    margin-top: 2.5rem;
   }
 }
 
