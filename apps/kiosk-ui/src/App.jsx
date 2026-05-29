@@ -4,6 +4,7 @@ import { connectSocket } from "./lib/kioskApi";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import ProfileAvatars from "./components/ProfileAvatars";
 import { useCart } from "./state/cart";
+import { formatPoints } from "./lib/formatPoints";
 
 import backgroundImg from "./assets/Background.png";
 import bonusBoxImg from "./assets/Asset_congratulationsBox_Green.png";
@@ -86,11 +87,11 @@ export default function App() {
                 <div className="flash-task-won">TASK WON!</div>
 
                 <div className="flash-bonus-label">BONUS ADDED</div>
-                <div className="flash-points flash-points-bonus">+₹{flash.points}</div>
+                <div className="flash-points flash-points-bonus">+{formatPoints(flash.points)}</div>
 
                 <div className="flash-balance-box">
-                  <div className="flash-balance-title">BONUS ADDED</div>
-                  <div className="flash-balance-amount flash-balance-bonus">₹{flash.newBalance}</div>
+                  <div className="flash-balance-title">WEEKLY MONEY BANK</div>
+                  <div className="flash-balance-amount flash-balance-bonus">{formatPoints(flash.newBalance)}</div>
                 </div>
 
                 <button
@@ -106,11 +107,11 @@ export default function App() {
                 <img src={penaltyIcon} alt="Penalty" className="flash-icon-img" />
 
                 <div className="flash-bonus-label" style={{ color: "rgba(255,255,255,0.7)" }}>PENALTY DEDUCTED</div>
-                <div className="flash-points flash-points-penalty">−₹{flash.points}</div>
+                <div className="flash-points flash-points-penalty">−{formatPoints(flash.points)}</div>
 
                 <div className="flash-balance-box flash-balance-box-penalty">
-                  <div className="flash-balance-title">NEW BALANCE</div>
-                  <div className="flash-balance-amount flash-balance-penalty">₹{flash.newBalance}</div>
+                  <div className="flash-balance-title">WEEKLY MONEY BANK</div>
+                  <div className="flash-balance-amount flash-balance-penalty">{formatPoints(flash.newBalance)}</div>
                 </div>
 
                 <button

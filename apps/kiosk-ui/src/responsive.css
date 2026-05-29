@@ -2560,7 +2560,7 @@ body {
 .flash-balance-title {
   font-size: var(--font-body-sm);
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.65);
+  color: #e0e0e0;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 0.2rem;
