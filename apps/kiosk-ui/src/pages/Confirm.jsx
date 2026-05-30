@@ -89,7 +89,9 @@ export default function Confirm() {
           <div className="menu-balance-card" style={{ backgroundImage: `url(${boxBg})`, backgroundSize: "100% 100%", backgroundRepeat: "no-repeat", backgroundColor: "transparent", border: "none", boxShadow: "none", position: "relative" }}>
             {/* Hidden placeholders to match the Cart screen's exact height */}
             <div style={{ visibility: 'hidden', opacity: 0 }}>
-              <img src={logoImg} alt="LOCK UPP" className="confirm-balance-logo" />
+              {status.mode?.toLowerCase() === "group" && (
+                <img src={logoImg} alt="LOCK UPP" className="confirm-balance-logo" />
+              )}
               {status.mode?.toLowerCase() !== "group" && (
                 <>
                   <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
@@ -102,7 +104,9 @@ export default function Confirm() {
 
             {/* Centered visible content */}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <img src={logoImg} alt="LOCK UPP" className="confirm-balance-logo" />
+              {status.mode?.toLowerCase() === "group" && (
+                <img src={logoImg} alt="LOCK UPP" className="confirm-balance-logo" />
+              )}
               {status.mode?.toLowerCase() !== "group" && (
                 <>
                   <ProfileAvatars entityName={status.entityName} photos={status.photos} mode={status.mode} />
