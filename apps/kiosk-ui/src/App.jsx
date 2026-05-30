@@ -13,6 +13,9 @@ import continueShoppingImg from "./assets/Asset_continue-shopping.png";
 import awardIcon from "./assets/Asset_Awward.png";
 import penaltyIcon from "./assets/Asset_PENALTY_Icon.png";
 import correctIcon from "./assets/Asset_Correct.png";
+import groupIcon from "./assets/GroupIcon.png";
+import pairIcon from "./assets/PairIcon.png";
+import singleIcon from "./assets/Single.png";
 
 import Welcome from "./pages/Welcome.jsx";
 import ModeInfo from "./pages/ModeInfo.jsx";
@@ -74,10 +77,14 @@ export default function App() {
               boxShadow: "none",
             }}
           >
-            {/* Mode name */}
-            {flash.entityName && (
-              <div className="flash-mode-name">
-                {flash.mode ? flash.mode.toUpperCase() : flash.entityName.toUpperCase()}
+            {/* Mode icon */}
+            {flash.mode && (
+              <div className="flash-mode-icon" style={{ display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
+                <img 
+                  src={flash.mode.toLowerCase() === 'individual' ? singleIcon : flash.mode.toLowerCase() === 'pair' ? pairIcon : groupIcon} 
+                  alt={flash.mode}
+                  style={{ width: "60px", height: "auto", filter: "invert(16%) sepia(85%) saturate(6144%) hue-rotate(352deg) brightness(96%) contrast(113%)" }} 
+                />
               </div>
             )}
 
@@ -91,15 +98,16 @@ export default function App() {
                 <div className="flash-points flash-points-bonus">+{formatPoints(flash.points)}</div>
 
                 <div className="flash-balance-box">
-                  <div className="flash-balance-title">WEEKLY MONEY BANK</div>
+                  <div className="flash-balance-title">BONUS ADDED</div>
                   <div className="flash-balance-amount flash-balance-bonus">{formatPoints(flash.newBalance)}</div>
                 </div>
 
                 <button
                   onClick={() => setFlash(null)}
-                  style={{ marginTop: "1.5rem", width: "100%", padding: 0, overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", boxShadow: "none", cursor: "pointer" }}
+                  className="action-btn-proceed"
+                  style={{ marginTop: "1.5rem", width: "100%", letterSpacing: "3px" }}
                 >
-                  <img src={continueShoppingImg} alt="Continue Shopping" style={{ width: "100%", height: "auto", objectFit: "contain" }} />
+                  CONTINUE SHOPPING
                 </button>
               </>
             ) : (
@@ -111,7 +119,7 @@ export default function App() {
                 <div className="flash-points flash-points-penalty">−{formatPoints(flash.points)}</div>
 
                 <div className="flash-balance-box flash-balance-box-penalty">
-                  <div className="flash-balance-title">WEEKLY MONEY BANK</div>
+                  <div className="flash-balance-title">NEW BALANCE</div>
                   <div className="flash-balance-amount flash-balance-penalty">{formatPoints(flash.newBalance)}</div>
                 </div>
 
