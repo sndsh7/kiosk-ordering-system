@@ -78,19 +78,18 @@ export default function App() {
               boxShadow: "none",
             }}
           >
-            {/* Mode icon */}
-            {flash.mode && (
-              <div className="flash-mode-icon-wrap">
-                <img 
-                  src={flash.mode.toLowerCase() === 'individual' ? singleIcon : flash.mode.toLowerCase() === 'pair' ? pairIcon : groupIcon} 
-                  alt={flash.mode}
-                  style={{ filter: "invert(16%) sepia(85%) saturate(6144%) hue-rotate(352deg) brightness(96%) contrast(113%)" }} 
-                />
-              </div>
-            )}
-
             {/* Content centered vertically */}
             <div className="flash-card-content">
+              {/* Mode icon */}
+              {flash.mode && (
+                <div className="flash-mode-icon-wrap">
+                  <img 
+                    src={flash.mode.toLowerCase() === 'individual' ? singleIcon : flash.mode.toLowerCase() === 'pair' ? pairIcon : groupIcon} 
+                    alt={flash.mode}
+                    style={{ filter: "invert(16%) sepia(85%) saturate(6144%) hue-rotate(352deg) brightness(96%) contrast(113%)" }} 
+                  />
+                </div>
+              )}
               {flash.type === "BONUS" ? (
                 <>
                   <div className="flash-title flash-title-bonus">CONGRATULATIONS</div>
