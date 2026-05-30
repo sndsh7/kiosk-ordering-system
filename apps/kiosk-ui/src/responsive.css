@@ -2486,6 +2486,7 @@ body {
   justify-content: center;
   width: 100%;
   gap: 0.3rem;
+  padding-top: 3rem;
 }
 
 /* Mode icon at top of card */
