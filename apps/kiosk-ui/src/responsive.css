@@ -1383,6 +1383,7 @@ body {
   width: 108%;
   margin-left: -57px;
   padding: 1.5rem 2rem;
+  --profile-photo-size: 130px;
   text-align: center;
   margin-bottom: .8rem;
   display: flex;
@@ -1713,6 +1714,7 @@ body {
   .menu-balance-card {
     padding: 3.5rem 3rem;
     border-radius: 32px;
+    --profile-photo-size: 240px;
   }
 
   .menu-balance-scanline {
