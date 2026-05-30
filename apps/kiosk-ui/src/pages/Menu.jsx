@@ -28,6 +28,7 @@ export default function Menu() {
   const [categories, setCategories] = useState([]);
   const [activeCat, setActiveCat] = useState(null);
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const balance = status?.balance ?? 0;
   const remaining = balance - total;
@@ -36,20 +37,24 @@ export default function Menu() {
     let socket;
 
     (async () => {
-      const s = await getKioskStatus();
-      setStatus(s);
+      try {
+        const s = await getKioskStatus();
+        setStatus(s);
 
-      const cats = await getCategories();
-      setCategories(cats);
+        const cats = await getCategories();
+        setCategories(cats);
 
-      const first = cats[0]?.id ?? null;
-      setActiveCat(first);
+        const first = cats[0]?.id ?? null;
+        setActiveCat(first);
 
-      if (first) {
-        setItems(await getItems(first));
+        if (first) {
+          setItems(await getItems(first));
+        }
+
+        socket = connectSocket(setStatus);
+      } finally {
+        setLoading(false);
       }
-
-      socket = connectSocket(setStatus);
     })();
 
     return () => socket?.disconnect();
@@ -81,6 +86,14 @@ export default function Menu() {
       status?.mode?.toLowerCase() === 'group' ? groupIcon : null;
 
   const displayMode = status.mode ? status.mode.toUpperCase() : "";
+
+  if (loading) {
+    return (
+      <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#000" }}>
+        <div className="welcome-loading-text" style={{ margin: "auto" }}>Loading…</div>
+      </div>
+    );
+  }
 
   return (
     <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>

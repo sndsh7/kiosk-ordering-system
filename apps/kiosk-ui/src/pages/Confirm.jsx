@@ -47,6 +47,14 @@ export default function Confirm() {
     }
   }
 
+  if (!status) {
+    return (
+      <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#000" }}>
+        <div className="welcome-loading-text" style={{ margin: "auto" }}>Loading…</div>
+      </div>
+    );
+  }
+
   if (list.length === 0) {
     return (
       <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundColor: "#000" }}>

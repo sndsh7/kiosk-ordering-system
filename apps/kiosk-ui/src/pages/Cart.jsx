@@ -34,6 +34,14 @@ export default function Cart() {
 
   const displayMode = status?.mode ? status.mode.toUpperCase() : "";
 
+  if (!status) {
+    return (
+      <div className="kiosk-page" style={{ backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundColor: "#000" }}>
+        <div className="welcome-loading-text" style={{ margin: "auto" }}>Loading…</div>
+      </div>
+    );
+  }
+
   return (
     <div className="kiosk-page menu-page" style={{ height: "100vh", maxHeight: "100vh", overflow: "hidden", backgroundImage: `url(${backgroundImg})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundColor: "#000" }}>
       {/* TOP SPOTLIGHT GLOW */}
