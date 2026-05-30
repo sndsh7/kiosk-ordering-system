@@ -70,8 +70,9 @@ export default function App() {
             className="flash-card"
             style={{
               backgroundImage: `url(${flash.type === "BONUS" ? bonusBoxImg : penaltyBoxImg})`,
-              backgroundSize: "100% 100%",
+              backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
               backgroundColor: "transparent",
               border: "none",
               boxShadow: "none",
@@ -79,59 +80,54 @@ export default function App() {
           >
             {/* Mode icon */}
             {flash.mode && (
-              <div className="flash-mode-icon" style={{ display: "flex", justifyContent: "center", marginBottom: "0.5rem" }}>
+              <div className="flash-mode-icon-wrap">
                 <img 
                   src={flash.mode.toLowerCase() === 'individual' ? singleIcon : flash.mode.toLowerCase() === 'pair' ? pairIcon : groupIcon} 
                   alt={flash.mode}
-                  style={{ width: "60px", height: "auto", filter: "invert(16%) sepia(85%) saturate(6144%) hue-rotate(352deg) brightness(96%) contrast(113%)" }} 
+                  style={{ filter: "invert(16%) sepia(85%) saturate(6144%) hue-rotate(352deg) brightness(96%) contrast(113%)" }} 
                 />
               </div>
             )}
 
-            {flash.type === "BONUS" ? (
-              <>
-                <div className="flash-title flash-title-bonus">CONGRATULATIONS</div>
-                <img src={awardIcon} alt="Award" className="flash-icon-img" />
-                <div className="flash-task-won">TASK WON!</div>
+            {/* Content centered vertically */}
+            <div className="flash-card-content">
+              {flash.type === "BONUS" ? (
+                <>
+                  <div className="flash-title flash-title-bonus">CONGRATULATIONS</div>
+                  <img src={awardIcon} alt="Award" className="flash-icon-img" />
+                  <div className="flash-task-won">TASK WON!</div>
 
-                <div className="flash-bonus-label">BONUS ADDED</div>
-                <div className="flash-points flash-points-bonus">+{formatPoints(flash.points)}</div>
+                  <div className="flash-bonus-label">BONUS ADDED</div>
+                  <div className="flash-points flash-points-bonus">+{formatPoints(flash.points)}</div>
 
-                <div className="flash-balance-box">
-                  <div className="flash-balance-title">BONUS ADDED</div>
-                  <div className="flash-balance-amount flash-balance-bonus">{formatPoints(flash.newBalance)}</div>
-                </div>
+                  <div className="flash-balance-box">
+                    <div className="flash-balance-title">BONUS ADDED</div>
+                    <div className="flash-balance-amount flash-balance-bonus">{formatPoints(flash.newBalance)}</div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flash-title flash-title-penalty">RULE VIOLATION!</div>
+                  <img src={penaltyIcon} alt="Penalty" className="flash-icon-img" />
 
-                <button
-                  onClick={() => setFlash(null)}
-                  className="action-btn-proceed"
-                  style={{ marginTop: "1.5rem", width: "100%", letterSpacing: "3px" }}
-                >
-                  CONTINUE SHOPPING
-                </button>
-              </>
-            ) : (
-              <>
-                <div className="flash-title flash-title-penalty">RULE VIOLATION!</div>
-                <img src={penaltyIcon} alt="Penalty" className="flash-icon-img" />
+                  <div className="flash-bonus-label" style={{ color: "rgba(255,255,255,0.7)" }}>PENALTY DEDUCTED</div>
+                  <div className="flash-points flash-points-penalty">−{formatPoints(flash.points)}</div>
 
-                <div className="flash-bonus-label" style={{ color: "rgba(255,255,255,0.7)" }}>PENALTY DEDUCTED</div>
-                <div className="flash-points flash-points-penalty">−{formatPoints(flash.points)}</div>
+                  <div className="flash-balance-box flash-balance-box-penalty">
+                    <div className="flash-balance-title">NEW BALANCE</div>
+                    <div className="flash-balance-amount flash-balance-penalty">{formatPoints(flash.newBalance)}</div>
+                  </div>
+                </>
+              )}
+            </div>
 
-                <div className="flash-balance-box flash-balance-box-penalty">
-                  <div className="flash-balance-title">NEW BALANCE</div>
-                  <div className="flash-balance-amount flash-balance-penalty">{formatPoints(flash.newBalance)}</div>
-                </div>
-
-                <button
-                  onClick={() => setFlash(null)}
-                  className="action-btn-proceed"
-                  style={{ marginTop: "1.5rem", width: "100%", letterSpacing: "3px" }}
-                >
-                  OK, GOT IT
-                </button>
-              </>
-            )}
+            {/* Button at bottom of card */}
+            <button
+              onClick={() => setFlash(null)}
+              className="flash-action-btn"
+            >
+              {flash.type === "BONUS" ? "CONTINUE SHOPPING" : "OK, GOT IT"}
+            </button>
           </div>
 
           <style>{`
