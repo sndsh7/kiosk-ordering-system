@@ -518,7 +518,7 @@ body {
   flex: 1;
   background: rgba(10, 20, 15, 0.85);
   border: 1px solid rgba(0, 230, 118, 0.4);
-  color: #00e676;
+  color: #e0e0e0;
   padding: var(--spacing-sm) 0.5rem;
   font-family: 'QB One Medium Condensed', sans-serif;
   font-size: calc(var(--font-body-md) * 1.20);
@@ -533,7 +533,7 @@ body {
 .kiosk-tab-btn.active {
   background: linear-gradient(180deg, #ff3333, #8b0000);
   border: 1px solid #ff3333;
-  color: #fff;
+  color: #e0e0e0;
   box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.6);
 }
 
@@ -992,7 +992,7 @@ body {
   font-size: var(--font-body-lg);
   font-weight: 800;
   margin-bottom: 0.3rem;
-  color: #00e676;
+  color: #e0e0e0;
   text-transform: uppercase;
 }
 
@@ -1563,7 +1563,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 0.3rem;
-  color: #00e676;
+  color: #e0e0e0;
 }
 
 .menu-food-desc {
@@ -2062,7 +2062,7 @@ body {
   flex: 1;
   font-size: var(--font-body-md);
   font-weight: 700;
-  color: #fff;
+  color: #e0e0e0;
   text-transform: uppercase;
 }
 
