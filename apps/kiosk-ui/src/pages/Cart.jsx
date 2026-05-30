@@ -71,18 +71,18 @@ export default function Cart() {
         <div className="cart-summary-box">
           <div className="cart-summary-group">
             <div className="cart-summary-row">
-              <span className="cart-summary-label">TOTAL</span>
+              <span className="cart-summary-label">ORDER TOTAL</span>
               <span className="cart-summary-value" style={{ color: "#00e676" }}>{formatPoints(total)}</span>
             </div>
           </div>
-          
+
           <div className="cart-summary-group">
             <div className="cart-summary-row">
-              <span className="cart-summary-label">WALLET</span>
+              <span className="cart-summary-label">WEEKLY MONEY BANK</span>
               <span className="cart-summary-value" style={{ color: "#00e676" }}>{formatPoints(balance)}</span>
             </div>
             <div className="cart-summary-row">
-              <span className="cart-summary-label">REMAINNING</span>
+              <span className="cart-summary-label">REMAINNING BALANCE</span>
               <span className="cart-summary-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>{formatPoints(Math.max(0, remaining))}</span>
             </div>
           </div>

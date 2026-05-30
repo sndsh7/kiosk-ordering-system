@@ -99,7 +99,7 @@ export default function Confirm() {
               <div className="menu-balance-label">WEEKLY MONEY BANK</div>
               <div className="menu-balance-amount">{formatPoints(Math.max(0, remaining))}</div>
             </div>
-            
+
             {/* Centered visible content */}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <img src={logoImg} alt="LOCK UPP" className="confirm-balance-logo" />
@@ -136,7 +136,7 @@ export default function Confirm() {
           {/* BALANCE BOX */}
           <div className="confirm-balance-box">
             <div className="confirm-balance-row">
-              <span className="confirm-balance-label">WALLET BALANCE</span>
+              <span className="confirm-balance-label">WEEKLY MONEY BANK</span>
               <span className="confirm-balance-value">{formatPoints(balance)}</span>
             </div>
             <div className="confirm-balance-row">
@@ -147,7 +147,7 @@ export default function Confirm() {
 
           {/* REMAINING ROW */}
           <div className="confirm-remaining-row">
-            <span className="confirm-remaining-label">REMAINING</span>
+            <span className="confirm-remaining-label">REMAINING BALANCE</span>
             <span className="confirm-remaining-value" style={{ color: remaining < 0 ? "#ff4444" : "#00e676" }}>{formatPoints(Math.max(0, remaining))}</span>
           </div>
         </div>
